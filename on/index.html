@@ -524,6 +524,15 @@ img{display:block;max-width:100%}
 .wopt .wi img{width:86%;height:86%;object-fit:contain;background:#fff}
 .wopt b{font-size:13.5px;font-weight:800;display:block}
 .wopt span{font-size:11.5px;font-weight:600;color:var(--tx3);display:block;margin-top:2px}
+.fake-card{background:linear-gradient(160deg,#1d1214,#120e0f);border:1px solid rgba(228,0,43,.35);border-left:3px solid var(--red);padding:15px 15px 13px}
+.fk-mark{width:38px;height:38px;border-radius:50%;background:rgba(228,0,43,.16);border:1.5px solid var(--red);color:var(--red);font:800 20px/36px var(--body);text-align:center}
+.fk-title{font-family:'Anton';font-size:17px;letter-spacing:.02em;text-transform:uppercase;color:#fff;margin-top:10px}
+.fk-body{font-size:12px;font-weight:600;color:var(--tx2);line-height:1.6;margin-top:7px}
+.fk-body b{color:var(--tx)}
+.fk-rows{margin-top:11px;border-top:1px solid rgba(255,255,255,.08);padding-top:4px}
+.fk-row{display:flex;gap:9px;align-items:flex-start;padding:7px 0;font-size:11.5px;font-weight:600;color:var(--tx2);line-height:1.5}
+.fk-row svg{width:13px;height:13px;flex-shrink:0;color:var(--red);margin-top:2px}
+.fk-row b{color:var(--tx)}
 .scanbox{position:relative;height:170px;background:var(--ink2);border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;margin-bottom:14px}
 .scanline{position:absolute;left:12%;right:12%;height:2px;background:var(--red);box-shadow:0 0 14px rgba(228,0,43,.9);animation:scan 1.3s ease-in-out infinite alternate}
 @keyframes scan{from{top:18%}to{top:80%}}
@@ -2944,8 +2953,35 @@ function drawWizard(){
   else if(wiz.step==='scan'){
     b.innerHTML = head('Step 1','4','Scanning…','Hold the barcode inside the frame.') + `
       <div class="scanbox">${svg('barcode')}<div class="scanline"></div></div>
-      <p class="bk-note">Demo: the scanner will find Gold Standard 100% Whey.</p>`;
-    setTimeout(()=>{ if(wiz && wiz.step==='scan'){ wiz.pid='gsw'; wiz.step='verify'; drawWizard(); } }, 1600);
+      <p class="bk-note">Demo: choose what the scanner finds.</p>
+      <button class="btn dark sm block" style="margin-top:12px" data-wiz-realscan>My Gold Standard Whey tub</button>
+      <button class="btn dark sm block" style="margin-top:10px" data-wiz-fakescan>A suspect tub bought elsewhere</button>`;
+  }
+  else if(wiz.step==='fakeverify'){
+    b.innerHTML = head('Step 1','4','Found · claims to be Gold Standard Whey','Checking it’s genuine with Optimum Nutrition…') + `
+      <div class="card" style="padding:14px 15px">
+        <div class="as-row" style="display:flex;gap:10px;align-items:center"><span class="as-spin"></span><span class="agtx" style="font-size:12px;color:var(--tx2)"><b>Batch 9QX-1182</b> — matching against ON production records</span></div>
+      </div>`;
+    setTimeout(()=>{ if(wiz && wiz.step==='fakeverify'){ wiz.step='fake'; drawWizard(); } }, 1800);
+  }
+  else if(wiz.step==='fake'){
+    b.innerHTML = head('Authenticity check','','This doesn’t look genuine.','') + `
+      <div class="fake-card">
+        <div class="fk-mark">!</div>
+        <div class="fk-title">Not verified as a genuine ON product</div>
+        <p class="fk-body">Batch <b>9QX-1182</b> doesn’t match Optimum Nutrition’s production records for this product line. That usually means a counterfeit or tampered tub.</p>
+        <div class="fk-rows">
+          <div class="fk-row">${svg('check')}<span><b>Don’t consume it.</b> Counterfeit supplements can contain unlisted ingredients.</span></div>
+          <div class="fk-row">${svg('check')}<span>Keep the tub and the receipt — where you bought it matters.</span></div>
+          <div class="fk-row">${svg('check')}<span>ON investigates every report and works with retailers to remove fakes.</span></div>
+        </div>
+      </div>
+      ${wiz.reported
+        ? `<div class="card" style="margin-top:12px"><div class="honest">${svg('check')}<span><b style="color:var(--green)">Reported ✓</b> Batch and purchase details shared with the ON quality team. This is logged in your Coach Optimum activity.</span></div></div>
+           <button class="btn dark sm block" style="margin-top:12px" data-wiz-shopreal>Shop the genuine product</button>`
+        : `<button class="btn block" style="margin-top:14px" data-wiz-report>Report this product to ON</button>
+           <button class="btn dark sm block" style="margin-top:10px" data-wiz-shopreal>Shop the genuine product</button>`}
+      <button class="ghostlink" style="margin:12px auto 0;display:block;font-size:10.5px" data-wiz-rescan>Scan a different tub</button>`;
   }
   else if(wiz.step==='verify'){
     b.innerHTML = head('Step 1','4','Found · Gold Standard 100% Whey','Checking it’s genuine with Optimum Nutrition…') + `
@@ -5472,6 +5508,17 @@ document.addEventListener('click', e=>{
     drawWizard(); return;
   }
   if(d.wizPick){ wiz.pid=d.wizPick; wiz.step='details'; if(wiz.viaElsewhere) wiz.source='retail'; drawWizard(); return; }
+  if(t.hasAttribute('data-wiz-realscan') && wiz){ wiz.pid='gsw'; wiz.step='verify'; drawWizard(); return; }
+  if(t.hasAttribute('data-wiz-fakescan') && wiz){ wiz.step='fakeverify'; drawWizard(); return; }
+  if(t.hasAttribute('data-wiz-report') && wiz){
+    wiz.reported = true;
+    pushLedger2({title:'Suspect product reported to ON', meta:'Batch 9QX-1182 · claimed Gold Standard Whey', reason:'Batch code did not match ON production records. Details shared with the ON quality team.', perm:'Approved by you in MY/ON', status:'shared'});
+    drawWizard(); renderAll();
+    toast('Reported — thank you. The ON quality team will investigate');
+    return;
+  }
+  if(t.hasAttribute('data-wiz-rescan') && wiz){ wiz.step='scan'; wiz.reported=false; drawWizard(); return; }
+  if(t.hasAttribute('data-wiz-shopreal') && wiz){ closeWizard(); openPDP('gsw'); return; }
   if(t.hasAttribute('data-wiz-manual') && wiz){ wiz.verified=false; drawWizard(); return; }
   if(d.wizFlav!==undefined && wiz){ wiz.flav=+d.wizFlav; drawWizard(); return; }
   if(d.wizSize!==undefined && wiz){ wiz.size=+d.wizSize; drawWizard(); return; }
