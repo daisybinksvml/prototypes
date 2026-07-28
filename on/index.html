@@ -473,8 +473,19 @@ img{display:block;max-width:100%}
 .ask-a b{font-weight:800}
 
 /* PDP + wizard shared */
-.pdp-hero{background:#fff;display:grid;place-items:center;height:230px;margin:8px -20px 0}
-.pdp-hero img{max-height:88%;max-width:70%;object-fit:contain}
+.pdp-hero{background:#fff;display:grid;place-items:center;height:250px;margin:10px 0 0;overflow:hidden}
+.pdp-hero img{max-height:86%;max-width:74%;object-fit:contain}
+.pdp-ticks{margin-top:12px}
+.pt-row{display:flex;gap:9px;align-items:flex-start;padding:4px 0;font-size:12.5px;font-weight:600;color:var(--tx2);line-height:1.45}
+.pt-row svg{width:14px;height:14px;flex-shrink:0;color:var(--green);margin-top:2px}
+.pdp-pricebar{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.pp-price{font-family:'Anton';font-size:26px;color:#fff;letter-spacing:.01em}
+.pp-per{font-size:11px;font-weight:700;color:var(--tx3);margin-top:3px}
+.pp-tax{font-size:10px;font-weight:700;color:var(--tx3)}
+.pdp-ship{display:flex;gap:8px;align-items:center;margin-top:11px;font-size:11px;font-weight:700;color:var(--tx3)}
+.pdp-ship svg{width:13px;height:13px;color:var(--green);flex-shrink:0}
+.pdp-sec{font:800 10px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--tx3);margin-top:20px;padding-top:14px;border-top:1px solid var(--line)}
+.pdp-blurb{font-size:13px;font-weight:600;color:var(--tx2);line-height:1.6;margin-top:8px}
 .pdp-hero.dark{background:linear-gradient(160deg,#1c1e24,#101216)}
 .pdp-hero.dark .pl-name{font-family:'Anton';font-size:30px;text-transform:uppercase}
 .pdp-t{font-size:27px;margin:16px 0 4px}
@@ -2715,6 +2726,14 @@ function openPDP(id){
   $('#pdp').classList.add('on');
   $('#pdp .ov-scroll').scrollTop = 0;
 }
+const PDP_TICKS = {
+  gsw:['24g protein per serving','5.5g naturally occurring BCAAs','Supports muscle support & recovery¹','From the UK’s No.1 sports nutrition brand²'],
+  electro:['400mg sodium · 300mg potassium · 113mg magnesium','Supports hydration through sweat-heavy sessions','Zero sugar'],
+  pre:['200mg natural caffeine per serving','6g L-citrulline · 3.2g beta-alanine','Our most advanced & highest-dosed pre-workout'],
+  clearw:['20g whey protein isolate · just 82 kcal','Light, juice-style — zero sugar, fat free','Very low lactose (0.2%)'],
+  creatine:['3g pure creatine monohydrate per serving','Supports performance in high-intensity exercise','Unflavoured — mixes into anything'],
+  recovery:['20g protein + 40g carbs for post-session recovery','Designed for the hour after hard training','Blends with milk or water']
+};
 function drawPDP(id){
   pdpOpenId = id;
   const p = prod(id);
@@ -2730,8 +2749,7 @@ function drawPDP(id){
     <div class="pdp-thumbs">${p.gallery.map((g,i)=>`<button class="pdp-th${i===(pdpSel.gal||0)?' on':''}" data-pdp-gal="${i}"><img src="${IMG[g]}" alt=""></button>`).join('')}</div>`
     : `<div class="pdp-hero ${p.img?'':'dark'}">${p.img? '<img src="'+IMG[p.img]+'" alt="">' : '<span class="pl-name" style="text-align:center;padding:0 20px">'+p.name+'</span>'}</div>`}
     <h2 class="pdp-t">${p.name}</h2>
-    <div class="pdp-price"><small>£</small>${p.price.toFixed(2)} <small>· ${p.sizes[pdpSel.size]}</small></div>
-    <p style="font-size:13px;font-weight:600;color:var(--tx2);line-height:1.55;margin-top:8px">${p.blurb}</p>
+    ${(PDP_TICKS[id]||[]).length? `<div class="pdp-ticks">${PDP_TICKS[id].map(t=>`<div class="pt-row">${svg('check')}<span>${t}</span></div>`).join('')}</div>`:''}
 
     ${isElectroLow ? `
     <div class="coach-card">
@@ -2745,11 +2763,19 @@ function drawPDP(id){
     <div class="optlabel">Size</div>
     <div class="opts">${p.sizes.map((s,i)=>`<button class="opt ${pdpSel.size===i?'on':''}" data-pdp-size="${i}" data-pdp-id="${id}">${s}</button>`).join('')}</div>
 
+    ${(()=>{ const sv = parseInt((p.sizes[pdpSel.size].match(/(\d+)\s*serving/)||[])[1]||0);
+      return `<div class="pdp-pricebar">
+        <div><div class="pp-price">£${p.price.toFixed(2)}</div>${sv? `<div class="pp-per">Price per serving: £${(p.price/sv).toFixed(2)}</div>`:''}</div>
+        <span class="pp-tax">Tax included</span>
+      </div>`; })()}
+
     <div class="pdp-actions">
-      <button class="btn block" data-add-basket="${id}">Add to basket · ${money(p.price)}</button>
-      <button class="btn dark block" data-add-cupboard="${id}">Add to My Cupboard</button>
-      <button class="ghostlink" style="text-align:center" data-track-elsewhere="${id}">Already bought this elsewhere? Track it</button>
+      <button class="btn block" data-add-basket="${id}">Add to basket</button>
+      <div class="pdp-ship">${svg('check')}<span>Free next-day delivery on orders £50+ · order before 2pm Mon–Fri</span></div>
     </div>
+
+    <div class="pdp-sec">Product overview</div>
+    <p class="pdp-blurb">${p.blurb}</p>
     ${owned? '<p class="bk-note">Already in your cupboard · '+owned.servings+' servings of '+owned.flav+'</p>':''}`;
 }
 
