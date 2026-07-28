@@ -532,7 +532,13 @@ body[data-r="argos"] .usp svg{color:#1a1a1a}
 
 /* ===== v23: editorial opening ===== */
 .quick2x2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:560px}
-.quick2x2 .chip{width:100%;justify-content:center;text-align:center}
+.quick2x2 .chip{width:100%;justify-content:center;text-align:center;animation:chipglow 2.8s ease-in-out infinite}
+.quick2x2 .chip:nth-child(2){animation-delay:.7s}
+.quick2x2 .chip:nth-child(3){animation-delay:1.4s}
+.quick2x2 .chip:nth-child(4){animation-delay:2.1s}
+.quick2x2 .chip:hover{animation-play-state:paused}
+@keyframes chipglow{0%,100%{box-shadow:0 0 0 0 rgba(255,207,0,0);transform:scale(1)}50%{box-shadow:0 0 0 4px rgba(255,207,0,.18),0 4px 14px rgba(255,207,0,.28);transform:scale(1.012)}}
+@media (prefers-reduced-motion:reduce){.quick2x2 .chip{animation:none}}
 @media(max-width:480px){.quick2x2{grid-template-columns:1fr}}
 .ov-field{position:relative;width:100%;height:100%;border-radius:28px;overflow:hidden;
   background:radial-gradient(120% 130% at 20% 0%,#EAF3FF 0%,#D9E9FC 52%,#CBDFF7 100%)}
@@ -704,9 +710,9 @@ body[data-r="argos"] .usp svg{color:#1a1a1a}
         <div class="quick">
           <p>Or try another starting point</p>
           <div class="chips quick2x2" id="quickChips">
-            <button class="chip" data-q="firstset">A great first LEGO set</button>
+            <button class="chip" data-q="boy">Toys for boys</button>
+            <button class="chip" data-q="girl">Toys for girls</button>
             <button class="chip" data-q="adultfan">For an adult LEGO fan</button>
-            <button class="chip" data-q="together">A set we can build together</button>
             <button class="chip" data-q="surprise50">A big surprise under £50</button>
           </div>
         </div>
@@ -1908,9 +1914,9 @@ async function startExperience(text,preset){
   nextStep();busy=false;
 }
 const QUICK={
-  firstset:{preset:{firstSet:true,safe:true}},
+  boy:{preset:{pron:"he"}},
+  girl:{preset:{pron:"she"}},
   adultfan:{preset:{ageBand:"adult",intent:"display",big:true}},
-  together:{preset:{together:true,intent:"together"}},
   surprise50:{preset:{budget:50,budgetKind:"under",big:true}}
 };
 function buildOpenScene(){
