@@ -49,7 +49,7 @@ a{color:inherit}
 }
 
 /* ---------- desktop stage + phone frame ---------- */
-.stage{min-height:100dvh;display:flex;align-items:center;justify-content:center;position:relative}
+.stage{height:100dvh;display:flex;align-items:center;justify-content:center;position:relative}
 .stage-caption{display:none}
 .frame{width:100%;height:100dvh;position:relative}
 @media (min-width:480px){
@@ -747,32 +747,32 @@ section{position:relative}
     <div class="sec-head rv">
       <div class="eyebrow">From field to glass</div>
       <h2 class="disp">How a field becomes a lager.</h2>
-      <p class="lede" style="color:rgba(22,19,14,.75)">Four stages. No shortcuts. Tap each one to see the work involved.</p>
+      <p class="lede" style="color:rgba(22,19,14,.75)">Four stages, from nearly a year in the ground to two minutes at the tap. Tap each one.</p>
     </div>
     <div class="journey" id="journeyList">
       <div class="stage-card rv open" data-stage="0">
         <button class="stage-btn" aria-expanded="true">
-          <span class="stage-num">01</span><span class="stage-name">Grown</span><span class="stage-hint">Tap</span>
+          <span class="stage-num">01</span><span class="stage-name">Grown</span><span class="stage-hint">A year, nearly</span>
           <svg class="stage-chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="stage-body">
           <div class="stage-photo im-grown" role="img" aria-label="A British farm with fields under a summer sky"></div>
-          <p class="stage-copy">Barley doesn't grow itself. Somebody drills it, then spends the best part of a year negotiating with British weather — frost, drought and rain at exactly the wrong moment. Farming is mostly patience with mud on it.</p>
+          <p class="stage-copy">Seed goes into the ground in autumn and doesn't become anything drinkable for the best part of a year. In between: frost, drought, and rain at precisely the wrong moment.</p>
         </div>
       </div>
       <div class="stage-card rv" data-stage="1">
         <button class="stage-btn" aria-expanded="false">
-          <span class="stage-num">02</span><span class="stage-name">Harvested</span><span class="stage-hint">Tap</span>
+          <span class="stage-num">02</span><span class="stage-name">Harvested</span><span class="stage-hint">Days</span>
           <svg class="stage-chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="stage-body">
           <div class="stage-photo im-harvest" role="img" aria-label="A ripe golden barley field at harvest time"></div>
-          <p class="stage-copy">When the crop finally comes good, it's cut, dried and safely stored — a whole year's work sat in a trailer. From here, the grain heads off to be prepared for brewing.</p>
+          <p class="stage-copy">A few frantic days in late summer. The crop is cut, dried and safely stored — then it's off to the maltings to be turned into something a brewer can use.</p>
         </div>
       </div>
       <div class="stage-card rv" data-stage="2">
         <button class="stage-btn" aria-expanded="false">
-          <span class="stage-num">03</span><span class="stage-name">Malted &amp; brewed</span><span class="stage-hint">Tap</span>
+          <span class="stage-num">03</span><span class="stage-name">Malted &amp; brewed</span><span class="stage-hint">Weeks</span>
           <svg class="stage-chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="stage-body">
@@ -801,17 +801,17 @@ section{position:relative}
               <line x1="24" y1="132" x2="316" y2="132" stroke="rgba(240,233,216,.18)" stroke-width="1"/>
             </svg>
           </div>
-          <p class="stage-copy">The barley is malted, then Hawkstone's brewers bring together water, malted barley, hops and yeast — and refuse to hurry any of it. No corners cut, and always lagered for longer. That's the whole trick.</p>
+          <p class="stage-copy">Malted barley, water, hops and yeast, brought together in the Cotswolds — then lagered for weeks longer than strictly necessary. That's where the smoothness comes from.</p>
         </div>
       </div>
       <div class="stage-card rv" data-stage="3">
         <button class="stage-btn" aria-expanded="false">
-          <span class="stage-num">04</span><span class="stage-name">Poured</span><span class="stage-hint">Tap</span>
+          <span class="stage-num">04</span><span class="stage-name">Poured</span><span class="stage-hint">Minutes</span>
           <svg class="stage-chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div class="stage-body">
           <div class="stage-photo im-poured" role="img" aria-label="A freshly poured glass of Hawkstone Premium Lager"></div>
-          <p class="stage-copy">Bold, yet balanced. A smooth body, top notes of light citrus, a subtle crisp bitterness and a malty backbone. Everything above happened so this bit could be effortless.</p>
+          <p class="stage-copy">Bold, yet balanced. Light citrus up top, a crisp bitterness, a malty backbone underneath. Months in the making; about two minutes to pour. Cheers.</p>
         </div>
       </div>
     </div>
@@ -835,7 +835,7 @@ section{position:relative}
           <span><span class="crew-name">The farmer</span><span class="crew-role" style="display:block">Grows the barley</span></span>
           <svg class="stage-chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <div class="crew-body"><p class="crew-copy">Up before it's light, drilling in autumn, feeding and protecting the crop through winter, then watching the sky all summer. One bad fortnight of weather can undo a year of work. The barley that survives is what a proper lager is built on.</p></div>
+        <div class="crew-body"><p class="crew-copy">Up before the birds and paid by the tonne, whatever the weather decides to do. The barley in your glass is somebody's entire year going right.</p></div>
       </div>
       <div class="crew-card rv">
         <button class="crew-btn" aria-expanded="false">
@@ -843,7 +843,7 @@ section{position:relative}
           <span><span class="crew-name">The hop grower</span><span class="crew-role" style="display:block">Tends the bines</span></span>
           <svg class="stage-chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <div class="crew-body"><p class="crew-copy">Hops climb strings taller than a house and need training, tending and picking at exactly the right moment. British hop growing has been shrinking for generations — which is precisely why Hawkstone is putting money behind it. More on that below.</p></div>
+        <div class="crew-body"><p class="crew-copy">Trains every bine up strings taller than a house — by hand — then picks the lot in a matter of weeks. British hop farms are rarer than they've ever been, which is exactly why Hawkstone is backing them. More below.</p></div>
       </div>
       <div class="crew-card rv">
         <button class="crew-btn" aria-expanded="false">
@@ -851,7 +851,7 @@ section{position:relative}
           <span><span class="crew-name">The brewer</span><span class="crew-role" style="display:block">Refuses to rush</span></span>
           <svg class="stage-chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <div class="crew-body"><p class="crew-copy">Takes the grain, the hops, the water and the yeast, and does everything properly — then leaves it alone. Lagering takes weeks, and the brewer's main skill is not being tempted to shortcut it. Hard to make. Easy to drink. That's the deal.</p></div>
+        <div class="crew-body"><p class="crew-copy">Could make this lager faster and cheaper, and simply won't. Weeks of cold patience in the tank, checked daily, released when it's ready — not when it's convenient.</p></div>
       </div>
     </div>
     <button class="vid-card rv" data-open="ov-video" aria-label="Play: Why Hawkstone is so hard to make">
@@ -1067,7 +1067,7 @@ section{position:relative}
     var frame = document.querySelector('.frame');
     if(window.innerWidth < 480){ frame.style.transform = ''; return; }
     var fw = 414, fh = 868;                       /* frame outer logical size */
-    var s = Math.min(1, (window.innerHeight - 56) / fh, (window.innerWidth - 48) / fw);
+    var s = Math.min(1, (window.innerHeight - 76) / fh, (window.innerWidth - 48) / fw);
     frame.style.transform = s < 1 ? 'scale(' + s + ')' : '';
   }
   fitFrame();
