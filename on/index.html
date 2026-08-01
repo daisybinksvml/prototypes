@@ -639,6 +639,28 @@ img{display:block;max-width:100%}
 .al-arr{font-size:20px;color:var(--tx3);padding:0 14px 0 2px;flex-shrink:0}
 .prc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
 .prc-grid .pcard{margin:0}
+.avstack{display:inline-flex;align-items:center;flex-shrink:0}
+.avstack img{width:22px;height:22px;border-radius:50%;object-fit:cover;object-position:50% 25%;border:1.5px solid #0e0f12;background:#26272d;margin-left:-7px}
+.avstack img:first-child{margin-left:0}
+.avstack em{font:800 9px/1 var(--body);letter-spacing:.04em;color:var(--gold-hi);font-style:normal;background:#1c1d23;border:1.5px solid #0e0f12;border-radius:10px;padding:5px 7px;margin-left:-7px;z-index:1}
+.avstack.mini img{width:18px;height:18px;margin-left:-6px}
+.avstack.mini em{font-size:8px;padding:4px 6px;margin-left:-6px}
+.cd-comm{display:flex;align-items:center;gap:10px;margin:12px 0 12px;padding-top:12px;border-top:1px solid var(--line-soft);font-size:11.5px;font-weight:600;color:var(--tx2)}
+.cd-comm b{color:var(--tx)}
+.evcomm{background:linear-gradient(160deg,#17181d,#101114);border:1px solid var(--line);border-left:3px solid var(--gold);padding:13px 14px;margin:14px 0 4px}
+.ec-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.ec-kick{display:flex;align-items:center;gap:6px;font:800 9px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--gold-hi)}
+.ec-kick i{width:5px;height:5px;background:var(--red)}
+.ec-title{font-family:'Anton';font-size:19px;letter-spacing:.01em;text-transform:uppercase;color:#fff;margin-top:6px}
+.ec-stats{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin-top:11px;padding-top:11px;border-top:1px solid rgba(255,255,255,.08);font-size:10.5px;font-weight:700;color:var(--tx3)}
+.ec-stats b{color:var(--tx);font-weight:800}
+.ec-stats i{width:3px;height:3px;background:var(--tx3);border-radius:50%}
+.pdp-comm{display:flex;align-items:flex-start;gap:10px;margin-top:12px;padding:11px 12px;background:linear-gradient(160deg,#17181d,#101114);border:1px solid var(--line);border-left:3px solid var(--gold)}
+.pc-b{min-width:0;display:flex;flex-direction:column;gap:4px;font-size:11.5px;font-weight:600;color:var(--tx2);line-height:1.5}
+.pc-b b{color:var(--tx)}
+.pc-b em{font-style:italic;font-size:11px;color:var(--tx3)}
+.ev-comm{display:flex;align-items:center;gap:9px;margin-top:11px;padding-top:10px;border-top:1px solid rgba(255,255,255,.08);font-size:11px;font-weight:600;color:var(--tx2)}
+.ev-comm b{color:var(--tx)}
 .cotip{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:10px 13px;margin:-4px 0 14px;animation:ctglow 2.6s ease-in-out infinite;background:linear-gradient(100deg,rgba(240,215,128,.13) 0%,rgba(240,215,128,.03) 70%,rgba(240,215,128,0) 100%),linear-gradient(160deg,#17181d,#101114);border:1px solid rgba(240,215,128,.22);border-left:3px solid var(--gold);cursor:pointer;transition:transform .15s ease,border-color .2s;position:relative;overflow:hidden}
 .cotip:before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,rgba(240,215,128,.4),transparent 60%)}
 .cotip:active{transform:scale(.988)}
@@ -1791,6 +1813,7 @@ function renderCoach(){
         </div>
         
       </div>
+      <div class="cd-comm">${avstack(['daisypic','emily','maya','freya'], 210)}<span><b>You + 213 ON athletes</b> are racing HYROX London</span></div>
       <div class="cd-grid" id="cdRow">
         <div><b data-cd="d">18</b><span>Days</span></div>
         <div><b data-cd="h">09</b><span>Hrs</span></div>
@@ -2335,6 +2358,21 @@ function renderCommunity(){
     </div>
 
     ${inspire? `
+    <div class="evcomm">
+      <div class="ec-head">
+        <div>
+          <div class="ec-kick"><i></i>Your event community</div>
+          <div class="ec-title">HYROX London</div>
+        </div>
+        ${avstack(['emily','maya','freya','daisypic'], 210)}
+      </div>
+      <div class="ec-stats">
+        <span><b>214</b> ON athletes racing</span><i></i>
+        <span><b>38</b> training in London this week</span><i></i>
+        <span><b>1,412</b> sled sessions logged</span>
+      </div>
+    </div>
+
     <div class="slabel" style="margin-top:12px"><h3>ON ambassadors</h3><span>Follow for their sessions &amp; tips</span></div>
     <div class="exp-ambrow">${ambcards}</div>
 
@@ -2496,6 +2534,9 @@ function myonDeliveriesHTML(){
         <div class="prow-b"><div class="prow-t" style="font-size:13px">Gold Standard Whey subscription</div>
         <div class="prow-s">${S.paceAns==='pushed'? 'Every 4 weeks · next <b>21 August</b> · paced to your usage ✓' : 'Every 4 weeks · next 12 August · assumes 6 scoops a week'}</div></div></div>
     </div>`;
+}
+function avstack(faces, extra, mini){
+  return `<span class="avstack${mini?' mini':''}">${faces.map(f=>`<img src="${IMG[f]}" alt="">`).join('')}${extra? `<em>+${extra}</em>`:''}</span>`;
 }
 function cotipHTML(id){
   const open = S.cotipOpen===id;
@@ -2877,6 +2918,14 @@ const PDP_TICKS = {
   creatine:['3g pure creatine monohydrate per serving','Supports performance in high-intensity exercise','Unflavoured — mixes into anything'],
   recovery:['20g protein + 40g carbs for post-session recovery','Designed for the hour after hard training','Blends with milk or water']
 };
+const PDP_COMM = {
+  gsw:{n:412, t:'<b>412 event athletes</b> bought this in July', q:'“Carried me through the doubles.” — Freya M · HYROX London'},
+  electro:{n:268, t:'<b>68% of HYROX London entrants</b> train with electrolytes in warm blocks'},
+  pre:{n:180, t:'<b>180 event athletes</b> use this on quality-session days'},
+  creatine:{n:334, t:'<b>334 hybrid athletes</b> added this to their strength blocks'},
+  clearw:{n:150, t:'<b>150 athletes</b> use this for daytime protein between sessions'},
+  recovery:{n:96, t:'<b>96 HYROX entrants</b> added this in race-prep month'}
+};
 function drawPDP(id){
   pdpOpenId = id;
   const p = prod(id);
@@ -2894,6 +2943,7 @@ function drawPDP(id){
     : `<div class="pdp-hero ${p.img?'':'dark'}">${p.img? '<img src="'+IMG[p.img]+'" alt="">' : '<span class="pl-name" style="text-align:center;padding:0 20px">'+p.name+'</span>'}</div>`}
     <h2 class="pdp-t">${p.name}</h2>
     ${(PDP_TICKS[id]||[]).length? `<div class="pdp-ticks">${PDP_TICKS[id].map(t=>`<div class="pt-row">${svg('check')}<span>${t}</span></div>`).join('')}</div>`:''}
+    ${PDP_COMM[id]? `<div class="pdp-comm">${avstack(['emily','maya','freya'], PDP_COMM[id].n-3, true)}<span class="pc-b"><span>${PDP_COMM[id].t}</span>${PDP_COMM[id].q? `<em>${PDP_COMM[id].q}</em>`:''}</span></div>`:''}
 
     ${isElectroLow ? `
     <div class="coach-card">
@@ -3812,6 +3862,7 @@ Object.assign(CCARD, {
           <div><div class="ev-name">HYROX London</div><div class="ev-date">Sat 13 August · Women’s doubles</div></div>
           <div class="ev-count"><b>${CD.d}</b><span>Days to go</span></div>
         </div>
+        <div class="ev-comm">${avstack(['emily','maya','freya'], 211, true)}<span><b>213 other ON athletes</b> are racing this event</span></div>
       </div>
 
       <div class="pp-sec"><span>Recent activity</span><i></i><em class="pp-srcnote">Synced from Strava · last 7 days</em></div>
@@ -4008,7 +4059,7 @@ Object.assign(CCARD, {
         <span class="ea-grad"></span>
         <span class="mt-name">
           <b>Maya Thompson</b>
-          <span>Hybrid performance coach · HYROX finisher</span>
+          <span>Hybrid performance coach · Trains 14 ON members — 3 racing HYROX London</span>
         </span>
         <span class="mt-prof">Full profile ›</span>
       </button>
