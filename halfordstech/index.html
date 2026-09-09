@@ -424,10 +424,10 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 .tcard__row{display:flex;gap:11px;align-items:flex-start;font-size:14px;line-height:1.5;color:var(--ink-800);padding:8px 0}
 .tcard__row svg{width:17px;height:17px;stroke:var(--green);stroke-width:2.4;fill:none;flex-shrink:0;margin-top:2px;stroke-linecap:round;stroke-linejoin:round}
 .tcard__foot{margin-top:12px;padding-top:12px;border-top:1px solid var(--line-hair);font-size:12.5px;color:var(--text-muted);line-height:1.5}
-.tplate{background:#FCD116;border:2.5px solid var(--ink);border-radius:12px;min-width:460px;min-height:96px;padding:14px 34px;font-size:54px;font-weight:800;letter-spacing:.08em;color:var(--ink);display:flex;align-items:center;justify-content:center;font-family:inherit;transition:box-shadow .2s}
+.tplate{background:#FCD116;border:2.5px solid var(--ink);border-radius:12px;width:460px;min-height:96px;padding:14px 20px 14px 82px;font-size:54px;font-weight:800;letter-spacing:.08em;color:var(--ink);display:flex;align-items:center;justify-content:flex-start;font-family:inherit;transition:box-shadow .2s;white-space:nowrap;overflow:hidden}
 .tplate:hover{box-shadow:0 0 0 5px rgba(29,111,184,.15)}
 .tcaret{width:3px;height:52px;background:var(--ink);margin-left:4px;opacity:0;border-radius:2px}
-.tplate.typing .tcaret{opacity:1;animation:caretBlink 1s steps(1) infinite}
+.tplate.t-typing .tcaret{opacity:1;animation:caretBlink 1s steps(1) infinite}
 @keyframes caretBlink{50%{opacity:0}}
 .tveh{background:#fff;border:1.5px solid var(--line-soft);border-radius:18px;padding:26px;box-shadow:var(--shadow-md)}
 .tveh__plate{display:inline-block;background:#FCD116;border:1.5px solid var(--ink);border-radius:7px;padding:6px 14px;font-weight:800;font-size:18px;letter-spacing:.06em;margin-bottom:14px}
@@ -437,6 +437,36 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 .tveh__acct svg{width:17px;height:17px;stroke:var(--green);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .tveh__hmc{display:flex;gap:9px;align-items:center;margin-top:10px;font-size:13px;color:var(--ink-800)}
 .tsyms{display:flex;flex-direction:column;gap:14px;max-width:480px}
+.tprompts{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;max-width:540px}
+.tprompt{border:1.5px solid var(--blue);border-radius:999px;background:#fff;padding:10px 18px;font-size:13.5px;font-weight:700;color:var(--ink);transition:background .18s,color .18s,box-shadow .18s;animation:qrGlow 2.2s var(--ease) infinite}
+.tprompt:hover{background:var(--blue-soft)}
+.tprompt.selected{background:var(--blue);border-color:var(--blue);color:#fff;animation:none;box-shadow:0 0 0 4px rgba(29,111,184,.18)}
+.tprompts.locked .tprompt{animation:none}
+.tprompts.locked .tprompt:not(.selected){opacity:.45}
+.tprompt:nth-child(2){animation-delay:.7s}
+.tprompt:nth-child(3){animation-delay:1.4s}
+.ttriage__body{flex:1}
+.ttriage__steps{display:flex;flex-direction:column;gap:5px}
+.ttriage__steps:not(:empty){margin-bottom:9px}
+.tstep{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--text-muted);opacity:0;transform:translateY(4px);transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.tstep.show{opacity:1;transform:none}
+.tstep svg{width:13px;height:13px;stroke:var(--green);stroke-width:2.6;fill:none;flex-shrink:0;stroke-linecap:round;stroke-linejoin:round}
+.ttriage__verdict{opacity:0;transform:translateY(5px);transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.ttriage__verdict.show{opacity:1;transform:none}
+#tAgm.flash{animation:agmFlash 1.5s var(--ease) 2}
+@keyframes agmFlash{0%,100%{background:transparent;color:inherit}35%{background:#FFE9C7;color:var(--ink);box-shadow:0 0 0 3px #FFE9C7;border-radius:4px}}
+.livedot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:8px;vertical-align:1px;animation:livePulse 1.7s var(--ease) infinite}
+@keyframes livePulse{0%,100%{box-shadow:0 0 0 0 rgba(25,137,0,.45)}55%{box-shadow:0 0 0 6px rgba(25,137,0,0)}}
+.tres{background:#fff;border:2px solid var(--green);border-radius:18px;padding:20px 22px;max-width:540px;box-shadow:0 0 0 4px rgba(25,137,0,.08),var(--shadow-md)}
+.tres__batt{display:flex;gap:14px;align-items:center;margin-bottom:14px}
+.tres__img{width:58px;height:58px;object-fit:contain;background:var(--surface-alt);border-radius:12px;padding:5px;flex-shrink:0}
+.tres__name{font-size:17px;font-weight:800;color:var(--ink);line-height:1.3}
+.tres__sub{font-size:13px;color:var(--text-secondary);margin-top:2px}
+.tres .opt__pills{margin-top:0}
+.tres .pill{font-size:12px;padding:5.5px 12px;gap:6px}
+.tres .pill svg{width:12px;height:12px;stroke:#135F06;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+#tResBlock .tcta{margin-top:22px}
+#tResBlock .tback{display:block;margin-top:16px}
 .tsym{border:2px solid var(--blue);border-radius:16px;background:#fff;padding:20px 24px;font-size:17.5px;font-weight:700;color:var(--ink);text-align:left;transition:background .18s,color .18s,box-shadow .18s;animation:qrGlow 2.2s var(--ease) infinite}
 .tsym:hover{background:var(--blue-soft)}
 .tsym.selected{background:var(--blue);color:#fff;animation:none;box-shadow:0 0 0 5px rgba(29,111,184,.18)}
@@ -454,11 +484,11 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 .tcall p{font-size:17px;line-height:1.6;color:#D9D9D9;max-width:560px;margin:0}
 .tcall__note{margin-top:26px;font-size:12.5px;color:#8A8A8A;font-weight:600}
 .tinput{background:#fff;border:2px solid var(--blue);border-radius:16px;min-height:88px;width:100%;max-width:520px;padding:20px 24px;font-size:17px;line-height:1.5;font-weight:600;color:var(--ink);text-align:left;display:flex;align-items:center;transition:box-shadow .2s;animation:qrGlow 2.2s var(--ease) infinite}
-.tinput.typing,.tinput.done{animation:none}
+.tinput.t-typing,.tinput.done{animation:none}
 .tinput:hover{box-shadow:0 0 0 5px rgba(29,111,184,.12)}
 .tinput__ph{color:var(--text-muted);font-weight:600}
 .tcaret--sm{height:22px;width:2.5px;margin-left:3px;align-self:center}
-.tinput.typing .tcaret--sm{opacity:1;animation:caretBlink 1s steps(1) infinite}
+.tinput.t-typing .tcaret--sm{opacity:1;animation:caretBlink 1s steps(1) infinite}
 .ttriage{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1.5px solid var(--line-soft);border-left:4px solid var(--orange);border-radius:12px;padding:15px 18px;margin-top:16px;max-width:520px;font-size:14px;line-height:1.55;color:var(--ink-800);opacity:0;transform:translateY(7px);transition:opacity .45s var(--ease),transform .45s var(--ease)}
 .ttriage.show{opacity:1;transform:none}
 .ttriage svg{width:18px;height:18px;stroke:var(--orange);fill:none;stroke-width:2;flex-shrink:0;margin-top:2px}
@@ -525,7 +555,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
             <h1>Skip the counter —<br>join the queue</h1>
             <p class="tlede">Tell us your reg and what the car&rsquo;s doing. We&rsquo;ll get everything ready while you browse — and call you when a colleague is free.</p>
             <button class="tcta" id="tJoin">Join the queue</button>
-            <div class="tsub">2 in the queue right now · about 8 minutes</div>
+            <div class="tsub"><span class="livedot"></span>2 in the queue right now · about 8 minutes</div>
           </div>
           <div class="tcol tcol--side">
             <div class="tcard">
@@ -557,20 +587,50 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
             <div class="tveh">
               <span class="tveh__plate">GJ71 HBB</span>
               <div class="tveh__name">MINI Countryman</div>
-              <div class="tveh__sub">1.5 Cooper · 2021 · AGM start/stop system</div>
+              <div class="tveh__sub">1.5 Cooper · 2021 · <span id="tAgm">AGM start/stop system</span></div>
               <div class="tveh__acct"><svg><use href="#i-check"/></svg>Welcome back, Henry — we found your Halfords account</div>
               <div class="tveh__hmc"><span class="hmc-badge">hmc</span>Motoring Club member · 5% applies automatically</div>
             </div>
           </div>
           <div class="tcol tcol--main">
+            <div id="tResBlock">
+              <div class="teyebrow">Step 2 of 2 · from your Halfords account</div>
+              <h2>Your battery is already here, Henry</h2>
+              <div class="tres">
+                <div class="tres__batt">
+                  <img class="tres__img" src="data:image/webp;base64,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" alt="">
+                  <div class="tres__info">
+                    <div class="tres__name">Halfords Super Start/Stop 096AGM</div>
+                    <div class="tres__sub">£219 fitted · 3-year guarantee · registration included</div>
+                  </div>
+                </div>
+                <div class="opt__pills">
+                  <span class="pill"><svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></svg>Reserved under your name</span>
+                  <span class="pill"><svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></svg>Off the shelf at this store</span>
+                  <span class="pill"><svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></svg>AGM-trained fitter on shift</span>
+                </div>
+              </div>
+              <button class="tcta" id="tResGo">Join the queue for your fitting</button>
+              <button class="tback" id="tOther">Here for something else?</button>
+            </div>
+            <div id="tHelpBlock" style="display:none">
             <div class="teyebrow">Step 2 of 2</div>
-            <h2>What&rsquo;s going on with it?</h2>
-            <button class="tinput" id="tSym" aria-label="Describe the problem"><span id="tSymTxt" class="tinput__ph">Tap to tell us — anything from a flat battery to a funny noise</span><i class="tcaret tcaret--sm"></i></button>
+            <h2>How can we help you today?</h2>
+            <button class="tinput" id="tSym" aria-label="Describe what you need"><span id="tSymTxt" class="tinput__ph">Tap to tell us — anything from a flat battery to a funny noise</span><i class="tcaret tcaret--sm"></i></button>
+            <div class="tprompts" id="tPrompts">
+              <button class="tprompt" data-fill="battery">My battery might be dying</button>
+              <button class="tprompt" data-fill="wipers">I need new wiper blades</button>
+              <button class="tprompt" data-fill="check">Book a free car check</button>
+            </div>
             <div class="ttriage" id="tTriage">
               <svg viewBox="0 0 24 24"><use href="#i-sparkle"/></svg>
-              <div><b>Sounds like battery health</b> — your MINI has an AGM start/stop system, so we&rsquo;ll line up the right fitter and check the battery for free first.</div>
+              <div class="ttriage__body">
+                <div class="ttriage__steps" id="tTriageSteps"></div>
+                <div class="ttriage__verdict" id="tTriageTxt"></div>
+              </div>
             </div>
             <button class="tcta" id="tTriageGo" disabled>Join the queue</button>
+            </div>
           </div>
         </section>
 
@@ -594,7 +654,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
             <div class="tcard">
               <div class="tcard__head">We&rsquo;re getting things ready</div>
               <div class="tcard__row tprep" id="tp1"><svg><use href="#i-check"/></svg><span>Vehicle &amp; account loaded — reg, history, membership</span></div>
-              <div class="tcard__row tprep" id="tp2"><svg><use href="#i-check"/></svg><span>Batteries matched: <b>4 compatible AGM 096 options</b> in stock here · from £199 fitted</span></div>
+              <div class="tcard__row tprep" id="tp2"><svg><use href="#i-check"/></svg><span id="tp2txt">Batteries matched: <b>4 compatible AGM 096 options</b> in stock here · from £199 fitted</span></div>
               <div class="tcard__row tprep" id="tp3"><svg><use href="#i-check"/></svg><span>AGM-trained fitter on shift — registration to the car included</span></div>
               <div class="tcard__row tprep" id="tp4"><svg><use href="#i-check"/></svg><span>Motoring Club 5% ready to apply at the till</span></div>
             </div>
@@ -1643,19 +1703,19 @@ function handBack(){
   $("#tJoin").addEventListener("click",function(){ tGo(t1,t2); });
   $("#tBack1").addEventListener("click",function(){
     tGo(t2,t1); typed=false; plateTxt.textContent=""; plateGo.disabled=true;
-    plate.classList.remove("typing"); plateHint.textContent="Tap the plate to enter your registration";
+    plate.classList.remove("t-typing"); plateHint.textContent="Tap the plate to enter your registration";
   });
 
   plate.addEventListener("click",function(){
     if(typed) return; typed=true;
-    plate.classList.add("typing");
+    plate.classList.add("t-typing");
     plateHint.textContent="Using the desk keyboard\u2026";
     var reg="GJ71 HBB", i=0;
     var iv=setInterval(function(){
       plateTxt.textContent=reg.slice(0,++i);
       if(i>=reg.length){
         clearInterval(iv);
-        plate.classList.remove("typing");
+        plate.classList.remove("t-typing");
         plateHint.textContent="That\u2019s the one? Tap below.";
         plateGo.disabled=false;
         plateGo.classList.add("pulse");
@@ -1664,27 +1724,74 @@ function handBack(){
   });
   plateGo.addEventListener("click",function(){ if(!plateGo.disabled) tGo(t2,t3); });
 
-  var sym=$("#tSym"), symTxt=$("#tSymTxt"), triage=$("#tTriage"), triageGo=$("#tTriageGo");
+  var sym=$("#tSym"), symTxt=$("#tSymTxt"), triage=$("#tTriage"), triageTxt=$("#tTriageTxt"), triageSteps=$("#tTriageSteps"), triageGo=$("#tTriageGo"), prompts=$("#tPrompts");
   var symTyped=false;
-  sym.addEventListener("click",function(){
+  var INTENTS={
+    battery:{msg:"Really slow to start the last few mornings \u2014 I think the battery might be dying.",
+      steps:["Reading what you\u2019ve told us","Checking GJ71 HBB \u2014 MINI Countryman spec","Matching to who\u2019s on the desk today"],
+      triage:"<b>Sounds like battery health</b> \u2014 your MINI has an <b>AGM start/stop system</b>, so we\u2019ll line up the right fitter and check the battery for free first.",
+      flashAgm:true},
+    wipers:{msg:"My wiper blades are smearing \u2014 I need new ones fitted.",
+      steps:["Reading what you\u2019ve told us","Finding the blade sizes for GJ71 HBB"],
+      triage:"<b>Easy one</b> \u2014 we\u2019ll match the right blades to your MINI and fit them while you wait. No booking needed."},
+    check:{msg:"Nothing's wrong \u2014 I\u2019d just like the free car check please.",
+      steps:["Reading what you\u2019ve told us","Checking today\u2019s availability at Chiswick"],
+      triage:"<b>Good shout</b> \u2014 the free 5 point check covers battery, wipers, bulbs, oil and screenwash. Takes about 15 minutes."}
+  };
+  var triageTimers=[];
+  function fillSym(key,fromPrompt){
     if(symTyped) return; symTyped=true;
-    sym.classList.add("typing");
+    if(prompts) prompts.classList.add("locked");
+    sym.classList.add("t-typing");
     symTxt.classList.remove("tinput__ph"); symTxt.textContent="";
-    var msg="Really slow to start the last few mornings \u2014 sometimes takes a couple of tries.", i=0;
+    var intent=INTENTS[key], i=0;
     var iv=setInterval(function(){
-      symTxt.textContent=msg.slice(0,++i);
-      if(i>=msg.length){
+      symTxt.textContent=intent.msg.slice(0,++i);
+      if(i>=intent.msg.length){
         clearInterval(iv);
-        sym.classList.remove("typing"); sym.classList.add("done");
-        setTimeout(function(){
-          triage.classList.add("show");
-          triageGo.disabled=false;
-          triageGo.classList.add("pulse");
-        },500);
+        sym.classList.remove("t-typing"); sym.classList.add("done");
+        triageTimers.push(setTimeout(function(){ runTriage(intent); },350));
       }
     },28);
+  }
+  function runTriage(intent){
+    triageSteps.innerHTML=""; triageTxt.classList.remove("show");
+    triage.classList.add("show");
+    intent.steps.forEach(function(txt,i){
+      var d=document.createElement("div");
+      d.className="tstep";
+      d.innerHTML='<svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></svg><span>'+txt+"</span>";
+      triageSteps.appendChild(d);
+      triageTimers.push(setTimeout(function(){ d.classList.add("show"); }, 120+i*520));
+    });
+    triageTimers.push(setTimeout(function(){
+      triageTxt.innerHTML=intent.triage;
+      triageTxt.classList.add("show");
+      triageGo.disabled=false;
+      triageGo.classList.add("pulse");
+      if(intent.flashAgm){ var a=$("#tAgm"); if(a){ a.classList.add("flash"); setTimeout(function(){a.classList.remove("flash")},3200); } }
+    }, 120+intent.steps.length*520+320));
+  }
+  sym.addEventListener("click",function(){ fillSym("battery"); });
+  $$(".tprompt",prompts).forEach(function(b){
+    b.addEventListener("click",function(){
+      if(symTyped) return;
+      b.classList.add("selected");
+      fillSym(b.dataset.fill,true);
+    });
   });
-  triageGo.addEventListener("click",function(){ if(!triageGo.disabled){ tGo(t3,t4); startQueue(); } });
+  var resBlock=$("#tResBlock"), helpBlock=$("#tHelpBlock"), resGo=$("#tResGo"), otherBtn=$("#tOther");
+  var PREP_RES='Your reserved battery set aside: <b>Super Start/Stop 096AGM</b> · £219 fitted';
+  var PREP_WALKIN='Batteries matched: <b>4 compatible AGM 096 options</b> in stock here · from £199 fitted';
+  resGo.addEventListener("click",function(){
+    $("#tp2txt").innerHTML=PREP_RES;
+    tGo(t3,t4); startQueue();
+  });
+  otherBtn.addEventListener("click",function(){
+    resBlock.style.display="none";
+    helpBlock.style.display="";
+  });
+  triageGo.addEventListener("click",function(){ if(!triageGo.disabled){ $("#tp2txt").innerHTML=PREP_WALKIN; tGo(t3,t4); startQueue(); } });
 
   var phone=$("#tPhone"), phoneTxt=$("#tPhoneTxt"), phoneGo=$("#tPhoneGo");
   var phoneTyped=false;
@@ -1720,6 +1827,10 @@ function handBack(){
     symTyped=false; sym.classList.remove("done");
     symTxt.classList.add("tinput__ph");
     symTxt.textContent="Tap to tell us \u2014 anything from a flat battery to a funny noise";
+    if(prompts){ prompts.classList.remove("locked"); $$(".tprompt",prompts).forEach(function(x){x.classList.remove("selected")}); }
+    triageTimers.forEach(clearTimeout); triageTimers=[];
+    triageSteps.innerHTML=""; triageTxt.classList.remove("show"); triageTxt.innerHTML="";
+    resBlock.style.display=""; helpBlock.style.display="none";
     triage.classList.remove("show"); triageGo.disabled=true; triageGo.classList.remove("pulse");
     phoneTyped=false; phoneTxt.classList.add("tinput__ph");
     phoneTxt.textContent="Prefer a text? Tap to add your number";
