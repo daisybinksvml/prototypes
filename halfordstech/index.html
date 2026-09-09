@@ -45,7 +45,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 
 /* View tabs — the connected-journey switcher */
 .views{background:var(--wpp-ink);display:flex;align-items:center;justify-content:center;gap:6px;padding:8px 14px 0;flex-wrap:wrap;position:sticky;top:0;z-index:900}
-.views__pad{flex:1}
+.views__title{flex:1;align-self:center;margin-bottom:8px;color:#93A5C7;font-size:12.5px;font-weight:600;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:10px}
+@media (max-width:900px){.views__title{display:none}}
 .views__end{flex:1;display:flex;justify-content:flex-end;align-self:center;margin-bottom:8px}
 .view-tab{color:#93A1BD;font-size:13px;font-weight:600;padding:9px 16px 11px;border-radius:10px 10px 0 0;position:relative;transition:color .15s}
 .view-tab:hover{color:#D5DEF0}
@@ -415,7 +416,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 </svg>
 
 <nav class="views" role="tablist" aria-label="Connected journey views">
-  <span class="views__pad" aria-hidden="true"></span>
+  <span class="views__title">Halfords connected battery journey</span>
   <button class="view-tab" role="tab" aria-selected="true" data-view="com" id="tab-com">.com customer</button>
   <button class="view-tab" role="tab" aria-selected="false" data-view="instore">In-store customer<span class="view-tab__soon">NEXT</span></button>
   <button class="view-tab" role="tab" aria-selected="false" data-view="store">Store colleague<span class="view-tab__soon">NEXT</span></button>
