@@ -40,16 +40,13 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 /* ============================================================
    PRESENTER SHELL — WPP layer, not part of the customer UI
    ============================================================ */
-.presenter{background:var(--wpp-ink);color:#C9D4E8;height:48px;display:flex;align-items:center;gap:14px;padding:0 18px;border-bottom:1px solid var(--wpp-hair);position:sticky;top:0;z-index:900;font-size:12.5px}
-.presenter__brand{display:flex;align-items:center;gap:9px;font-weight:700;color:#fff;letter-spacing:.02em;white-space:nowrap}
-.presenter__dot{width:9px;height:9px;border-radius:50%;background:var(--wpp-line);box-shadow:0 0 8px rgba(61,113,255,.5)}
-.presenter__label{color:var(--wpp-dim);position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;max-width:52vw;overflow:hidden;text-overflow:ellipsis}
-.presenter__spacer{flex:1}
 .presenter__btn{border:1px solid #35415C;color:#DCE4F2;padding:7px 13px;border-radius:20px;font-size:12.5px;font-weight:600;transition:background .15s,border-color .15s;white-space:nowrap}
 .presenter__btn:hover{background:#1A2338;border-color:#4A5A7E}
 
 /* View tabs — the connected-journey switcher */
-.views{background:var(--wpp-ink);display:flex;justify-content:center;gap:6px;padding:10px 14px 0;flex-wrap:wrap}
+.views{background:var(--wpp-ink);display:flex;align-items:center;justify-content:center;gap:6px;padding:8px 14px 0;flex-wrap:wrap;position:sticky;top:0;z-index:900}
+.views__pad{flex:1}
+.views__end{flex:1;display:flex;justify-content:flex-end;align-self:center;margin-bottom:8px}
 .view-tab{color:#93A1BD;font-size:13px;font-weight:600;padding:9px 16px 11px;border-radius:10px 10px 0 0;position:relative;transition:color .15s}
 .view-tab:hover{color:#D5DEF0}
 .view-tab[aria-selected="true"]{color:#fff;background:var(--wpp-panel)}
@@ -57,7 +54,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 .view-tab__soon{display:inline-block;margin-left:7px;font-size:9.5px;font-weight:700;letter-spacing:.06em;color:#5E6D8C;border:1px solid #2A3856;border-radius:999px;padding:1.5px 7px;vertical-align:1px}
 
 /* Stage */
-.stage{background:linear-gradient(180deg,var(--wpp-panel) 0%,var(--wpp-ink) 90%);min-height:calc(100vh - 48px);padding:26px 16px 34px;display:flex;flex-direction:column;align-items:center;gap:16px}
+.stage{background:linear-gradient(180deg,var(--wpp-panel) 0%,var(--wpp-ink) 90%);min-height:calc(100vh - 46px);padding:26px 16px 34px;display:flex;flex-direction:column;align-items:center;gap:16px}
 
 /* Placeholder panels for the non-.com views */
 .view-placeholder{max-width:400px;width:100%;background:var(--wpp-panel);border:1px solid #202C46;border-radius:16px;padding:30px 26px;color:#AEBBD6;display:none}
@@ -76,7 +73,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 .screen{flex:1;overflow-y:auto;overflow-x:hidden;background:var(--surface);position:relative;scroll-behavior:smooth;overscroll-behavior:contain}
 .screen::-webkit-scrollbar{width:0;height:0}
 @media (max-width:520px){
-  .presenter__label{display:none}
   .stage{padding:12px 0 0}
   .phone{width:100%;height:calc(100dvh - 118px);min-height:480px;border-radius:0;border:none;box-shadow:none}
   .phone__notch{display:none}
@@ -418,19 +414,13 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none"/><path d="M12 7.5V12l3.2 2.2"/></symbol>
 </svg>
 
-<!-- ================= PRESENTER LAYER ================= -->
-<header class="presenter" aria-label="Presenter controls — not part of the Halfords customer experience">
-  <div class="presenter__brand"><span class="presenter__dot"></span>WPP&nbsp;Enterprise&nbsp;Solutions</div>
-  <div class="presenter__label">Connected battery journey · Halfords Technology Partner Day</div>
-  <div class="presenter__spacer"></div>
-  <button class="presenter__btn" id="resetDemo">Reset demo</button>
-</header>
-
 <nav class="views" role="tablist" aria-label="Connected journey views">
+  <span class="views__pad" aria-hidden="true"></span>
   <button class="view-tab" role="tab" aria-selected="true" data-view="com" id="tab-com">.com customer</button>
   <button class="view-tab" role="tab" aria-selected="false" data-view="instore">In-store customer<span class="view-tab__soon">NEXT</span></button>
   <button class="view-tab" role="tab" aria-selected="false" data-view="store">Store colleague<span class="view-tab__soon">NEXT</span></button>
   <button class="view-tab" role="tab" aria-selected="false" data-view="mechanic">Mobile mechanic colleague<span class="view-tab__soon">NEXT</span></button>
+  <span class="views__end"><button class="presenter__btn" id="resetDemo">Reset demo</button></span>
 </nav>
 
 <main class="stage">
