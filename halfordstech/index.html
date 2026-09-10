@@ -621,6 +621,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 .a-chat__composer input{flex:1;background:#fff;border:1.5px solid var(--line-soft);border-radius:999px;padding:8px 14px;font-size:12px;font-family:inherit;color:var(--ink)}
 .a-chat__composer input:focus{outline:none;border-color:var(--blue)}
 .a-chat__composer button{width:32px;height:32px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.a-chat__composer button.pulse{animation:sendPulse 1.6s infinite}
 .a-chat__composer button svg{width:14px;height:14px;stroke:var(--ink);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 #tResBlock .tcta{margin-top:22px}
 #tResBlock .tback{display:block;margin-top:16px}
@@ -722,7 +723,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 
           <!-- A1 · queue table -->
           <section class="adm-screen adm-screen--on" id="as1">
-            <div class="adm-toast" id="aToast" hidden><svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></svg><span><b>B-07 complete.</b> Nothing Henry had to explain, hmc saved him £10.95, guarantee registered.</span></div>
+            <div class="adm-toast" id="aToast" hidden><svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></svg><span><b>B07 complete.</b> Nothing Henry had to explain, hmc saved him £10.95, guarantee registered.</span></div>
             <div class="adm-people">
               <button class="adm-person adm-person--on"><b>Motoring desk</b></button>
               <button class="adm-person"><b>Cycle desk</b></button>
@@ -730,7 +731,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
             </div>
             <div class="adm-head">
               <div><div class="teyebrow" style="margin-bottom:4px">Chiswick · Wed 9 September</div><h2>Today</h2></div>
-              <div class="adm-filters"><span class="adm-chip adm-chip--on">All (6)</span><span class="adm-chip">Booked</span><span class="adm-chip">Walk-ins</span></div>
+              <div class="adm-filters"><span class="adm-chip adm-chip--on">All (6)</span><span class="adm-chip">Booked</span><span class="adm-chip">Walk ins</span></div>
             </div>
             <div class="adm-stats">
               <div class="adm-stat"><b>2</b><span>Waiting</span></div>
@@ -747,10 +748,10 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
               </div>
               <div class="dv-now"><i></i><span>Now · 11:42</span><i></i></div>
               <div class="dv-row"><span class="dv-time">11:45</span>
-                <div class="dv-card dv-card--next" id="aRowHenry"><div class="dv-main"><b>Henry <span class="adm-plate">GJ71 HBB</span> · Battery fitting <span class="dv-tk">B-07</span></b><span>Reserved online · kiosk check-in 11:36 · slow cold starts</span></div><span class="adm-st adm-st--next" id="aHenrySt">Next · 6 min</span><button class="adm-btn adm-btn--go" id="aServe">Serve</button></div>
+                <div class="dv-card dv-card--next" id="aRowHenry"><div class="dv-main"><b>Henry <span class="adm-plate">GJ71 HBB</span> · Battery fitting <span class="dv-tk">B07</span></b><span>Reserved online · kiosk check in 11:36 · slow cold starts</span></div><span class="adm-st adm-st--next" id="aHenrySt">Next · 6 min</span><button class="adm-btn adm-btn--go" id="aServe">Serve</button></div>
               </div>
               <div class="dv-row"><span class="dv-time">12:15</span>
-                <div class="dv-card"><div class="dv-main"><b>Sam · Wiper blades <span class="dv-tk">B-08</span></b><span>Walk-in · kiosk triage · blade sizes matched · estimated</span></div><span class="adm-st">Waiting · 2 min</span></div>
+                <div class="dv-card"><div class="dv-main"><b>Sam · Wiper blades <span class="dv-tk">B08</span></b><span>Walk in · kiosk triage · blade sizes matched · estimated</span></div><span class="adm-st">Waiting · 2 min</span></div>
               </div>
               <div class="dv-row"><span class="dv-time">2:30</span>
                 <div class="dv-card"><div class="dv-main"><b>Aleks · 2 tyres + alignment</b><span>Kia Sportage · booked online · bay 1 reserved</span></div><span class="adm-st adm-st--book">Booked</span></div>
@@ -767,10 +768,10 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
             <div class="adm-job">
               <div class="adm-job__main">
                 <div class="adm-crumb"><button id="aBack">&larr; Queue</button></div>
-                <div class="adm-jobhead"><div class="teyebrow" style="margin-bottom:3px">Job B-07 · Ref HAL-284119 · Desk 2</div><h2>Henry · Battery fitting</h2></div>
+                <div class="adm-jobhead"><div class="teyebrow" style="margin-bottom:3px">Job B07 · Ref HAL 284119 · Desk 2</div><h2>Henry · Battery fitting</h2></div>
                 <div class="adm-journey">
                   <div class="jstep jstep--done"><i></i><b>Reserved online</b><span>Yesterday · 6:12pm</span></div>
-                  <div class="jstep jstep--done"><i></i><b>Kiosk check-in</b><span>Today · 11:36</span></div>
+                  <div class="jstep jstep--done"><i></i><b>Kiosk check in</b><span>Today · 11:36</span></div>
                   <div class="jstep jstep--now"><i></i><b>Desk 2 · Dave</b><span>Now</span></div>
                 </div>
                 <div class="adm-rec">
@@ -780,14 +781,14 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
                     <div class="adm-rec__meta"><b>07700 900314</b><em>Text when ready<i class="src">kiosk</i></em></div>
                   </div>
                   <div class="adm-rec__row"><span>Note</span><b>&ldquo;Really slow to start the last few mornings&rdquo; · still starting</b><i class="src">assistant · phone</i></div>
-                  <div class="adm-rec__row"><span>Collect</span><b>Shelf B3 · reserved to Mon 15 Sep</b><i class="src">halfords.com</i></div>
+                  <div class="adm-rec__row"><span>Collect</span><b id="colVal">Shelf B3 · reserved to Mon 15 Sep</b><i class="src">halfords.com</i></div>
                 </div>
                 <div class="adm-order">
-                  <div class="adm-order__head">Order<i class="src">halfords.com · yesterday 6:12pm</i></div>
-                  <div class="adm-order__line"><span>Super Start/Stop 096AGM <em>SKU 202037</em></span><b>£169.00</b></div>
+                  <div class="adm-order__head">Order<i class="src" id="ordSrc">halfords.com · yesterday 6:12pm</i></div>
+                  <div class="adm-order__line"><span id="ordName">Super 096AGM <em>SKU 202037</em></span><b id="ordPrice">£169.00</b></div>
                   <div class="adm-order__line"><span>Fitting &amp; battery registration <em>Bay 2</em></span><b>£50.00</b></div>
-                  <div class="adm-order__line adm-order__line--disc"><span>Motoring Club member &minus;5%</span><b>&minus;£10.95</b></div>
-                  <div class="adm-order__line adm-order__line--total"><span>Due at till <em>guarantee registers on payment</em></span><b>£208.05</b></div>
+                  <div class="adm-order__line adm-order__line--disc"><span>Motoring Club member discount <em>5%</em></span><b id="ordDisc">(£10.95)</b></div>
+                  <div class="adm-order__line adm-order__line--total"><span id="ordDueLbl">Due at till <em>guarantee registers on payment</em></span><b id="ordTotal">£208.05</b></div>
                 </div>
                 <div class="adm-tasks">
                   <div class="adm-tasks__head">Job notes</div>
@@ -799,7 +800,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
                     <button class="adm-btn" id="aNoteGo">Add</button>
                   </div>
                 </div>
-                <button class="adm-btn adm-btn--primary" id="aComplete">Complete job, close B-07</button>
+                <button class="adm-btn adm-btn--primary" id="aComplete">Complete job, close B07</button>
               </div>
               <aside class="a-chat">
                 <div class="a-chat__head"><span class="a-chat__avatar"><svg><use href="#i-chat"/></svg><i class="a-chat__dot"></i></span>Halfords Assistant<span class="a-chat__mode">colleague mode</span></div>
@@ -919,7 +920,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
         <section class="tscreen" id="ts4">
           <div class="tcol tcol--main" id="tTicketCol">
             <div class="teyebrow">You&rsquo;re in the queue</div>
-            <div class="tticket" id="tTicket">B-07</div>
+            <div class="tticket" id="tTicket">B07</div>
             <div class="tpos" id="tPos"><b>3 ahead of you</b> · about 12 minutes</div>
             <div class="tqr">
               <svg class="tqr__code" viewBox="0 0 21 21" aria-hidden="true" shape-rendering="crispEdges"><g fill="#242424"><rect x="0" y="0" width="1" height="1"/><rect x="0" y="1" width="1" height="1"/><rect x="0" y="2" width="1" height="1"/><rect x="0" y="3" width="1" height="1"/><rect x="0" y="4" width="1" height="1"/><rect x="0" y="5" width="1" height="1"/><rect x="0" y="6" width="1" height="1"/><rect x="0" y="9" width="1" height="1"/><rect x="0" y="10" width="1" height="1"/><rect x="0" y="12" width="1" height="1"/><rect x="0" y="14" width="1" height="1"/><rect x="0" y="15" width="1" height="1"/><rect x="0" y="16" width="1" height="1"/><rect x="0" y="17" width="1" height="1"/><rect x="0" y="18" width="1" height="1"/><rect x="0" y="19" width="1" height="1"/><rect x="0" y="20" width="1" height="1"/><rect x="1" y="0" width="1" height="1"/><rect x="1" y="6" width="1" height="1"/><rect x="1" y="8" width="1" height="1"/><rect x="1" y="12" width="1" height="1"/><rect x="1" y="14" width="1" height="1"/><rect x="1" y="20" width="1" height="1"/><rect x="2" y="0" width="1" height="1"/><rect x="2" y="2" width="1" height="1"/><rect x="2" y="3" width="1" height="1"/><rect x="2" y="4" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="2" y="10" width="1" height="1"/><rect x="2" y="11" width="1" height="1"/><rect x="2" y="12" width="1" height="1"/><rect x="2" y="14" width="1" height="1"/><rect x="2" y="16" width="1" height="1"/><rect x="2" y="17" width="1" height="1"/><rect x="2" y="18" width="1" height="1"/><rect x="2" y="20" width="1" height="1"/><rect x="3" y="0" width="1" height="1"/><rect x="3" y="2" width="1" height="1"/><rect x="3" y="3" width="1" height="1"/><rect x="3" y="4" width="1" height="1"/><rect x="3" y="6" width="1" height="1"/><rect x="3" y="10" width="1" height="1"/><rect x="3" y="11" width="1" height="1"/><rect x="3" y="12" width="1" height="1"/><rect x="3" y="14" width="1" height="1"/><rect x="3" y="16" width="1" height="1"/><rect x="3" y="17" width="1" height="1"/><rect x="3" y="18" width="1" height="1"/><rect x="3" y="20" width="1" height="1"/><rect x="4" y="0" width="1" height="1"/><rect x="4" y="2" width="1" height="1"/><rect x="4" y="3" width="1" height="1"/><rect x="4" y="4" width="1" height="1"/><rect x="4" y="6" width="1" height="1"/><rect x="4" y="8" width="1" height="1"/><rect x="4" y="10" width="1" height="1"/><rect x="4" y="11" width="1" height="1"/><rect x="4" y="12" width="1" height="1"/><rect x="4" y="14" width="1" height="1"/><rect x="4" y="16" width="1" height="1"/><rect x="4" y="17" width="1" height="1"/><rect x="4" y="18" width="1" height="1"/><rect x="4" y="20" width="1" height="1"/><rect x="5" y="0" width="1" height="1"/><rect x="5" y="6" width="1" height="1"/><rect x="5" y="11" width="1" height="1"/><rect x="5" y="12" width="1" height="1"/><rect x="5" y="14" width="1" height="1"/><rect x="5" y="20" width="1" height="1"/><rect x="6" y="0" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/><rect x="6" y="2" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/><rect x="6" y="4" width="1" height="1"/><rect x="6" y="5" width="1" height="1"/><rect x="6" y="6" width="1" height="1"/><rect x="6" y="10" width="1" height="1"/><rect x="6" y="12" width="1" height="1"/><rect x="6" y="14" width="1" height="1"/><rect x="6" y="15" width="1" height="1"/><rect x="6" y="16" width="1" height="1"/><rect x="6" y="17" width="1" height="1"/><rect x="6" y="18" width="1" height="1"/><rect x="6" y="19" width="1" height="1"/><rect x="6" y="20" width="1" height="1"/><rect x="7" y="10" width="1" height="1"/><rect x="7" y="12" width="1" height="1"/><rect x="8" y="0" width="1" height="1"/><rect x="8" y="1" width="1" height="1"/><rect x="8" y="2" width="1" height="1"/><rect x="8" y="3" width="1" height="1"/><rect x="8" y="5" width="1" height="1"/><rect x="8" y="7" width="1" height="1"/><rect x="8" y="12" width="1" height="1"/><rect x="8" y="20" width="1" height="1"/><rect x="9" y="0" width="1" height="1"/><rect x="9" y="1" width="1" height="1"/><rect x="9" y="2" width="1" height="1"/><rect x="9" y="4" width="1" height="1"/><rect x="9" y="5" width="1" height="1"/><rect x="9" y="6" width="1" height="1"/><rect x="9" y="8" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="9" y="12" width="1" height="1"/><rect x="9" y="13" width="1" height="1"/><rect x="9" y="16" width="1" height="1"/><rect x="9" y="18" width="1" height="1"/><rect x="9" y="19" width="1" height="1"/><rect x="9" y="20" width="1" height="1"/><rect x="10" y="2" width="1" height="1"/><rect x="10" y="7" width="1" height="1"/><rect x="10" y="12" width="1" height="1"/><rect x="10" y="13" width="1" height="1"/><rect x="10" y="18" width="1" height="1"/><rect x="10" y="20" width="1" height="1"/><rect x="11" y="0" width="1" height="1"/><rect x="11" y="1" width="1" height="1"/><rect x="11" y="4" width="1" height="1"/><rect x="11" y="5" width="1" height="1"/><rect x="11" y="6" width="1" height="1"/><rect x="11" y="7" width="1" height="1"/><rect x="11" y="8" width="1" height="1"/><rect x="11" y="13" width="1" height="1"/><rect x="11" y="17" width="1" height="1"/><rect x="11" y="19" width="1" height="1"/><rect x="12" y="1" width="1" height="1"/><rect x="12" y="2" width="1" height="1"/><rect x="12" y="3" width="1" height="1"/><rect x="12" y="4" width="1" height="1"/><rect x="12" y="6" width="1" height="1"/><rect x="12" y="8" width="1" height="1"/><rect x="12" y="10" width="1" height="1"/><rect x="12" y="11" width="1" height="1"/><rect x="12" y="13" width="1" height="1"/><rect x="12" y="14" width="1" height="1"/><rect x="12" y="19" width="1" height="1"/><rect x="12" y="20" width="1" height="1"/><rect x="13" y="10" width="1" height="1"/><rect x="13" y="12" width="1" height="1"/><rect x="13" y="14" width="1" height="1"/><rect x="13" y="15" width="1" height="1"/><rect x="13" y="16" width="1" height="1"/><rect x="13" y="18" width="1" height="1"/><rect x="13" y="20" width="1" height="1"/><rect x="14" y="0" width="1" height="1"/><rect x="14" y="1" width="1" height="1"/><rect x="14" y="2" width="1" height="1"/><rect x="14" y="3" width="1" height="1"/><rect x="14" y="4" width="1" height="1"/><rect x="14" y="5" width="1" height="1"/><rect x="14" y="6" width="1" height="1"/><rect x="14" y="8" width="1" height="1"/><rect x="14" y="9" width="1" height="1"/><rect x="14" y="10" width="1" height="1"/><rect x="14" y="12" width="1" height="1"/><rect x="14" y="13" width="1" height="1"/><rect x="14" y="14" width="1" height="1"/><rect x="14" y="16" width="1" height="1"/><rect x="14" y="18" width="1" height="1"/><rect x="14" y="20" width="1" height="1"/><rect x="15" y="0" width="1" height="1"/><rect x="15" y="6" width="1" height="1"/><rect x="15" y="9" width="1" height="1"/><rect x="15" y="12" width="1" height="1"/><rect x="15" y="13" width="1" height="1"/><rect x="15" y="15" width="1" height="1"/><rect x="15" y="16" width="1" height="1"/><rect x="15" y="18" width="1" height="1"/><rect x="16" y="0" width="1" height="1"/><rect x="16" y="2" width="1" height="1"/><rect x="16" y="3" width="1" height="1"/><rect x="16" y="4" width="1" height="1"/><rect x="16" y="6" width="1" height="1"/><rect x="16" y="8" width="1" height="1"/><rect x="16" y="12" width="1" height="1"/><rect x="16" y="15" width="1" height="1"/><rect x="16" y="16" width="1" height="1"/><rect x="16" y="20" width="1" height="1"/><rect x="17" y="0" width="1" height="1"/><rect x="17" y="2" width="1" height="1"/><rect x="17" y="3" width="1" height="1"/><rect x="17" y="4" width="1" height="1"/><rect x="17" y="6" width="1" height="1"/><rect x="17" y="9" width="1" height="1"/><rect x="17" y="10" width="1" height="1"/><rect x="17" y="11" width="1" height="1"/><rect x="17" y="12" width="1" height="1"/><rect x="17" y="15" width="1" height="1"/><rect x="17" y="16" width="1" height="1"/><rect x="17" y="17" width="1" height="1"/><rect x="17" y="19" width="1" height="1"/><rect x="18" y="0" width="1" height="1"/><rect x="18" y="2" width="1" height="1"/><rect x="18" y="3" width="1" height="1"/><rect x="18" y="4" width="1" height="1"/><rect x="18" y="6" width="1" height="1"/><rect x="18" y="10" width="1" height="1"/><rect x="18" y="11" width="1" height="1"/><rect x="18" y="13" width="1" height="1"/><rect x="18" y="14" width="1" height="1"/><rect x="18" y="15" width="1" height="1"/><rect x="18" y="18" width="1" height="1"/><rect x="19" y="0" width="1" height="1"/><rect x="19" y="6" width="1" height="1"/><rect x="19" y="9" width="1" height="1"/><rect x="19" y="10" width="1" height="1"/><rect x="19" y="11" width="1" height="1"/><rect x="19" y="14" width="1" height="1"/><rect x="19" y="15" width="1" height="1"/><rect x="19" y="17" width="1" height="1"/><rect x="20" y="0" width="1" height="1"/><rect x="20" y="1" width="1" height="1"/><rect x="20" y="2" width="1" height="1"/><rect x="20" y="3" width="1" height="1"/><rect x="20" y="4" width="1" height="1"/><rect x="20" y="5" width="1" height="1"/><rect x="20" y="6" width="1" height="1"/><rect x="20" y="9" width="1" height="1"/><rect x="20" y="10" width="1" height="1"/><rect x="20" y="13" width="1" height="1"/><rect x="20" y="19" width="1" height="1"/><rect x="20" y="20" width="1" height="1"/></g></svg>
@@ -2129,37 +2130,67 @@ function handBack(){
     setTimeout(function(){ t.remove(); fn(); }, ms||800);
   }
   var QA=[
-    {q:"Why does it need an AGM battery?",
+    {q:"Why does it need an AGM battery?", chip:false,
      a:"His MINI has a <b>start/stop system</b>, which cycles the battery far harder than normal. AGM batteries are built for that. A standard battery would fail early, and the fitting wouldn\u2019t be covered."},
-    {q:"How do I register it after fitting?",
+    {q:"How do I register it after fitting?", chip:false,
      a:"New battery in, then plug the <b>OBD tool</b> into the socket under the steering column. It walks you through \u201cbattery replacement\u201d in about two minutes. Skipping it makes the car overcharge the new battery."},
-    {q:"What do I quote at the till?",
-     a:"<b>\u00a3219 fitted</b>. His Motoring Club 5% comes off automatically, so the till will show <b>\u00a3208.05</b>. Fitting\u2019s included and the 3-year guarantee registers to his account on payment."}
+    {q:"What do I quote at the till?", chip:false,
+     a:"<b>\u00a3219 fitted</b>. His Motoring Club 5% comes off automatically, so the till will show <b>\u00a3208.05</b>. Fitting\u2019s included and the 3 year guarantee registers to his account on payment."},
+    {q:"Is the 5 year battery worth the extra?", chip:false,
+     a:"Same fitment, so it\u2019s a fair either or. The <b>AGM096 5 Year</b> is \u00a3229 against \u00a3219 fitted for the <b>Super 096AGM</b>: \u00a310 more buys the longer guarantee, 5 years instead of 3, plus 40A more cold start power. One thing worth telling him: the AGM096 5 Year (and the \u00a3209 Yuasa) isn\u2019t in Chiswick until <b>tomorrow</b>, while his Super 096AGM is on shelf B3 now. So today it\u2019s the Super 096AGM; if he\u2019d rather have the AGM096 5 Year, shall I switch his reservation to <b>9:00am tomorrow</b>?"},
+    {q:"How long will the fitting take?",
+     a:"About <b>45 minutes</b> in bay 2 once it\u2019s handed over, and the registration step is inside that. He doesn\u2019t need to wait at the counter: he\u2019s opted in for a text at <b>07700 900314</b> the moment it\u2019s done."},
+    {q:"What happens to his old battery?",
+     a:"It goes in the <b>returns cage</b> by the fitting bay and gets recycled, the return is already part of the job. If it\u2019s swollen or leaking, gloves from the bay kit and bag it first."},
+    {q:"He wants the AGM096 5 Year. Can you switch his reservation?", action:"switch",
+     a:"Done. He\u2019s on the <b>AGM096 5 Year</b> now: fitting <b>9:00am tomorrow</b>, bay 2 held, and today\u2019s Super 096AGM reservation is released back to the shelf. The order\u2019s updated below and he\u2019s been texted the new time."}
   ];
-  var EXTRA={q:"old battery", a:"The old battery goes in the <b>returns cage</b> by the fitting bay, it\u2019s recycled, and the return\u2019s already part of the job. If it\u2019s swollen or leaking, gloves from the bay kit and bag it first."};
   function answerFor(t){
     t=t.toLowerCase();
+    if(t.indexOf("5 year")>-1||t.indexOf("worth")>-1||t.indexOf("compar")>-1||t.indexOf("switch")>-1||t.indexOf("upgrade")>-1||t.indexOf("better")>-1) return {i:3,a:QA[3].a};
     if(t.indexOf("agm")>-1||t.indexOf("start/stop")>-1||t.indexOf("start stop")>-1) return {i:0,a:QA[0].a};
     if(t.indexOf("regist")>-1||t.indexOf("obd")>-1||t.indexOf("code")>-1) return {i:1,a:QA[1].a};
     if(t.indexOf("quote")>-1||t.indexOf("price")>-1||t.indexOf("cost")>-1||t.indexOf("till")>-1||t.indexOf("pay")>-1||t.indexOf("charge")>-1) return {i:2,a:QA[2].a};
-    if(t.indexOf("old")>-1||t.indexOf("dispos")>-1||t.indexOf("recycl")>-1||t.indexOf("swollen")>-1) return {i:-1,a:EXTRA.a};
+    if(t.indexOf("switch")>-1||t.indexOf("change him")>-1||t.indexOf("book him")>-1||t.indexOf("rebook")>-1) return {i:6,a:QA[6].a,act:"switch"};
+    if(t.indexOf("how long")>-1||t.indexOf("take")>-1||t.indexOf("minutes")>-1||t.indexOf("wait")>-1) return {i:4,a:QA[4].a};
+    if(t.indexOf("old")>-1||t.indexOf("dispos")>-1||t.indexOf("recycl")>-1||t.indexOf("swollen")>-1) return {i:5,a:QA[5].a};
     return {i:-1,a:"Good question, in the live build I\u2019d answer that from the vehicle, stock and till systems. For today\u2019s demo I\u2019ve got the battery job covered: AGM, registration, pricing, and the old battery."};
   }
-  var asked=[];
+  var asked=[], switched=false;
+  function performSwitch(){
+    if(switched) return; switched=true;
+    $("#ordName").innerHTML="AGM096 5 Year <em>SKU 202041</em>";
+    $("#ordPrice").textContent="\u00a3179.00";
+    $("#ordDisc").textContent="(\u00a311.45)";
+    $("#ordTotal").textContent="\u00a3217.55";
+    $("#ordSrc").textContent="halfords.com \u00b7 updated 11:46";
+    $("#colVal").innerHTML="Arrives tomorrow \u00b7 fitting <b>9:00am</b> \u00b7 bay 2 held";
+    var d=document.createElement("div");
+    d.className="adm-note-item";
+    d.innerHTML="<span>11:46 \u00b7 Assistant</span>Reservation switched to AGM096 5 Year, fitting 9:00am tomorrow. Confirmation texted to 07700 900314.";
+    $("#aNotes").appendChild(d);
+    $("#aComplete").textContent="All set for tomorrow, close B07";
+  }
   function renderChips(){
     chipsBox.innerHTML="";
-    QA.forEach(function(qa,i){
-      if(asked.indexOf(i)>-1) return;
+    var order=QA.map(function(_,i){return i}).sort(function(a,b){
+      return (QA[b].action==="switch")-(QA[a].action==="switch");
+    });
+    order.forEach(function(i){
+      var qa=QA[i];
+      if(qa.chip===false || asked.indexOf(i)>-1) return;
+      if(qa.action==="switch" && (switched || asked.indexOf(3)===-1)) return;
       var b=document.createElement("button");
       b.className="a-chip"; b.textContent=qa.q;
       b.addEventListener("click",function(){
         asked.push(i);
         chipsBox.innerHTML="";
         aMsg(qa.q,"u");
-        aTyping(function(){ aMsg(qa.a,"a"); renderChips(); },900);
+        aTyping(function(){ aMsg(qa.a,"a"); if(qa.action==="switch") performSwitch(); renderChips(); },900);
       });
       chipsBox.appendChild(b);
     });
+    log.scrollTop=log.scrollHeight;
     if(asked.length===QA.length){
       var d=document.createElement("div");
       d.style.cssText="font-size:10.5px;color:var(--text-muted);padding:2px 2px 0";
@@ -2172,8 +2203,11 @@ function handBack(){
     aGo(s1,s2);
     if(!chatStarted){ chatStarted=true;
       setTimeout(function(){
-        aMsg("Hi Dave, <b>B-07</b> is up. Henry reserved this battery online <b>yesterday evening</b> and checked in at the kiosk at <b>11:36</b>. Everything on the left came with him. Ask me anything about the job.","a");
-        renderChips();
+        aMsg("Hi Dave, <b>B07</b> is up. Henry reserved this battery online <b>yesterday evening</b> and checked in at the kiosk at <b>11:36</b>. Everything on the left came with him. Ask me anything about the job.","a");
+        setTimeout(function(){
+          chatIn.value="He\u2019s reserved the Super 096AGM but is asking about the AGM096 5 Year, how do the two compare?";
+          $("#aChatGo").classList.add("pulse");
+        },900);
       },500);
     }
   });
@@ -2183,11 +2217,12 @@ function handBack(){
   function sendTyped(){
     var v=chatIn.value.trim(); if(!v) return;
     chatIn.value="";
+    $("#aChatGo").classList.remove("pulse");
     aMsg(esc(v),"u");
     var r=answerFor(v);
     if(r.i>-1 && asked.indexOf(r.i)===-1){ asked.push(r.i); }
     chipsBox.innerHTML="";
-    aTyping(function(){ aMsg(r.a,"a"); renderChips(); },900);
+    aTyping(function(){ aMsg(r.a,"a"); if(r.act==="switch") performSwitch(); renderChips(); },900);
   }
   $("#aChatGo").addEventListener("click",sendTyped);
   chatIn.addEventListener("keydown",function(e){ if(e.key==="Enter") sendTyped(); });
@@ -2205,11 +2240,12 @@ function handBack(){
   noteIn.addEventListener("keydown",function(e){ if(e.key==="Enter") addNote(); });
   $("#aComplete").addEventListener("click",function(){
     setTimeout(function(){
-      $("#aHenrySt").textContent="Served \u00b7 Desk 2";
+      $("#aHenrySt").textContent=switched?"Rebooked \u00b7 9:00am tomorrow":"Served \u00b7 Desk 2";
       $("#aHenrySt").className="adm-st";
       $("#aRowHenry").classList.remove("dv-card--next");
       $("#aRowHenry").classList.add("dv-card--done");
       $("#aServe").style.display="none";
+      if(switched){ $("#aToast").innerHTML='<svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></svg><span><b>B07 updated.</b> Henry\u2019s on the AGM096 5 Year, fitted 9:00am tomorrow, confirmation texted. Nothing he had to explain.</span>'; }
       $("#aToast").hidden=false;
       aGo(s2,s1);
     },420);
