@@ -466,10 +466,57 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 .tres .pill{font-size:12px;padding:5.5px 12px;gap:6px}
 .tres .pill svg{width:12px;height:12px;stroke:#135F06;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
 
+/* meaningful motion pack */
+@keyframes pillPop{from{opacity:0;transform:scale(.9) translateY(3px)}to{opacity:1;transform:none}}
+@keyframes chipIn{from{opacity:0;transform:translateY(4px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes rowFlash{0%{box-shadow:inset 0 0 0 100vmax rgba(255,196,54,.32)}100%{box-shadow:inset 0 0 0 100vmax rgba(255,196,54,0)}}
+@keyframes drawPath{to{stroke-dashoffset:0}}
+.tscreen--on .tres{animation:rise .5s var(--ease) both}
+.tscreen--on .tres .pill{animation:pillPop .3s var(--ease) both}
+.tscreen--on .tres .pill:nth-child(1){animation-delay:.25s}
+.tscreen--on .tres .pill:nth-child(2){animation-delay:.35s}
+.tscreen--on .tres .pill:nth-child(3){animation-delay:.45s}
+.tscreen--on #tResBlock .tcta{animation:rise .4s .3s var(--ease) both}
+.tscreen--on .tprep{animation:rise .35s var(--ease) both}
+.tscreen--on .tprep:nth-of-type(1){animation-delay:.15s}
+.tscreen--on .tprep:nth-of-type(2){animation-delay:.3s}
+.tscreen--on .tprep:nth-of-type(3){animation-delay:.45s}
+.adm-screen--on .jstep{animation:rise .35s var(--ease) both}
+.adm-screen--on .jstep:nth-child(2){animation-delay:.07s}
+.adm-screen--on .jstep:nth-child(3){animation-delay:.14s}
+.rowflash{animation:rowFlash 1.1s var(--ease)}
+.vmap svg path.draw{stroke-dasharray:1;stroke-dashoffset:1;animation:drawPath .9s .15s var(--ease) forwards}
+.vmap svg path.draw2{stroke-dasharray:1;stroke-dashoffset:1;animation:drawPath .9s .3s var(--ease) forwards}
+#vVan,#vVanChip,#vEtaChip{transition:transform .9s var(--ease)}
+
 /* colleague admin console */
 .adm{display:flex;background:#F6F6F7}
 .adm-search{display:flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:8px 16px;font-size:12px;font-weight:600;color:var(--text-muted);margin-left:26px;min-width:250px}
 .adm-search svg{width:14px;height:14px;stroke:var(--text-muted);stroke-width:2;fill:none}
+.vviews{display:flex;gap:7px}
+.vtitle{display:flex;align-items:center;gap:9px}
+.vcal{width:30px;height:30px;border:1px solid #E2E2E4;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;transition:border-color .15s}
+.vcal:hover{border-color:#C9C9CC}
+.vcal svg{width:15px;height:15px;stroke:var(--text-secondary);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.vhmc{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E2E2E4;border-left:4px solid var(--orange);border-radius:10px;padding:9px 14px;margin-bottom:8px}
+.vhmc__txt{flex:1;min-width:0}
+.vhmc__txt b{display:block;font-size:12.5px;font-weight:800;color:var(--ink)}
+.vhmc__txt span{font-size:11px;color:var(--text-secondary)}
+.vhmc__cta{background:var(--green);color:#fff;font-size:11.5px;font-weight:800;border-radius:999px;padding:7px 16px;flex-shrink:0;transition:background .15s}
+.vhmc__cta:hover{background:#127400}
+.vhmc__offer{display:inline-flex;align-items:center;font-size:11px;font-weight:800;color:#8A5A00;background:#FFF4E0;border-radius:6px;padding:4px 10px;flex-shrink:0}
+.vhmc__ok{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;color:#135F06;background:var(--good-soft);border-radius:6px;padding:4px 10px;flex-shrink:0}
+.vhmc__ok svg{width:12px;height:12px;stroke:#135F06;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.vmap{background:#fff;border:1px solid #E2E2E4;border-radius:10px;padding:10px;position:relative}
+.vmap svg{display:block;width:100%;height:auto;border-radius:8px}
+.vmap__card{position:absolute;left:22px;bottom:22px;background:#fff;border:1px solid #E2E2E4;border-radius:11px;padding:12px 14px;display:flex;align-items:center;gap:16px;box-shadow:0 8px 24px rgba(0,0,0,.1)}
+.vmap__info b{display:block;font-size:13.5px;font-weight:800;color:var(--ink)}
+.vmap__info span{font-size:11.5px;color:var(--text-secondary)}
+.adm-route{display:flex;align-items:center;gap:9px;background:#2A2A2A;border-radius:999px;padding:8px 18px;font-size:12px;font-weight:700;color:#E8E8E8;margin-left:26px;white-space:nowrap}
+.adm-route i{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:livePulse 1.7s var(--ease) infinite}
+.tablet--field .adm-btn--primary{padding:14px 30px;font-size:14px}
+.tablet--field .dv-card{padding:11px 16px}
+.tablet--field .adm-btn--go{padding:10px 20px;font-size:13px}
 .adm-user{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--orange);color:var(--ink);font-size:11.5px;font-weight:800;vertical-align:middle}
 .adm-nav{width:78px;background:#161616;display:flex;flex-direction:column;padding:16px 9px;gap:4px;flex-shrink:0}
 .adm-nav__item{display:flex;flex-direction:column;align-items:center;gap:5px;color:#8E8E8E;font-size:9px;font-weight:700;letter-spacing:.02em;padding:10px 4px 8px;border-radius:11px;transition:background .15s,color .15s}
@@ -527,6 +574,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 .adm-stat:last-child{border-right:none}
 .adm-stat b{display:block;font-size:17px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
 .adm-stat span{font-size:10.5px;color:var(--text-muted);font-weight:600}
+.adm-stat__good{color:#135F06!important}
 .adm-plate{display:inline-block;background:#FCD116;border:1.5px solid var(--ink);border-radius:5px;padding:2px 8px;font-weight:800;font-size:11px;letter-spacing:.05em;color:var(--ink);margin-left:6px;vertical-align:1px}
 .adm-plate--lg{font-size:16px;padding:6px 13px;border-radius:7px;border-width:2px;margin-left:0}
 .adm-btn--go{background:var(--green)}
@@ -613,10 +661,11 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 .a-msg--a{background:var(--surface-alt);color:var(--ink);align-self:flex-start;border-bottom-left-radius:4px}
 .a-msg--u{background:var(--ink);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
 .a-chat__chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 13px 11px}
-.a-chip{border:1.5px solid var(--blue);border-radius:999px;background:#fff;padding:6.5px 12px;font-size:11px;font-weight:700;color:var(--ink);text-align:left;transition:background .15s;animation:qrGlow 2.2s var(--ease) infinite}
+.a-chip{border:1.5px solid var(--blue);border-radius:999px;background:#fff;padding:6.5px 12px;font-size:11px;font-weight:700;color:var(--ink);text-align:left;transition:background .15s;animation:chipIn .22s var(--ease) both,qrGlow 2.2s var(--ease) infinite}
 .a-chip:hover{background:var(--blue-soft)}
-.a-chip:nth-child(2){animation-delay:.7s}
-.a-chip:nth-child(3){animation-delay:1.4s}
+.a-chip:nth-child(2){animation-delay:.06s,.7s}
+.a-chip:nth-child(3){animation-delay:.12s,1.4s}
+.a-chip:nth-child(4){animation-delay:.18s,2.1s}
 .a-chat__composer{display:flex;gap:7px;padding:10px 12px;border-top:1px solid var(--line-hair);background:#FAFAFA}
 .a-chat__composer input{flex:1;background:#fff;border:1.5px solid var(--line-soft);border-radius:999px;padding:8px 14px;font-size:12px;font-family:inherit;color:var(--ink)}
 .a-chat__composer input:focus{outline:none;border-color:var(--blue)}
@@ -694,7 +743,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
   <button class="view-tab" role="tab" aria-selected="true" data-view="com" id="tab-com">.com customer</button>
   <button class="view-tab" role="tab" aria-selected="false" data-view="instore">In-store customer</button>
   <button class="view-tab" role="tab" aria-selected="false" data-view="store">Store colleague</button>
-  <button class="view-tab" role="tab" aria-selected="false" data-view="mechanic">Mobile mechanic colleague<span class="view-tab__soon">NEXT</span></button>
+  <button class="view-tab" role="tab" aria-selected="false" data-view="mechanic">Mobile mechanic colleague</button>
   <span class="views__end"><button class="presenter__btn" id="resetDemo">Reset demo</button></span>
 </nav>
 
@@ -723,7 +772,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
 
           <!-- A1 · queue table -->
           <section class="adm-screen adm-screen--on" id="as1">
-            <div class="adm-toast" id="aToast" hidden><svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></svg><span><b>B07 complete.</b> Nothing Henry had to explain, hmc saved him £10.95, guarantee registered.</span></div>
+            <div class="adm-toast" id="aToast" hidden><svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></svg><span><b>B07 complete.</b> Henry served at desk 2.</span></div>
             <div class="adm-people">
               <button class="adm-person adm-person--on"><b>Motoring desk</b></button>
               <button class="adm-person"><b>Cycle desk</b></button>
@@ -778,10 +827,10 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
                   <div class="adm-rec__id">
                     <span class="adm-plate adm-plate--lg">GJ71 HBB</span>
                     <div class="adm-rec__idtxt"><b>Henry <span class="hmc-badge">hmc</span></b><em>MINI Countryman 1.5 Cooper · 2021 · <u>AGM start/stop</u></em></div>
-                    <div class="adm-rec__meta"><b>07700 900314</b><em>Text when ready<i class="src">kiosk</i></em></div>
+                    <div class="adm-rec__meta"><b>07700 900314</b><em>Text when the car&rsquo;s ready</em></div>
                   </div>
-                  <div class="adm-rec__row"><span>Note</span><b>&ldquo;Really slow to start the last few mornings&rdquo; · still starting</b><i class="src">assistant · phone</i></div>
-                  <div class="adm-rec__row"><span>Collect</span><b id="colVal">Shelf B3 · reserved to Mon 15 Sep</b><i class="src">halfords.com</i></div>
+                  <div class="adm-rec__row"><span>Note</span><b>&ldquo;Really slow to start the last few mornings&rdquo;, still starting each time</b></div>
+                  <div class="adm-rec__row"><span>Collect</span><b id="colVal">Shelf B3, reserved to Mon 15 Sep</b></div>
                 </div>
                 <div class="adm-order">
                   <div class="adm-order__head">Order<i class="src" id="ordSrc">halfords.com · yesterday 6:12pm</i></div>
@@ -947,17 +996,176 @@ button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visibl
       </div>
     </div>
   </div>
-  <section class="view-placeholder" data-panel="mechanic" aria-hidden="true">
-    <span class="vp-tag">MOBILE MECHANIC COLLEAGUE VIEW</span>
-    <h2>The job card travels to the driveway</h2>
-    <p>If the fitting happens at home, the mobile mechanic gets the full picture before the van leaves.</p>
-    <ul>
-      <li>AGM 096 · battery registration required after fitting</li>
-      <li>Customer-reported symptom: slow cold starts</li>
-      <li>Old-battery recycling &amp; parking notes pre-confirmed</li>
-      <li>Motoring Club prompt at handover, today's fitting effectively free with the 5% saving &amp; included fitting</li>
-    </ul>
-  </section>
+  <!-- ================= MOBILE MECHANIC CONSOLE ================= -->
+  <div class="tablet-wrap" data-panel="mechanic" style="display:none">
+    <div class="tablet tablet--field">
+      <div class="tab-top">
+        <img class="tab-top__logo" src="data:image/png;base64,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" alt="Halfords">
+        <span class="tab-top__loc">Colleague console</span>
+        <span class="adm-route"><i></i>Next after this: Oscar · Richmond · 15:30 · 22 min drive</span>
+        <span class="tab-top__right"><span class="adm-user" title="Vinny">VN</span></span>
+      </div>
+      <div class="tab-stage adm">
+        <aside class="adm-nav">
+          <button class="adm-nav__item adm-nav__item--on"><svg><use href="#i-rows"/></svg>Route</button>
+          <button class="adm-nav__item"><svg><use href="#i-cal"/></svg>Jobs</button>
+          <button class="adm-nav__item"><svg><use href="#i-box"/></svg>Van stock</button>
+          <button class="adm-nav__item"><svg><use href="#i-wrench"/></svg>Kit</button>
+          <button class="adm-nav__item"><svg><use href="#i-chart"/></svg>Reports</button>
+          <div class="adm-nav__foot"><b>Van 12</b> · SW London<br>Wed 9 Sep · 12:38</div>
+        </aside>
+        <main class="adm-main">
+
+          <!-- V1 · today's route -->
+          <section class="adm-screen adm-screen--on" id="vs1">
+            <div class="adm-toast" id="vToast" hidden><svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></svg><span id="vToastTxt"><b>Job complete.</b></span></div>
+            <div class="adm-head">
+              <div><div class="teyebrow" style="margin-bottom:4px">Van 12 · Wed 9 September</div><div class="vtitle"><h2>Today&rsquo;s route</h2><button class="vcal" aria-label="Choose day"><svg><use href="#i-cal"/></svg></button></div></div>
+              <div class="vviews"><button class="adm-chip adm-chip--on" id="vViewMap">Map</button><button class="adm-chip" id="vViewList">List</button></div>
+            </div>
+            <div class="adm-stats">
+              <div class="adm-stat"><b id="vStopStat">Stop 3 of 4</b><span>Today&rsquo;s route</span></div>
+              <div class="adm-stat"><b id="vEtaStat">6 min</b><span id="vEtaLbl">To Henry · SW14</span></div>
+              <div class="adm-stat"><b class="adm-stat__good">On time</b><span>12 to 4 window</span></div>
+              <div class="adm-stat"><b>4:10pm</b><span>Estimated finish</span></div>
+            </div>
+            <div class="dv" id="vListPanel">
+              <div class="dv-row"><span class="dv-time">9:00</span>
+                <div class="dv-card dv-card--done"><div class="dv-main"><b>Dan · Battery fitting</b><span>Fulham · booked online · completed 9:52</span></div><span class="adm-st">Done</span></div>
+              </div>
+              <div class="dv-row"><span class="dv-time">10:45</span>
+                <div class="dv-card dv-card--done"><div class="dv-main"><b>Sofia · Bulbs &amp; blades</b><span>Putney · booked in app · completed 11:15</span></div><span class="adm-st">Done</span></div>
+              </div>
+              <div class="dv-now"><i></i><span>Now · 12:38</span><i></i></div>
+              <div class="dv-row"><span class="dv-time">12:44</span>
+                <div class="dv-card dv-card--next" id="vRowAmelia"><div class="dv-main"><b>Henry <span class="adm-plate">GJ71 HBB</span> · Battery fitting</b><span>Booked online · 12 to 4 window · 14 Priory Lane, SW14 8HE</span></div><span class="adm-st adm-st--next" id="vAmeliaSt">Next · 6 min away</span><button class="adm-btn adm-btn--go" id="vServe">Arrived</button></div>
+              </div>
+              <div class="dv-row"><span class="dv-time">15:30</span>
+                <div class="dv-card"><div class="dv-main"><b>Oscar · Free battery health check</b><span>Richmond · booked online</span></div><span class="adm-st adm-st--book">Booked</span></div>
+              </div>
+            </div>
+            <div class="vmap" id="vMapPanel" style="display:none">
+              <svg viewBox="0 0 900 400" aria-label="Route map">
+                <defs>
+                  <filter id="mds" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#1B2B20" flood-opacity=".22"/></filter>
+                </defs>
+                <rect x="0" y="0" width="900" height="400" rx="10" fill="#F1F4F2"/>
+                <ellipse cx="775" cy="360" rx="210" ry="95" fill="#E0EDDD"/>
+                <ellipse cx="612" cy="252" rx="78" ry="36" fill="#E4EFE1"/>
+                <ellipse cx="95" cy="70" rx="90" ry="48" fill="#E7F0E4"/>
+                <path d="M0 232 C 180 202, 300 282, 470 247 S 760 157, 900 197" fill="none" stroke="#C7DBEE" stroke-width="28" stroke-linecap="round"/>
+                <path d="M0 232 C 180 202, 300 282, 470 247 S 760 157, 900 197" fill="none" stroke="#E3EFFA" stroke-width="14" stroke-linecap="round"/>
+                <g stroke="#E7E9E8" stroke-width="5" stroke-linecap="round">
+                  <path d="M80 40 L60 360"/><path d="M250 30 L300 370"/><path d="M520 30 L470 370"/><path d="M700 40 L780 370"/>
+                  <path d="M20 110 L880 70"/><path d="M20 330 L880 300"/>
+                </g>
+                <g stroke-linecap="round" fill="none">
+                  <path d="M30 180 C 250 150, 480 120, 890 110" stroke="#DFE1E0" stroke-width="11"/>
+                  <path d="M30 180 C 250 150, 480 120, 890 110" stroke="#FFFFFF" stroke-width="6.5"/>
+                  <path d="M120 390 C 260 320, 520 320, 880 360" stroke="#DFE1E0" stroke-width="11"/>
+                  <path d="M120 390 C 260 320, 520 320, 880 360" stroke="#FFFFFF" stroke-width="6.5"/>
+                </g>
+                <g font-family="Inter,system-ui,sans-serif" font-weight="800" fill="#B6C3B9" letter-spacing="3">
+                  <text x="150" y="128" font-size="12">FULHAM</text>
+                  <text x="298" y="340" font-size="12">PUTNEY</text>
+                  <text x="556" y="120" font-size="12">BARNES</text>
+                  <text x="688" y="366" font-size="12">RICHMOND PARK</text>
+                </g>
+                <text x="118" y="222" font-family="Inter,system-ui,sans-serif" font-size="11.5" font-style="italic" font-weight="600" fill="#9FBBD6" transform="rotate(-7 118 222)">River Thames</text>
+                <path pathLength="1" class="draw" d="M130 300 C 220 260, 260 240, 330 240 C 380 240, 405 222, 440 214" fill="none" stroke="#198900" stroke-opacity=".22" stroke-width="12" stroke-linecap="round"/>
+                <path pathLength="1" class="draw2" d="M130 300 C 220 260, 260 240, 330 240 C 380 240, 405 222, 440 214" fill="none" stroke="#198900" stroke-width="5" stroke-linecap="round"/>
+                <path id="vSegNext" d="M440 214 C 490 207, 540 190, 575 185" fill="none" stroke="#FF9718" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="1 12">
+                  <animate attributeName="stroke-dashoffset" values="0;-52" dur="1.5s" repeatCount="indefinite"/>
+                </path>
+                <path id="vSegLater" d="M575 185 C 660 175, 740 240, 800 305" fill="none" stroke="#C9CDCB" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1 10"/>
+                <g font-family="Inter,system-ui,sans-serif">
+                  <g filter="url(#mds)"><circle cx="130" cy="300" r="13" fill="#198900"/><path d="M124 300l4 4 8 -8" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+                  <g filter="url(#mds)"><rect x="92" y="318" width="76" height="22" rx="11" fill="#fff"/><text x="130" y="333" font-size="11" font-weight="700" fill="#6E6E6E" text-anchor="middle">Dan · done</text></g>
+                  <g filter="url(#mds)"><circle cx="330" cy="240" r="13" fill="#198900"/><path d="M324 240l4 4 8 -8" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+                  <g filter="url(#mds)"><rect x="288" y="258" width="84" height="22" rx="11" fill="#fff"/><text x="330" y="273" font-size="11" font-weight="700" fill="#6E6E6E" text-anchor="middle">Sofia · done</text></g>
+                  <g id="vVan"><circle cx="440" cy="214" r="15" fill="#FF9718" opacity=".3"><animate attributeName="r" values="12;24" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".35;0" dur="1.8s" repeatCount="indefinite"/></circle>
+                  <circle cx="440" cy="214" r="9" fill="#FF9718" stroke="#fff" stroke-width="3" filter="url(#mds)"/></g>
+                  <g id="vEtaChip" filter="url(#mds)"><rect x="479" y="222" width="52" height="21" rx="10.5" fill="#fff"/><text id="vEtaTxt" x="505" y="236" font-size="11" font-weight="800" fill="#8A5A00" text-anchor="middle">6 min</text></g>
+                  <g id="vVanChip" filter="url(#mds)"><rect x="398" y="180" width="84" height="22" rx="11" fill="#242424"/><text x="440" y="195" font-size="11" font-weight="800" fill="#FF9718" text-anchor="middle">Van 12 · you</text></g>
+                  <g id="vMapA">
+                    <circle cx="575" cy="185" r="20" fill="#198900" opacity=".25"><animate attributeName="r" values="16;28" dur="1.9s" repeatCount="indefinite"/><animate attributeName="opacity" values=".3;0" dur="1.9s" repeatCount="indefinite"/></circle>
+                    <circle cx="575" cy="185" r="15" fill="#fff" stroke="#198900" stroke-width="4" filter="url(#mds)"/>
+                    <text x="575" y="190" font-size="12.5" font-weight="800" fill="#198900" text-anchor="middle">3</text>
+                    <g filter="url(#mds)"><rect x="507" y="140" width="136" height="24" rx="12" fill="#fff"/><text x="575" y="156" font-size="12" font-weight="800" fill="#242424" text-anchor="middle">Henry · SW14 8HE</text></g>
+                  </g>
+                  <g filter="url(#mds)"><circle cx="800" cy="305" r="13" fill="#fff" stroke="#C6C6C6" stroke-width="3"/><text x="800" y="310" font-size="12" font-weight="800" fill="#757575" text-anchor="middle">4</text></g>
+                  <g filter="url(#mds)"><rect x="742" y="322" width="116" height="22" rx="11" fill="#fff"/><text x="800" y="337" font-size="11" font-weight="700" fill="#6E6E6E" text-anchor="middle">Oscar · Richmond</text></g>
+                  <g filter="url(#mds)"><circle cx="858" cy="42" r="15" fill="#fff"/><path d="M858 34 L862 46 L858 43 L854 46 Z" fill="#757575"/><text x="858" y="60" font-size="0"> </text></g>
+                  <text x="858" y="72" font-size="10" font-weight="800" fill="#9AA39D" text-anchor="middle">N</text>
+                </g>
+              </svg>
+              <div class="vmap__card" id="vMapCard">
+                <div class="vmap__info"><b>Next: Henry · Battery fitting</b><span>14 Priory Lane, SW14 8HE · 6 min away · 12 to 4 window</span></div>
+                <button class="adm-btn adm-btn--go" id="vServeMap">Arrived</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- V2 · job on the driveway -->
+          <section class="adm-screen" id="vs2">
+            <div class="adm-job">
+              <div class="adm-job__main">
+                <div class="adm-crumb"><button id="vBack">&larr; Route</button></div>
+                <div class="adm-jobhead"><div class="teyebrow" style="margin-bottom:3px">Stop 3 of 4 · Ref HAL 291772</div><h2>Henry · Battery fitting</h2></div>
+                <div class="adm-journey">
+                  <div class="jstep jstep--done"><i></i><b>Booked online</b><span>Yesterday · 6:12pm</span></div>
+                  <div class="jstep jstep--done"><i></i><b>Van dispatched</b><span>Today · 12:10</span></div>
+                  <div class="jstep jstep--now"><i></i><b>On the driveway</b><span>Now</span></div>
+                </div>
+                <div class="adm-rec">
+                  <div class="adm-rec__id">
+                    <span class="adm-plate adm-plate--lg">GJ71 HBB</span>
+                    <div class="adm-rec__idtxt"><b>Henry</b><em>MINI Countryman 1.5 Cooper · 2021 · <u>AGM start/stop</u></em></div>
+                    <div class="adm-rec__meta"><b>14 Priory Lane, SW14 8HE</b><em>Text 07700 900314 when done</em></div>
+                  </div>
+                  <div class="adm-rec__row"><span>Note</span><b>&ldquo;Really slow to start the last few mornings&rdquo;, still starting each time</b></div>
+                  <div class="adm-rec__row"><span>Window</span><b>12 to 4 today, confirmed by text at 12:10</b></div>
+                  <div class="adm-rec__row"><span>On van</span><b>Super 096AGM loaded at depot, OBD registration kit checked</b></div>
+                </div>
+                <div class="vhmc"><span class="hmc-badge">hmc</span><div class="vhmc__txt"><b id="vHmcTitle">Not a Motoring Club member</b><span id="vHmcSub">Joining is free · would save £11.20 on this job · free annual battery health check</span></div><button class="vhmc__cta" id="vHmcChip">Sign him up</button></div>
+                <div class="adm-order">
+                  <div class="adm-order__head">Order<i class="src">halfords.com · yesterday 6:12pm</i></div>
+                  <div class="adm-order__line"><span>Super 096AGM <em>SKU 202037</em></span><b>£169.00</b></div>
+                  <div class="adm-order__line"><span>Mobile fitting &amp; battery registration</span><b>£50.00</b></div>
+                  <div class="adm-order__line"><span>Afternoon window <em>12 to 4</em></span><b>£5.00</b></div>
+                  <div class="adm-order__line adm-order__line--disc" id="vDiscLine" style="display:none"><span>Motoring Club joining discount <em>5%</em></span><b>(£11.20)</b></div>
+                  <div class="adm-order__line adm-order__line--total"><span>Payment link on completion <em>guarantee registers on payment</em></span><b id="vTotal">£224.00</b></div>
+                </div>
+                <div class="adm-tasks">
+                  <div class="adm-tasks__head">Job notes</div>
+                  <div class="adm-notes" id="vNotes">
+                    <div class="adm-note-item"><span>12:10 · System</span>Route optimised, Henry moved to stop 3. Window confirmed by text.</div>
+                  </div>
+                  <div class="adm-noteadd">
+                    <input type="text" id="vNoteIn" placeholder="Add a note for the file&hellip;" maxlength="140">
+                    <button class="adm-btn" id="vNoteGo">Add</button>
+                  </div>
+                </div>
+                <button class="adm-btn adm-btn--primary" id="vComplete">Fitting done, take payment</button>
+              </div>
+              <aside class="a-chat">
+                <div class="a-chat__head"><span class="a-chat__avatar"><svg><use href="#i-chat"/></svg><i class="a-chat__dot"></i></span>Halfords Assistant<span class="a-chat__mode">colleague mode</span></div>
+                <div class="a-chat__log" id="vLog"></div>
+                <div class="a-chat__chips" id="vChips"></div>
+                <div class="a-chat__spacer"></div>
+                <div class="a-chat__composer">
+                  <input type="text" id="vChatIn" placeholder="Ask about this job&hellip;" maxlength="120">
+                  <button id="vChatGo" aria-label="Send"><svg><use href="#i-send"/></svg></button>
+                </div>
+              </aside>
+            </div>
+          </section>
+
+        </main>
+      </div>
+    </div>
+  </div>
+
 
   <!-- ================= PHONE ================= -->
   <div class="phone-wrap" data-panel="com">
@@ -2137,10 +2345,10 @@ function handBack(){
     {q:"What do I quote at the till?", chip:false,
      a:"<b>\u00a3219 fitted</b>. His Motoring Club 5% comes off automatically, so the till will show <b>\u00a3208.05</b>. Fitting\u2019s included and the 3 year guarantee registers to his account on payment."},
     {q:"Is the 5 year battery worth the extra?", chip:false,
-     a:"Same fitment, so it\u2019s a fair either or. The <b>AGM096 5 Year</b> is \u00a3229 against \u00a3219 fitted for the <b>Super 096AGM</b>: \u00a310 more buys the longer guarantee, 5 years instead of 3, plus 40A more cold start power. One thing worth telling him: the AGM096 5 Year (and the \u00a3209 Yuasa) isn\u2019t in Chiswick until <b>tomorrow</b>, while his Super 096AGM is on shelf B3 now. So today it\u2019s the Super 096AGM; if he\u2019d rather have the AGM096 5 Year, shall I switch his reservation to <b>9:00am tomorrow</b>?"},
-    {q:"How long will the fitting take?",
+     a:"Same fitment, so it\u2019s a fair either or. The <b>AGM096 5 Year</b> is \u00a3229 against \u00a3219 fitted for the <b>Super 096AGM</b>: \u00a310 more buys the longer guarantee, 5 years instead of 3, plus 40A more cold start power. One thing worth telling him: the AGM096 5 Year isn\u2019t in Chiswick until <b>tomorrow</b>, while his Super 096AGM is on shelf B3 now. Do you need more information, or have any other questions?"},
+    {q:"How long will the fitting take?", chip:false,
      a:"About <b>45 minutes</b> in bay 2 once it\u2019s handed over, and the registration step is inside that. He doesn\u2019t need to wait at the counter: he\u2019s opted in for a text at <b>07700 900314</b> the moment it\u2019s done."},
-    {q:"What happens to his old battery?",
+    {q:"What happens to his old battery?", chip:false,
      a:"It goes in the <b>returns cage</b> by the fitting bay and gets recycled, the return is already part of the job. If it\u2019s swollen or leaking, gloves from the bay kit and bag it first."},
     {q:"He wants the AGM096 5 Year. Can you switch his reservation?", action:"switch",
      a:"Done. He\u2019s on the <b>AGM096 5 Year</b> now: fitting <b>9:00am tomorrow</b>, bay 2 held, and today\u2019s Super 096AGM reservation is released back to the shelf. The order\u2019s updated below and he\u2019s been texted the new time."}
@@ -2156,47 +2364,93 @@ function handBack(){
     if(t.indexOf("old")>-1||t.indexOf("dispos")>-1||t.indexOf("recycl")>-1||t.indexOf("swollen")>-1) return {i:5,a:QA[5].a};
     return {i:-1,a:"Good question, in the live build I\u2019d answer that from the vehicle, stock and till systems. For today\u2019s demo I\u2019ve got the battery job covered: AGM, registration, pricing, and the old battery."};
   }
-  var asked=[], switched=false;
-  function performSwitch(){
+  var asked=[], switched=false, resolved=false, switchTime="9:00am";
+  function performSwitch(time){
     if(switched) return; switched=true;
+    time=time||"9:00am"; switchTime=time;
     $("#ordName").innerHTML="AGM096 5 Year <em>SKU 202041</em>";
     $("#ordPrice").textContent="\u00a3179.00";
     $("#ordDisc").textContent="(\u00a311.45)";
     $("#ordTotal").textContent="\u00a3217.55";
     $("#ordSrc").textContent="halfords.com \u00b7 updated 11:46";
-    $("#colVal").innerHTML="Arrives tomorrow \u00b7 fitting <b>9:00am</b> \u00b7 bay 2 held";
+    ["#ordName","#ordDisc","#ordTotal"].forEach(function(id){
+      var row=$(id).closest(".adm-order__line"); if(row){ row.classList.remove("rowflash"); void row.offsetWidth; row.classList.add("rowflash"); }
+    });
+    var cr=$("#colVal").closest(".adm-rec__row"); if(cr){ cr.classList.add("rowflash"); }
+    $("#colVal").innerHTML="Arrives tomorrow \u00b7 fitting <b>"+time+"</b> \u00b7 bay 2 held";
     var d=document.createElement("div");
     d.className="adm-note-item";
-    d.innerHTML="<span>11:46 \u00b7 Assistant</span>Reservation switched to AGM096 5 Year, fitting 9:00am tomorrow. Confirmation texted to 07700 900314.";
+    d.innerHTML="<span>11:46 \u00b7 Assistant</span>Reservation switched to AGM096 5 Year, fitting "+time+" tomorrow. Confirmation texted to 07700 900314.";
     $("#aNotes").appendChild(d);
     $("#aComplete").textContent="All set for tomorrow, close B07";
   }
+  function deskCloseChip(){
+    chipsBox.innerHTML="";
+    var b=document.createElement("button");
+    b.className="a-chip"; b.textContent=$("#aComplete").textContent;
+    b.addEventListener("click",function(){
+      chipsBox.innerHTML="";
+      $("#aComplete").click();
+    });
+    chipsBox.appendChild(b);
+    log.scrollTop=log.scrollHeight;
+  }
+  function slotPick(time,silent){
+    resolved=true; awaitingSlot=false;
+    chipsBox.innerHTML="";
+    if(!silent) aMsg(time+" works","u");
+    aTyping(function(){
+      aMsg("Done. He\u2019s on the <b>AGM096 5 Year</b> now: fitting <b>"+time+" tomorrow</b>, bay 2 held, and today\u2019s Super 096AGM reservation is released back to the shelf. The order\u2019s updated below and he\u2019s been texted the new time.","a");
+      performSwitch(time);
+      deskCloseChip();
+    },900);
+  }
+  var awaitingSlot=false;
+  function slotStep(){
+    chipsBox.innerHTML="";
+    aTyping(function(){
+      awaitingSlot=true;
+      aMsg("Stock lands first thing. The earliest fitting times in bay 2 tomorrow:","a");
+      ["9:00am","11:30am"].forEach(function(t){
+        var b=document.createElement("button");
+        b.className="a-chip"; b.textContent=t;
+        b.addEventListener("click",function(){ slotPick(t); });
+        chipsBox.appendChild(b);
+      });
+      var other=document.createElement("button");
+      other.className="a-chip"; other.textContent="Choose another time";
+      other.addEventListener("click",function(){
+        chipsBox.innerHTML="";
+        aMsg("Choose another time","u");
+        aTyping(function(){
+          aMsg("Bay 2 has slots every 45 minutes through to 5:30pm tomorrow. Give me a time and I\u2019ll hold it.","a");
+        },800);
+      });
+      chipsBox.appendChild(other);
+      log.scrollTop=log.scrollHeight;
+    },800);
+  }
   function renderChips(){
     chipsBox.innerHTML="";
-    var order=QA.map(function(_,i){return i}).sort(function(a,b){
-      return (QA[b].action==="switch")-(QA[a].action==="switch");
+    if(resolved || asked.indexOf(3)===-1) return;
+    var sw=document.createElement("button");
+    sw.className="a-chip"; sw.textContent="Switch to the AGM096 5 Year";
+    sw.addEventListener("click",function(){
+      chipsBox.innerHTML="";
+      aMsg("Switch to the AGM096 5 Year","u");
+      slotStep();
     });
-    order.forEach(function(i){
-      var qa=QA[i];
-      if(qa.chip===false || asked.indexOf(i)>-1) return;
-      if(qa.action==="switch" && (switched || asked.indexOf(3)===-1)) return;
-      var b=document.createElement("button");
-      b.className="a-chip"; b.textContent=qa.q;
-      b.addEventListener("click",function(){
-        asked.push(i);
-        chipsBox.innerHTML="";
-        aMsg(qa.q,"u");
-        aTyping(function(){ aMsg(qa.a,"a"); if(qa.action==="switch") performSwitch(); renderChips(); },900);
-      });
-      chipsBox.appendChild(b);
+    chipsBox.appendChild(sw);
+    var st=document.createElement("button");
+    st.className="a-chip"; st.textContent="Continue with the fitting";
+    st.addEventListener("click",function(){
+      resolved=true;
+      chipsBox.innerHTML="";
+      aMsg("Continue with the fitting","u");
+      aTyping(function(){ aMsg("Done, staying as reserved. It\u2019s set aside on shelf B3, the till\u2019s ready at <b>\u00a3208.05</b>, and the guarantee registers when he pays.","a"); deskCloseChip(); },900);
     });
+    chipsBox.appendChild(st);
     log.scrollTop=log.scrollHeight;
-    if(asked.length===QA.length){
-      var d=document.createElement("div");
-      d.style.cssText="font-size:10.5px;color:var(--text-muted);padding:2px 2px 0";
-      d.textContent="You\u2019re all set, I\u2019ll stay open while you work.";
-      chipsBox.appendChild(d);
-    }
   }
   var chatStarted=false;
   $("#aServe").addEventListener("click",function(){
@@ -2219,10 +2473,15 @@ function handBack(){
     chatIn.value="";
     $("#aChatGo").classList.remove("pulse");
     aMsg(esc(v),"u");
+    if(awaitingSlot && !switched){
+      var m=v.match(/\b(\d{1,2})(:\d{2})?\s*(am|pm)\b/i);
+      if(m){ slotPick(m[1]+(m[2]||":00")+m[3].toLowerCase(),true); return; }
+    }
     var r=answerFor(v);
     if(r.i>-1 && asked.indexOf(r.i)===-1){ asked.push(r.i); }
     chipsBox.innerHTML="";
-    aTyping(function(){ aMsg(r.a,"a"); if(r.act==="switch") performSwitch(); renderChips(); },900);
+    if(r.act==="switch"&&!switched){ slotStep(); return; }
+    aTyping(function(){ aMsg(r.a,"a"); renderChips(); },900);
   }
   $("#aChatGo").addEventListener("click",sendTyped);
   chatIn.addEventListener("keydown",function(e){ if(e.key==="Enter") sendTyped(); });
@@ -2240,15 +2499,255 @@ function handBack(){
   noteIn.addEventListener("keydown",function(e){ if(e.key==="Enter") addNote(); });
   $("#aComplete").addEventListener("click",function(){
     setTimeout(function(){
-      $("#aHenrySt").textContent=switched?"Rebooked \u00b7 9:00am tomorrow":"Served \u00b7 Desk 2";
+      $("#aHenrySt").textContent=switched?("Rebooked \u00b7 "+switchTime+" tomorrow"):"Served \u00b7 Desk 2";
       $("#aHenrySt").className="adm-st";
       $("#aRowHenry").classList.remove("dv-card--next");
       $("#aRowHenry").classList.add("dv-card--done");
       $("#aServe").style.display="none";
-      if(switched){ $("#aToast").innerHTML='<svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></svg><span><b>B07 updated.</b> Henry\u2019s on the AGM096 5 Year, fitted 9:00am tomorrow, confirmation texted. Nothing he had to explain.</span>'; }
+      if(switched){ $("#aToast").innerHTML='<svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></svg><span><b>B07 closed.</b> Henry\u2019s rebooked for '+switchTime+' tomorrow.</span>'; }
       $("#aToast").hidden=false;
       aGo(s2,s1);
     },420);
+  });
+})();
+
+/* ============================================================
+   Mobile mechanic console: route map, guided chat arc, member sign up
+   ============================================================ */
+(function(){
+  var v1=$("#vs1"), v2=$("#vs2");
+  if(!v1) return;
+  var log=$("#vLog"), chips=$("#vChips"), chatIn=$("#vChatIn");
+  var joined=false, wrapped=false, closed=false;
+  function go(a,b){ a.classList.remove("adm-screen--on"); b.classList.add("adm-screen--on"); }
+  function msg(html,who){
+    var d=document.createElement("div");
+    d.className="a-msg a-msg--"+(who||"a");
+    d.innerHTML=html; log.appendChild(d); log.scrollTop=log.scrollHeight; return d;
+  }
+  function typing(fn,ms){
+    var t=msg('<span class="a-typing"><i></i><i></i><i></i></span>',"a");
+    setTimeout(function(){ t.remove(); fn(); }, ms||900);
+  }
+  function chip(label,fn){
+    var b=document.createElement("button");
+    b.className="a-chip"; b.textContent=label;
+    b.addEventListener("click",fn);
+    chips.appendChild(b); log.scrollTop=log.scrollHeight;
+  }
+  var QA={
+    dur:{q:"How long have I got in his window?", a:"Plenty. The fitting\u2019s about <b>40 minutes</b> including registration, and his window runs to <b>4pm</b>, you\u2019re comfortably inside it. Oscar\u2019s not until 3:30."},
+    old:{q:"What happens to his old battery?", a:"It goes in the <b>van\u2019s returns crate</b>, recycled back at the depot. If it\u2019s swollen or leaking, gloves and a bag first."},
+    check:{a:"Run the <b>two minute health check</b> before you swap it. Slow cold starts on an AGM this age is classic fade, and the check will confirm it. If it shows a <b>charging fault</b> instead, don\u2019t fit it, that\u2019s one for a diagnostics booking rather than a new battery. Log the reading to the job either way so it\u2019s on his history."}
+  };
+  var asked={}, checkDone=false, logged=false;
+  function addNote(who,text){
+    var d=document.createElement("div");
+    d.className="adm-note-item";
+    d.innerHTML="<span>"+who+"</span>"+text;
+    $("#vNotes").appendChild(d);
+  }
+  function jobChips(){
+    chips.innerHTML="";
+    if(wrapped || !checkDone) return;
+    chip("Fitting complete, wrap up the job",function(){
+      chips.innerHTML="";
+      msg("Fitting complete, wrap up the job","u");
+      doWrap();
+    });
+  }
+  function askJob(key){
+    asked[key]=true;
+    chips.innerHTML="";
+    msg(QA[key].q,"u");
+    typing(function(){ msg(QA[key].a,"a"); jobChips(); },900);
+  }
+  function applySignup(){
+    if(joined) return;
+    joined=true;
+    msg("Done. Membership\u2019s live, free to join. The 5% comes straight off: <b>\u00a3212.80</b> on his payment link, the guarantee\u2019s registering to his account, and this health check reading counts as his first free annual one. Confirmation texted to <b>07700 900314</b>.","a");
+    $("#vDiscLine").style.display="";
+    $("#vTotal").textContent="\u00a3212.80";
+    $("#vHmcTitle").textContent="Motoring Club member";
+    $("#vHmcSub").textContent="5% applied to this job \u00b7 guarantee registers to his account \u00b7 free annual battery health check logged";
+    var strip=document.querySelector(".vhmc"); if(strip){ strip.classList.add("rowflash"); }
+    ["#vDiscLine","#vTotal"].forEach(function(id){
+      var el=$(id); var row=el.closest(".adm-order__line"); if(row){ row.classList.remove("rowflash"); void row.offsetWidth; row.classList.add("rowflash"); }
+    });
+    var c=$("#vHmcChip");
+    c.className="vhmc__ok";
+    c.innerHTML='<svg viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></svg>Applied';
+    var d=document.createElement("div");
+    d.className="adm-note-item";
+    d.innerHTML="<span>1:24 \u00b7 Assistant</span>Motoring Club membership created. 5% applied, payment link updated to \u00a3212.80.";
+    $("#vNotes").appendChild(d);
+    if(wrapped) closeChip();
+  }
+  function closeChip(){
+    chips.innerHTML="";
+    chip("Send the payment link, close the job",function(){ closeJob(); });
+  }
+  function clubPrompt(){
+    typing(function(){
+      msg("One more before the link goes. He\u2019s <b>not a Motoring Club member</b>: joining is free, it takes <b>\u00a311.20</b> off this job today, and he gets a free battery health check every year. Shall I add it to his payment link?","a");
+      chip("Sign him up",function(){
+        chips.innerHTML="";
+        msg("Sign him up","u");
+        typing(applySignup,900);
+      });
+      chip("Not today",function(){
+        chips.innerHTML="";
+        msg("Not today","u");
+        typing(function(){ msg("No problem, the link\u2019s ready at <b>\u00a3224.00</b>. The Club offer stays on his receipt if he changes his mind.","a"); closeChip(); },700);
+      });
+    },900);
+  }
+  function doWrap(){
+    if(wrapped) return;
+    wrapped=true;
+    addNote("1:20 \u00b7 System","New battery registered to the vehicle via OBD. Job marked complete by Vinny.");
+    $("#vComplete").textContent="Send payment link, close job";
+    typing(function(){
+      if(joined){
+        msg("All wrapped. The health check confirmed it, failed load test, so the swap was right. The <b>Super 096AGM</b> is fitted and registered to the car. Payment link\u2019s ready at <b>\u00a3212.80</b> with his member 5% on.","a");
+        closeChip();
+      } else {
+        msg("All wrapped. The health check confirmed it, failed load test, so the swap was right. The <b>Super 096AGM</b> is fitted and registered to the car. Payment link\u2019s ready at <b>\u00a3224.00</b>.","a");
+        clubPrompt();
+      }
+    },900);
+  }
+  function closeJob(){
+    if(closed) return;
+    closed=true;
+    var mp=$("#vMapA");
+    if(mp){ mp.innerHTML='<circle cx="575" cy="185" r="13" fill="#198900" filter="url(#mds)"/><path d="M569 185l4 4 8 -8" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><g filter="url(#mds)"><rect x="523" y="140" width="104" height="22" rx="11" fill="#fff"/><text x="575" y="155" font-size="11" font-weight="700" fill="#6E6E6E" text-anchor="middle">Henry \u00b7 done</text></g>'; }
+    var mc=$("#vMapCard"); if(mc) mc.style.display="none";
+    var sn=$("#vSegNext");
+    if(sn){ sn.outerHTML='<path pathLength="1" class="draw" d="M440 214 C 490 207, 540 190, 575 185" fill="none" stroke="#198900" stroke-opacity=".22" stroke-width="12" stroke-linecap="round"/><path pathLength="1" class="draw2" d="M440 214 C 490 207, 540 190, 575 185" fill="none" stroke="#198900" stroke-width="5" stroke-linecap="round"/>'; }
+    var sl=$("#vSegLater");
+    if(sl){ sl.outerHTML='<path d="M575 185 C 660 175, 740 240, 800 305" fill="none" stroke="#FF9718" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="1 12"><animate attributeName="stroke-dashoffset" values="0;-52" dur="1.5s" repeatCount="indefinite"/></path>'; }
+    var vv=$("#vVan"); if(vv) vv.setAttribute("transform","translate(180,-33)");
+    var vvc=$("#vVanChip"); if(vvc) vvc.setAttribute("transform","translate(230,-16)");
+    var ec=$("#vEtaChip"); if(ec){ ec.setAttribute("transform","translate(207,45)"); $("#vEtaTxt").textContent="22 min"; }
+    $("#vStopStat").textContent="Stop 4 of 4";
+    $("#vEtaStat").textContent="22 min";
+    $("#vEtaLbl").textContent="To Oscar \u00b7 Richmond";
+    $("#vAmeliaSt").textContent="Done \u00b7 1:26pm";
+    $("#vAmeliaSt").className="adm-st";
+    $("#vRowAmelia").classList.remove("dv-card--next");
+    $("#vRowAmelia").classList.add("dv-card--done");
+    $("#vServe").style.display="none";
+    $("#vToastTxt").innerHTML=joined
+      ? "<b>Stop 3 complete.</b> Henry joined the Motoring Club, saved \u00a311.20, link sent at \u00a3212.80. Next: Oscar in Richmond."
+      : "<b>Stop 3 complete.</b> Payment link sent at \u00a3224.00, Club offer on his receipt. Next: Oscar in Richmond.";
+    $("#vToast").hidden=false;
+    go(v2,v1);
+  }
+  function answerTyped(raw){
+    var t=raw.toLowerCase();
+    if(t.indexOf("note")===0||t.indexOf("log")===0||t.indexOf("make a note")>-1||t.indexOf("add a note")>-1||t.indexOf("note that")>-1){
+      var body=raw.replace(/^(note that|make a note|add a note|note|log it|log)\s*[:,]?\s*/i,"");
+      return {note: body||raw};
+    }
+    if(t.indexOf("how long")>-1||t.indexOf("window")>-1||t.indexOf("take")>-1||t.indexOf("minutes")>-1) return {a:QA.dur.a,key:"dur"};
+    if(t.indexOf("old")>-1||t.indexOf("dispos")>-1||t.indexOf("recycl")>-1||t.indexOf("swollen")>-1) return {a:QA.old.a,key:"old"};
+    if(checkDone && !logged && (t.indexOf("failed")>-1||t.indexOf("load test")>-1||t.indexOf("passed")>-1||t.indexOf("confirmed")>-1)) return {log:raw};
+    if(t.indexOf("slow")>-1||t.indexOf("start")>-1||t.indexOf("before")>-1||t.indexOf("swap")>-1||t.indexOf("check")>-1||t.indexOf("flicker")>-1) return {a:QA.check.a,check:true};
+    if(t.indexOf("done")>-1||t.indexOf("wrap")>-1||t.indexOf("finish")>-1) return {wrap:true};
+    if(t.indexOf("club")>-1||t.indexOf("member")>-1||t.indexOf("join")>-1||t.indexOf("discount")>-1||t.indexOf("cheap")>-1||t.indexOf("saved")>-1){
+      return wrapped&&!joined ? {club:true} : {a:"I\u2019ll bring the Club up once the job\u2019s wrapped, that\u2019s the natural moment with the payment link."};
+    }
+    return {a:"Good question. In the live build I\u2019d answer from the job, van stock and route systems. For the demo I\u2019ve got timings, the health check, the old battery, and the Motoring Club covered."};
+  }
+  function sendTyped(){
+    var t=chatIn.value.trim(); if(!t) return;
+    chatIn.value="";
+    $("#vChatGo").classList.remove("pulse");
+    msg(esc(t),"u");
+    chips.innerHTML="";
+    var r=answerTyped(t);
+    if(r.wrap){ doWrap(); return; }
+    if(r.club){ clubPrompt(); return; }
+    if(r.note){
+      typing(function(){
+        addNote(wrapped?"1:25 \u00b7 Vinny":"1:18 \u00b7 Vinny",esc(r.note));
+        logged=true;
+        msg("Noted on the job.","a");
+        if(!wrapped) jobChips(); else if(!closed) closeChip();
+      },700);
+      return;
+    }
+    if(r.log){
+      typing(function(){
+        logged=true;
+        addNote("1:18 \u00b7 Vinny",esc(r.log));
+        msg("Logged to the job, it\u2019s on his history with the reading. Anything else I can help with?","a");
+        jobChips();
+      },800);
+      return;
+    }
+    if(r.key) asked[r.key]=true;
+    typing(function(){
+      msg(r.a,"a");
+      if(r.check && !checkDone){
+        checkDone=true;
+        setTimeout(function(){
+          chatIn.value="Failed the load test, fitting the new one now";
+          $("#vChatGo").classList.add("pulse");
+        },900);
+        return;
+      }
+      if(!wrapped) jobChips(); else if(!closed && (joined||wrapped)) closeChip();
+    },900);
+  }
+  $("#vChatGo").addEventListener("click",sendTyped);
+  chatIn.addEventListener("keydown",function(e){ if(e.key==="Enter") sendTyped(); });
+  $("#vHmcChip").addEventListener("click",function(){
+    if(joined) return;
+    chips.innerHTML="";
+    typing(applySignup,800);
+  });
+  var started=false;
+  function arrive(){
+    go(v1,v2);
+    if(!started){ started=true;
+      setTimeout(function(){
+        msg("Hi Vinny, stop 3 is <b>Henry</b> at 14 Priory Lane, SW14 8HE. He booked the mobile fitting online <b>yesterday evening</b>, the 12 to 4 window was confirmed by text, and the <b>Super 096AGM</b> is on the van with the OBD kit. His note\u2019s on the left. Ask me anything about the job.","a");
+        setTimeout(function(){
+          chatIn.value="His note says it\u2019s been slow to start, anything I should check before I swap it?";
+          $("#vChatGo").classList.add("pulse");
+        },1000);
+      },500);
+    }
+  }
+  $("#vServe").addEventListener("click",arrive);
+  var vsm=$("#vServeMap"); if(vsm) vsm.addEventListener("click",arrive);
+  var vl=$("#vListPanel"), vm=$("#vMapPanel"), vbl=$("#vViewList"), vbm=$("#vViewMap");
+  function vView(map){
+    vm.style.display=map?"":"none";
+    vl.style.display=map?"none":"";
+    vbm.classList.toggle("adm-chip--on",map);
+    vbl.classList.toggle("adm-chip--on",!map);
+  }
+  vbl.addEventListener("click",function(){ vView(false); });
+  vbm.addEventListener("click",function(){ vView(true); });
+  vView(true);
+  $("#vBack").addEventListener("click",function(){ go(v2,v1); });
+  var vNoteIn=$("#vNoteIn");
+  function vAddNote(){
+    var t=vNoteIn.value.trim(); if(!t) return;
+    vNoteIn.value="";
+    var d=document.createElement("div");
+    d.className="adm-note-item";
+    d.innerHTML="<span>1:22 \u00b7 Vinny</span>"+esc(t);
+    $("#vNotes").appendChild(d);
+  }
+  $("#vNoteGo").addEventListener("click",vAddNote);
+  vNoteIn.addEventListener("keydown",function(e){ if(e.key==="Enter") vAddNote(); });
+  $("#vComplete").addEventListener("click",function(){
+    if(!wrapped){ doWrap(); return; }
+    closeJob();
   });
 })();
 
