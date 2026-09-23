@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Greene King Partnership Platform, Concept Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Karla:wght@400;500;600;700;800&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#0C4A33; --green-deep:#0A2E20; --green-cover:#0F3A29;
+  --paper:#F6F1E4; --slip:#FFFDF8; --cream:#F4EFE1;
+  --ink:#20261F; --muted:#8A8574;
+  --brass:#A97E2F; --brass-bright:#C9A24B; --gold:#8FD0CE;
+  --ok:#2E7A4F; --warn:#B4762A; --late:#A3542E;
+  --font-display:"Fraunces",Georgia,serif; --font-ui:"Karla",-apple-system,sans-serif;
+  --ease:cubic-bezier(.35,.1,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;text-align:left}
+input{font:inherit;border:none;outline:none;background:none}
+html,body{height:100%}
+body{font-family:var(--font-ui);background:#0B1F16;color:var(--ink);overflow:hidden;-webkit-font-smoothing:antialiased}
+
+/* ============ PRESENTER SHELL ============ */
+.shell{height:100vh;display:flex;flex-direction:column}
+.pbar{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;padding:12px 22px;flex:0 0 auto;color:#EDF2EA}
+.pbar::after{content:"";position:absolute;left:8%;right:8%;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(233,198,127,.55),transparent);transform:scaleX(0);animation:barSweep .9s .35s var(--ease) forwards}
+@keyframes barSweep{to{transform:scaleX(1)}}
+.pbar__left{display:flex;align-items:center;gap:12px;min-width:0;animation:barIn .55s .05s var(--ease) backwards}
+.pbar__centre{display:flex;align-items:center;gap:10px;justify-content:center;animation:barIn .55s .18s var(--ease) backwards}
+.pbar__right{display:flex;align-items:center;gap:10px;justify-content:flex-end;animation:barIn .55s .3s var(--ease) backwards}
+@keyframes barIn{from{opacity:0;transform:translateY(-9px)}}
+.pbar__logo{width:44px;height:24px;color:#EDF2EA;flex:0 0 auto;animation:logoIn .8s var(--ease) backwards}
+@keyframes logoIn{from{opacity:0;transform:scale(.75)}}
+.pbar__title{font-family:var(--font-display);font-weight:600;font-size:15.5px;white-space:nowrap}
+.pbar__tag{font-size:10.5px;font-weight:700;letter-spacing:.04em;color:rgba(237,242,234,.55);border:1px solid rgba(237,242,234,.25);border-radius:999px;padding:3px 9px}
+@media (max-width:1480px){.pbar__title,.pbar__tag{display:none}}
+.chapters{display:flex;gap:3px;background:rgba(237,242,234,.1);border-radius:999px;padding:4px}
+.chap{border-radius:999px;padding:8px 16px;font-size:12.5px;font-weight:700;color:rgba(237,242,234,.72);transition:all .18s var(--ease);white-space:nowrap}
+.chap b{font-family:var(--font-display);font-weight:600;margin-right:7px;opacity:.7}
+.chap em{font-style:normal;font-weight:500;color:rgba(237,242,234,.5);margin-left:6px;font-size:11px}
+.chap:hover{color:#EDF2EA}
+.chap.on{background:#EDF2EA;color:var(--green-deep)}
+.chap.on em{color:#6E7A6B}
+@media (max-width:1240px){.chap{padding:8px 12px;font-size:11.5px}.chap em{display:none}}
+.pbtn{border:1px solid rgba(237,242,234,.3);border-radius:999px;padding:8px 15px;font-size:12px;font-weight:700;color:#EDF2EA;transition:background .18s var(--ease)}
+.pbtn:hover{background:rgba(237,242,234,.1)}
+.stage{flex:1;min-height:0;display:grid;place-items:center;padding:10px 20px 22px}
+
+/* ============ DEVICE FRAMES ============ */
+.frame{display:none;transform-origin:center;position:relative}
+.frame.on{display:block}
+/* laptop */
+.laptop{width:1200px;background:#101A13;border-radius:16px;padding:10px 10px 12px;box-shadow:0 34px 90px rgba(0,0,0,.55)}
+.laptop__chrome{display:flex;align-items:center;gap:10px;background:#1C2A20;border-radius:9px 9px 0 0;padding:9px 14px}
+.laptop__dots{display:flex;gap:6px}
+.laptop__dots i{width:9px;height:9px;border-radius:50%}
+.laptop__dots i:nth-child(1){background:#E0604F}.laptop__dots i:nth-child(2){background:#E0A63E}.laptop__dots i:nth-child(3){background:#5FA765}
+.laptop__url{flex:0 1 420px;margin:0 auto;background:rgba(244,239,225,.1);border-radius:7px;padding:5px 12px;font-size:11px;color:rgba(244,239,225,.65);display:flex;align-items:center;gap:7px;justify-content:center}
+.laptop__url svg{width:10px;height:10px}
+.laptop .site{height:724px;border-radius:0 0 9px 9px;overflow:hidden}
+/* tablet */
+.tablet{width:1060px;background:#101A13;border-radius:26px;padding:16px;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+.tablet .site{height:736px;border-radius:14px;overflow:hidden}
+/* phone */
+.phone{width:390px;background:#101A13;border-radius:44px;padding:8px;box-shadow:0 26px 70px rgba(0,0,0,.55)}
+.phone .site{height:828px;border-radius:37px;overflow:hidden;position:relative}
+.island{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:112px;height:26px;background:#0B0F0C;border-radius:14px;z-index:60}
+.status{display:flex;justify-content:space-between;align-items:center;padding:13px 26px 6px;font-size:13px;font-weight:700;color:var(--cream);position:relative;z-index:55}
+.status__icons{display:flex;gap:5px;align-items:center}
+.status__icons svg{height:11px;width:auto}
+@media (max-width:1279px){
+  .stage{padding:0}
+  .frame{transform:none!important;width:100%;height:100%;border-radius:0;padding:0;box-shadow:none}
+  .laptop .site,.tablet .site,.phone .site{height:100%;border-radius:0}
+  .laptop__chrome{border-radius:0}
+  .pbar{display:none}
+  .mchap{display:flex}
+}
+.mchap{display:none;position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:90;gap:5px;background:rgba(6,25,17,.92);border-radius:999px;padding:6px;backdrop-filter:blur(8px)}
+.mchap .chap{padding:6px 12px;font-size:11.5px}
+
+/* ============ SITE COMMON ============ */
+.site{background:var(--paper);display:flex;position:relative;font-size:14px}
+.sect{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#9A937D;margin:20px 2px 9px}
+.sect:first-child{margin-top:0}
+.card{background:var(--slip);border-radius:18px;padding:16px 17px;box-shadow:0 1px 3px rgba(32,38,31,.06)}
+.card + .card{margin-top:12px}
+.k{display:block;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#9A937D;margin-bottom:8px}
+.list{background:var(--slip);border-radius:18px;box-shadow:0 1px 3px rgba(32,38,31,.06);overflow:hidden}
+.li{display:flex;align-items:center;gap:12px;padding:13px 15px;width:100%;position:relative}
+.li + .li::before{content:"";position:absolute;top:0;left:15px;right:15px;height:1px;background:#F0EBDC}
+.li__tx{flex:1;min-width:0}
+.li__tx b{display:block;font-size:14px;line-height:1.3}
+.li__tx > span > span,.li__tx span{display:block;font-size:12px;color:var(--muted);margin-top:2px;line-height:1.45}
+.li__tx b span{display:inline;font-size:inherit;color:inherit;margin:0}
+.li__end{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.chev{width:15px;height:15px;color:#B9B4A1}
+.dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+.dot--ok{background:var(--ok)}.dot--warn{background:var(--warn)}.dot--brass{background:var(--brass-bright)}.dot--live{background:#C0392B;animation:liveDot 1.6s ease-in-out infinite}
+@keyframes liveDot{0%,100%{opacity:1}50%{opacity:.35}}
+.pill{font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:4px 10px;white-space:nowrap}
+.pill--warn{background:#F6E9D2;color:#8A5A16}
+.pill--ok{background:#E2EFE2;color:#22603B}
+.pill--late{background:#F4DFD2;color:#8A4522}
+.pill--live{background:#F6D9D2;color:#8A2B1A}
+.due{font-size:11px;font-weight:700;color:var(--muted);white-space:nowrap}
+.donewhen{font-size:11px;font-weight:700;color:#A8A38F;white-space:nowrap}
+.ric{width:30px;height:30px;border-radius:10px;background:#EFEAD9;color:var(--green);display:grid;place-items:center;flex:0 0 auto}
+.ric svg{width:16px;height:16px}
+.ric--done{background:var(--green);color:var(--cream)}
+.ric--warn{background:#F6E9D2;color:#A66B1E}
+.btn{border-radius:999px;padding:10px 17px;font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:transform .12s var(--ease),background .18s var(--ease),opacity .18s}
+.btn:active{transform:scale(.97)}
+.btn--green{background:var(--green);color:var(--cream)}
+.btn--green:hover{background:#0E5A3E}
+.btn--cream{background:var(--cream);color:var(--green-deep)}
+.btn--brass{background:linear-gradient(160deg,#D6AC55,#5FA3A5);color:#2A1E08}
+.btn--soft{background:#EBE5D3;color:#4A4A3C}
+.btn--text{color:var(--brass);padding:10px 6px}
+.btn--full{width:100%}
+.btn--sm{padding:8px 14px;font-size:10.5px}
+.tick-ic{width:15px;height:15px}
+/* briefing + provenance */
+.briefing{list-style:none;margin:9px 0 2px}
+.briefing li{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;line-height:1.45;padding:4px 0}
+.briefing svg{width:14px;height:14px;flex:0 0 auto;margin-top:1.5px}
+.b-ok{color:var(--ok)}.b-watch{color:var(--warn)}
+.srcline{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:10px}
+.srcline em{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#9A937D}
+.srct{font-size:10.5px;font-weight:700;background:#EFEAD9;color:#5C5940;border-radius:999px;padding:3px 9px}
+/* timeline */
+.tl{position:relative;margin:6px 0 2px;padding-left:22px}
+.tl::before{content:"";position:absolute;left:6.5px;top:8px;bottom:8px;width:1.6px;background:#E4DDC8}
+.tl__s{position:relative;padding:7px 0;font-size:12.5px}
+.tl__s::before{content:"";position:absolute;left:-21px;top:11px;width:11px;height:11px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 2.5px var(--slip)}
+.tl__s b{font-weight:700}
+.tl__s span{display:block;font-size:11px;color:var(--muted)}
+.tl__s.pend::before{background:#D8D2BE}
+.tl__s.live::before{background:#C0392B;animation:liveDot 1.6s ease-in-out infinite}
+/* dray route */
+.dray__k{display:flex;align-items:center;gap:9px;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#9A937D}
+.dray__k .pill{margin-left:auto}
+.dray__eta{display:flex;align-items:baseline;gap:10px;margin-top:8px}
+.dray__eta b{font-family:var(--font-display);font-weight:600;font-size:38px;letter-spacing:-.01em;line-height:1}
+.dray__eta s{text-decoration:none;font-size:12px;color:var(--muted)}
+.dray__line{font-size:12.5px;color:var(--muted);margin-top:4px}
+.route{margin-top:12px}
+.route svg{width:100%;height:auto;display:block}
+.dray-pulse{animation:drayPulse 2s ease-out infinite}
+@keyframes drayPulse{0%{opacity:.7;r:10}70%{opacity:0;r:18}100%{opacity:0;r:18}}
+.dray-group{transition:transform 1s var(--ease)}
+.route__lbls{display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted);margin-top:5px}
+.route__lbls b{font-weight:700;color:var(--ink)}
+/* AI glow language */
+@keyframes aiGlow{0%,100%{background-position:0 0,0% 50%}50%{background-position:0 0,100% 50%}}
+@keyframes chipPulse{0%,100%{box-shadow:0 0 10px rgba(233,198,127,.16)}50%{box-shadow:0 0 20px rgba(233,198,127,.38)}}
+.opt{border-radius:15px;padding:13px 16px;font-size:13.5px;font-weight:700;border:1.5px solid transparent;
+  background:linear-gradient(var(--slip),var(--slip)) padding-box,linear-gradient(120deg,#8FD0CE 0%,#7FC29A 35%,#C9A24B 65%,#8FD0CE 100%) border-box;
+  background-size:auto,280% 280%;animation:aiGlow 6s ease-in-out infinite,chipPulse 3.4s ease-in-out infinite;transition:transform .12s var(--ease)}
+.opt:active{transform:scale(.98)}
+.opt small{display:block;font-weight:500;font-size:11.5px;color:var(--muted);margin-top:2px}
+.opt:nth-child(2){animation-delay:.5s,.5s}
+.opt:nth-child(3){animation-delay:1s,1s}
+.opt:nth-child(4){animation-delay:1.5s,1.5s}
+.chatbar{display:flex;align-items:center;gap:11px;background:var(--green);backdrop-filter:blur(12px);border-radius:999px;padding:8px 9px 8px 15px;cursor:pointer;animation:chatHalo 3.4s ease-in-out infinite}
+@keyframes chatHalo{0%,100%{box-shadow:0 10px 30px rgba(10,25,17,.22),0 0 0 1.5px rgba(214,172,85,.45),0 0 26px rgba(233,198,127,.45)}50%{box-shadow:0 10px 30px rgba(10,25,17,.22),0 0 0 1.5px rgba(214,172,85,.9),0 0 56px rgba(233,198,127,.85)}}
+.spark{width:24px;height:24px;flex:0 0 auto;color:#E3B75C;filter:drop-shadow(0 0 7px rgba(233,198,127,.85));animation:sparkTwinkle 2.4s ease-in-out infinite}
+@keyframes sparkTwinkle{0%,100%{transform:scale(1) rotate(0deg);opacity:.92}50%{transform:scale(1.14) rotate(12deg);opacity:1}}
+.chatbar__tx{flex:1;font-size:14px;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chatbar__go{width:34px;height:34px;border-radius:50%;background:var(--green);color:var(--cream);display:grid;place-items:center;flex:0 0 auto}
+.chatbar__go svg{width:15px;height:15px}
+/* ============ LAPTOP: JESS ============ */
+.side{width:232px;flex:0 0 auto;background:linear-gradient(180deg,var(--green-deep),var(--green-cover));color:var(--cream);display:flex;flex-direction:column;padding:20px 14px 16px}
+.side__logo{width:64px;height:36px;color:var(--cream);margin:2px 8px 18px}
+.side__pub{padding:0 8px 16px;border-bottom:1px solid rgba(244,239,225,.14);margin-bottom:12px}
+.side__pub b{font-family:var(--font-display);font-weight:600;font-size:17px;display:block}
+.side__pub span{font-size:11px;color:rgba(244,239,225,.55)}
+.snav{display:flex;flex-direction:column;gap:2px}
+.snav button{display:flex;align-items:center;gap:11px;border-radius:12px;padding:11px 12px;font-size:13.5px;font-weight:700;color:rgba(244,239,225,.72);transition:all .15s var(--ease)}
+.snav button:hover{background:rgba(244,239,225,.08);color:var(--cream)}
+.snav button.on{background:rgba(244,239,225,.13);color:var(--cream)}
+.snav button.on::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold);margin-left:auto}
+.snav svg{width:17px;height:17px;flex:0 0 auto}
+.side__spacer{flex:1}
+.side__me{display:flex;align-items:center;gap:10px;padding:10px 8px 0;border-top:1px solid rgba(244,239,225,.14)}
+.side__av{width:34px;height:34px;border-radius:50%;background:#DCCB9A;color:#4A3A12;display:grid;place-items:center;font-weight:800;font-size:12px}
+.side__me b{font-size:13px;display:block}
+.side__me span{font-size:10.5px;color:rgba(244,239,225,.5)}
+.main{flex:1;min-width:0;overflow-y:auto;scrollbar-width:none;padding:26px 30px 30px}
+.main::-webkit-scrollbar{display:none}
+.mhead{display:flex;align-items:flex-end;gap:16px;margin-bottom:20px}
+.mhead .datek{margin-bottom:5px}
+.datek{font-size:10.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#9A937D}
+.mhead h1{font-family:var(--font-display);font-weight:600;font-size:34px;letter-spacing:-.01em;line-height:1;color:var(--ink)}
+.mhead__sub{font-size:13px;color:var(--muted);margin-left:auto;text-align:right;max-width:340px}
+.cols{display:grid;grid-template-columns:1.25fr .95fr;gap:14px 16px;align-items:stretch}
+.cols > *{margin:0!important;min-width:0}
+.colstack > * + *{margin-top:12px}
+.report{display:flex;width:100%;align-items:center;justify-content:center;gap:9px;background:var(--green);color:var(--cream);border-radius:16px;padding:14px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;margin:12px 0}
+.report svg{width:17px;height:17px}
+.draft__hdr{display:flex;align-items:center;gap:8px}
+.draft__hdr svg{width:15px;height:15px;color:var(--brass);flex:0 0 auto}
+.draft__hdr b{font-family:var(--font-display);font-weight:600;font-size:16.5px}
+.draft__hdr .pill{margin-left:auto}
+.draft__lines{width:100%;border-collapse:collapse;margin:10px 0 0;font-size:13px}
+.draft__lines td{padding:7.5px 0;border-bottom:1px solid #F0EBDC;vertical-align:top}
+.draft__lines tr:last-child td{border-bottom:none}
+.draft__lines td:last-child{text-align:right;font-family:var(--font-display);font-weight:600;font-size:14.5px;white-space:nowrap;padding-left:10px}
+.draft__lines small{display:block;font-size:10.5px;color:var(--muted);margin-top:1px;font-weight:400}
+.why-btn{font-size:10.5px;font-weight:700;color:var(--brass);margin-left:6px;text-decoration:underline;text-underline-offset:2px;display:inline;padding:0}
+.draft__why{background:#F5EFDC;border-radius:11px;padding:10px 12px;font-size:11.5px;line-height:1.5;color:#5C5232;margin:10px 0 0}
+.draft__note{font-size:11px;color:var(--muted);margin:10px 0 12px;line-height:1.5}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+.ahead{background:linear-gradient(155deg,#12271C,#0C1F16);border-radius:18px;padding:16px;color:var(--cream);box-shadow:inset 0 0 0 1px rgba(244,239,225,.1)}
+.ahead b{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:18px;display:block;margin-bottom:10px}
+.ahead p{font-size:12px;line-height:1.5;margin:-4px 0 12px;color:rgba(244,239,225,.7)}
+.ahead--photo{background-image:linear-gradient(180deg,rgba(6,24,16,0) 30%,rgba(6,24,16,.58) 62%,rgba(5,19,13,.97) 100%),linear-gradient(rgba(12,58,40,.36),rgba(12,58,40,.36)),var(--pumps);
+  background-size:cover;background-position:center 44%;background-blend-mode:normal,multiply,normal;
+  min-height:168px;display:flex;flex-direction:column;justify-content:flex-end;box-shadow:inset 0 0 0 1px rgba(244,239,225,.16)}
+.ahead--photo b{font-size:21px;text-shadow:0 1px 14px rgba(0,0,0,.4)}
+.ahead__kick{display:block;font-size:9.5px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;color:#8FD0CE;margin-bottom:7px}
+
+
+/* Search */
+.search{margin-left:auto;display:flex;align-items:center;gap:9px;background:var(--slip);border-radius:999px;padding:10px 16px;width:310px;box-shadow:0 1px 3px rgba(32,38,31,.08)}
+.search svg{width:15px;height:15px;color:#9A937D;flex:0 0 auto}
+.search input{flex:1;font-size:13px;min-width:0}
+.search input::placeholder{color:#ABA695}
+/* Pub switcher */
+.side__pub{cursor:pointer;width:100%}
+.side__pub b .pubchev{width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-left:6px;color:rgba(244,239,225,.55)}
+.pubmenu{position:absolute;left:14px;top:118px;width:246px;z-index:80;background:var(--slip);border-radius:15px;box-shadow:0 18px 50px rgba(10,25,17,.35);padding:7px;color:var(--ink)}
+.pubmenu button{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:11px 12px;border-radius:11px}
+.pubmenu button:hover{background:#F3F0E4}
+.pubmenu b{display:block;font-size:13px}
+.pubmenu button > span:first-child span{display:block;font-size:11px;color:var(--muted)}
+.pubmenu__cap{font-size:10.5px;color:var(--muted);padding:7px 12px 5px;line-height:1.45}
+/* Snapshot */
+.snap{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.snap__c{background:var(--slip);border-radius:16px;padding:13px 15px 14px;box-shadow:0 1px 3px rgba(32,38,31,.06)}
+.snap__k{display:flex;align-items:center;justify-content:space-between;font-size:9.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#9A937D}
+.snap__ic{width:27px;height:27px;border-radius:9px;background:#EAF0E7;color:var(--green);display:grid;place-items:center}
+.snap__ic svg{width:14px;height:14px}
+.snap__v{font-family:var(--font-display);font-weight:600;font-size:25px;letter-spacing:-.01em;margin-top:7px;line-height:1}
+.snap__d{font-size:10.5px;color:var(--muted);margin-top:5px}
+.snap__d b{font-weight:800}
+.snap__d .up{color:var(--ok)}
+.snap__d .watch{color:var(--warn)}
+/* AI FAB */
+.aifab{position:absolute;right:22px;bottom:22px;z-index:40;width:58px;height:58px;border-radius:50%;background:rgba(255,253,248,.97);display:grid;place-items:center;cursor:pointer;animation:chatHalo 3.4s ease-in-out infinite}
+.aifab .spark{width:27px;height:27px}
+
+/* ============ ASSIST (drawer on laptop, overlay on phone) ============ */
+.assist{position:absolute;inset:0;z-index:70;display:none}
+.assist.open{display:block}
+.assist__scrim{position:absolute;inset:0;background:rgba(10,25,17,.35)}
+.assist__panel{position:absolute;top:0;right:0;bottom:0;width:430px;max-width:100%;background:var(--paper);display:flex;flex-direction:column;box-shadow:-18px 0 50px rgba(10,25,17,.3);animation:drawerIn .35s var(--ease)}
+@keyframes drawerIn{from{transform:translateX(40px);opacity:0}}
+.phone .assist__panel{width:100%;box-shadow:none;animation:none}
+.assist__head{background:linear-gradient(180deg,var(--green-deep),var(--green-cover));color:var(--cream);padding:16px 16px 17px;display:flex;align-items:center;gap:11px;flex:0 0 auto}
+.phone .assist__head{padding-top:52px}
+.assist__back{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(244,239,225,.12);flex:0 0 auto}
+.assist__back svg{width:18px;height:18px}
+.assist__head b{font-family:var(--font-display);font-weight:600;font-size:18px;display:block;background:linear-gradient(100deg,var(--cream) 20%,#8FD0CE 50%,var(--cream) 80%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:aiText 5s linear infinite}
+@keyframes aiText{to{background-position:200% center}}
+.assist__head span{font-size:11px;color:rgba(244,239,225,.6)}
+.assist__body{flex:1;min-height:0;display:flex;flex-direction:column;padding:14px 16px 14px}
+.chat{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:4px 2px;scrollbar-width:none}
+.chat::-webkit-scrollbar{display:none}
+.msg{max-width:88%;border-radius:16px;padding:11px 14px;font-size:13px;line-height:1.5;animation:msgIn .3s var(--ease)}
+@keyframes msgIn{from{opacity:0;transform:translateY(7px)}}
+.msg--me{align-self:flex-end;background:var(--green);color:var(--cream);border-bottom-right-radius:5px}
+.msg--gk{align-self:flex-start;background:var(--slip);border-bottom-left-radius:5px;box-shadow:0 1px 3px rgba(32,38,31,.07)}
+.typing{align-self:flex-start;background:var(--slip);border-radius:16px;border-bottom-left-radius:5px;padding:13px 15px;display:flex;gap:4px;box-shadow:0 1px 3px rgba(32,38,31,.07)}
+.typing i{width:6px;height:6px;border-radius:50%;background:#B9B4A1;animation:tp 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes tp{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+.summary{width:100%;border-collapse:collapse;margin:8px 0 0;font-size:12px}
+.summary td{padding:4.5px 0;border-bottom:1px solid #F0EBDC}
+.summary tr:last-child td{border-bottom:none}
+.summary td:first-child{color:var(--muted);width:44%}
+.summary td:last-child{font-weight:700}
+.photo-attach{display:flex;align-items:center;gap:9px;background:#EFEAD9;border-radius:12px;padding:9px 12px;font-size:12px;font-weight:700;color:#5C5232}
+.photo-attach svg{width:17px;height:17px;flex:0 0 auto}
+.opts{display:flex;flex-direction:column;gap:8px;padding:8px 0 2px;flex:0 0 auto;max-height:46%;overflow-y:auto;scrollbar-width:none}
+.ask__input{display:flex;gap:9px;align-items:center;background:var(--slip);border-radius:999px;padding:7px 7px 7px 17px;box-shadow:0 1px 3px rgba(32,38,31,.09);margin-top:9px;flex:0 0 auto}
+.ask__field{flex:1;font-size:13.5px;min-width:0}
+.ask__field::placeholder{color:#ABA695}
+.ask__send{width:37px;height:37px;border-radius:50%;background:var(--green);color:var(--cream);display:grid;place-items:center;flex:0 0 auto;box-shadow:0 0 16px rgba(233,198,127,.4)}
+.ask__send svg{width:16px;height:16px}
+
+/* ============ TABLET: TOM ============ */
+.tsite{flex-direction:column}
+.tbar{background:linear-gradient(180deg,var(--green-deep),var(--green-cover));color:var(--cream);display:flex;align-items:center;gap:13px;padding:13px 20px;flex:0 0 auto}
+.tbar__logo{width:52px;height:29px;color:var(--cream)}
+.tbar b{font-family:var(--font-display);font-weight:600;font-size:16.5px}
+.tbar__role{font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;background:rgba(244,239,225,.14);border-radius:999px;padding:4px 11px;color:rgba(244,239,225,.8)}
+.tbar__sp{flex:1}
+.tbar__time{font-size:13px;font-weight:700;color:rgba(244,239,225,.75)}
+.tbar .side__av{width:32px;height:32px}
+.tmain{flex:1;min-height:0;overflow-y:auto;padding:22px 26px 26px;scrollbar-width:none}
+.tcols{display:grid;grid-template-columns:1.2fr .9fr;gap:16px;align-items:start}
+.task{display:flex;align-items:center;gap:13px;padding:14px 15px;width:100%;position:relative}
+.task + .task::before{content:"";position:absolute;top:0;left:15px;right:15px;height:1px;background:#F0EBDC}
+.task__tick{width:26px;height:26px;border-radius:50%;border:2px solid #CFC9B4;flex:0 0 auto;display:grid;place-items:center;color:transparent;transition:all .2s var(--ease)}
+.task.done .task__tick{background:var(--ok);border-color:var(--ok);color:#fff}
+.task__tick svg{width:13px;height:13px}
+.task__tx{flex:1}
+.task__tx b{display:block;font-size:14.5px}
+.task.done .task__tx b{color:var(--muted)}
+.task__tx span{display:block;font-size:11.5px;color:var(--muted);margin-top:2px}
+.tag-case{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:#F6E9D2;color:#8A5A16;border-radius:999px;padding:3px 9px;margin-top:5px}
+.lockcard{display:flex;gap:12px;align-items:flex-start}
+.lockcard svg{width:20px;height:20px;color:#9A937D;flex:0 0 auto;margin-top:2px}
+.lockcard b{font-size:13.5px;display:block}
+.lockcard p{font-size:12px;color:var(--muted);line-height:1.5;margin-top:3px}
+
+/* ============ PHONE: PRIYA ============ */
+.psite{flex-direction:column}
+.pcover{background:linear-gradient(180deg,#20342F 0%,#2E4B47 92%);color:var(--cream);padding:6px 20px 24px;flex:0 0 auto}
+.pcover .appbar{display:flex;align-items:center;gap:11px;padding:8px 0 16px}
+.pcover .appbar svg.gk{width:44px;height:25px;color:var(--cream)}
+.pcover .appbar b{font-family:var(--font-display);font-weight:600;font-size:15px;display:block}
+.pcover .appbar span{font-size:10.5px;color:rgba(244,239,225,.55)}
+.pcover .side__av{margin-left:auto}
+.pcover h1{font-family:var(--font-display);font-weight:600;font-size:34px;letter-spacing:-.01em;color:#F4EFE1}
+.pcover .datek{color:rgba(244,239,225,.5)}
+.pcover .sub{font-size:13px;color:rgba(244,239,225,.72);margin-top:7px;line-height:1.5;min-height:20px}
+.psheet{flex:1;min-height:0;overflow-y:auto;background:var(--paper);border-radius:26px 26px 0 0;margin-top:-18px;padding:20px 18px 112px;scrollbar-width:none;position:relative}
+.pchatwrap{position:absolute;left:16px;right:16px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:30}
+.ghost{opacity:.45;animation:ghostPulse 1.2s ease-in-out infinite}
+@keyframes ghostPulse{50%{opacity:.2}}
+.pre{opacity:0;transform:translateY(10px)}
+.site *{transition-property:opacity,transform;transition-duration:.45s;transition-timing-function:var(--ease)}
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:#122019;color:#EDF2EA;font-size:12.5px;font-weight:600;border-radius:999px;padding:11px 19px;box-shadow:0 12px 34px rgba(0,0,0,.4);transition:transform .35s var(--ease);z-index:200;white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ============ PUB PARTNERS DESIGN SYSTEM ============ */
+:root{
+  --green:#2E4B47; --green-deep:#243B38; --green-cover:#2A4541;
+  --paper:#F2F3F1; --slip:#FFFFFF; --cream:#F4F6F4;
+  --ink:#1E2726; --muted:#75807C;
+  --brass:#3E7C7E; --brass-bright:#5FA3A5; --gold:#8FD0CE;
+  --ok:#3E7C52; --warn:#B4622A; --late:#C0492F;
+  --plum:#3B3244; --plum-deep:#2C2534;
+  --font-display:"Figtree",-apple-system,sans-serif; --font-ui:"Figtree",-apple-system,sans-serif;
+}
+body{background:#141D1B}
+.mhead h1{font-weight:800;font-size:29px;letter-spacing:-.015em}
+.pcover h1{font-weight:800;letter-spacing:-.015em}
+.snap__v,.dray__eta b,.draft__lines td:last-child,.side__pub b,.tbar b,.draft__hdr b,.pcover .appbar b,.chap b{font-weight:800}
+.btn{border-radius:9px}
+.card,.list,.ahead{border-radius:13px}
+.snap__c{border-radius:13px}
+.snap__ic{background:#E3EEED;color:#3E7C7E}
+.ric{background:#E8EFEE;color:#2E4B47}
+.ric--warn{background:#F7E3DC;color:#A5492F}
+.pill--warn{background:#F7E8DC;color:#8A4A16}
+.pill--late{background:#F7DDD6;color:#96351F}
+.pill--ok{background:#E1EEE4;color:#2A5C3C}
+.tag-case{background:#F7E8DC;color:#8A4A16}
+.due,.donewhen{color:#75807C}
+.datek{color:#8A958F}
+.pcover .datek{color:rgba(244,246,244,.55)}
+.draft__why{background:#E9F1F0;color:#33534F}
+.btn--brass{background:linear-gradient(160deg,#5FA3A5,#3E7C7E);color:#fff}
+.ahead{background:linear-gradient(155deg,var(--plum),var(--plum-deep));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.ahead b{font-style:normal;font-weight:800}
+.ahead--photo{background-image:linear-gradient(180deg,rgba(44,37,52,0) 30%,rgba(44,37,52,.6) 62%,rgba(34,28,41,.96) 100%),linear-gradient(rgba(59,50,68,.4),rgba(59,50,68,.4)),var(--pumps);background-blend-mode:normal,multiply,normal}
+.ahead__kick{color:#B9A7CE}
+/* AI language: luminous teal */
+.opt{background:linear-gradient(var(--slip),var(--slip)) padding-box,linear-gradient(120deg,#8FD0CE 0%,#5FA3A5 45%,#8FD0CE 100%) border-box;background-size:auto,280% 280%}
+@keyframes chipPulse{0%,100%{box-shadow:0 0 10px rgba(143,208,206,.2)}50%{box-shadow:0 0 20px rgba(143,208,206,.45)}}
+@keyframes chatHalo{0%,100%{box-shadow:0 10px 30px rgba(15,25,23,.25),0 0 0 1.5px rgba(95,163,165,.5),0 0 26px rgba(143,208,206,.5)}50%{box-shadow:0 10px 30px rgba(15,25,23,.25),0 0 0 1.5px rgba(95,163,165,.95),0 0 56px rgba(143,208,206,.9)}}
+.spark{color:#5FA3A5;filter:drop-shadow(0 0 7px rgba(143,208,206,.9))}
+.assist__head b{background:linear-gradient(100deg,#F4F6F4 20%,#8FD0CE 50%,#F4F6F4 80%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.ask__send{box-shadow:0 0 16px rgba(143,208,206,.5)}
+.aifab{background:var(--green);position:absolute}
+.aifab__chat{width:25px;height:25px;color:#F4F6F4}
+.aifab__spark{position:absolute;top:6px;right:7px;width:13px;height:13px;color:#8FD0CE;filter:drop-shadow(0 0 5px rgba(143,208,206,1));animation:sparkTwinkle 2.4s ease-in-out infinite}
+.card--ai{border:1.5px solid transparent;background:linear-gradient(var(--slip),var(--slip)) padding-box,linear-gradient(120deg,#8FD0CE,#5FA3A5,#8FD0CE) border-box;background-size:auto,280% 280%;animation:aiGlow 7s ease-in-out infinite;box-shadow:0 0 18px rgba(143,208,206,.22)}
+.draft__hdr svg{color:#5FA3A5;filter:drop-shadow(0 0 6px rgba(143,208,206,.85));animation:sparkTwinkle 2.6s ease-in-out infinite}
+.side__av{background:#CBDCDA;color:#274441}
+
+
+/* FAB: unmissable glow */
+.aifab{overflow:visible;animation:fabGlow 2.6s ease-in-out infinite}
+@keyframes fabGlow{0%,100%{box-shadow:0 6px 20px rgba(15,25,23,.3),0 0 0 2px rgba(95,163,165,.55),0 0 24px rgba(143,208,206,.55)}50%{box-shadow:0 6px 20px rgba(15,25,23,.3),0 0 0 2px rgba(143,208,206,1),0 0 60px 8px rgba(143,208,206,.95)}}
+.aifab::before{content:"";position:absolute;inset:-3px;border-radius:50%;border:2px solid rgba(143,208,206,.8);animation:fabRing 2.2s ease-out infinite;pointer-events:none}
+.aifab::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:2px solid rgba(143,208,206,.6);animation:fabRing 2.2s 1.1s ease-out infinite;pointer-events:none}
+@keyframes fabRing{0%{transform:scale(.85);opacity:.9}75%,100%{transform:scale(1.7);opacity:0}}
+/* Optimised tag */
+.ai-tag{display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#2F6E70;background:#E6F3F2;border:1px solid rgba(95,163,165,.55);border-radius:999px;padding:3px 9px;margin-left:8px;vertical-align:1px;box-shadow:0 0 10px rgba(143,208,206,.45);animation:chipPulse 3s ease-in-out infinite;cursor:pointer}
+.ai-tag svg{width:10px;height:10px;color:#4E9598;animation:sparkTwinkle 2.4s ease-in-out infinite}
+/* Marketing tile v3 */
+.ahead--photo{min-height:196px}
+.ahead--photo b{font-size:27px;letter-spacing:-.015em;line-height:1.05;margin-bottom:12px}
+.ahead--photo .ahead__kick{font-size:10px;margin-bottom:8px}
+/* Section counts */
+.sect i{font-style:normal;color:#A6B0AB;margin-left:4px}
+
+
+/* Titles: one treatment everywhere (the delivery-card style) */
+.list > .dray__k{padding:14px 16px 2px}
+.card > .dray__k{margin-bottom:2px}
+.dray__k i{font-style:normal;color:#A6B0AB;margin-left:3px}
+/* Level the two columns */
+.card--tall{display:flex;flex-direction:column;justify-content:space-between}
+.card--tall .dray__eta{margin-top:14px;align-items:center;gap:18px}
+.card--tall .dray__eta b{font-size:62px}
+.eta-meta{display:flex;flex-direction:column;gap:3px;padding-bottom:6px}
+.eta-meta .eta-line{font-size:14.5px;font-weight:600;color:var(--ink)}
+.eta-meta s{text-decoration:none;font-size:12.5px;color:var(--muted)}
+
+
+
+
+.card--tall .route{flex:1;display:flex;flex-direction:column;justify-content:center;gap:3px;margin-top:8px;padding-bottom:2px}
+.route__lbls{margin-top:4px}
+.route__lbls span,.route__lbls b{font-size:9.5px;text-transform:uppercase;letter-spacing:.07em}
+.route__lbls span{color:#9AA5A0}
+.route__lbls b{color:var(--ink);font-weight:800}
+
+
+.srcline--ai{display:flex;align-items:center;gap:7px;width:100%;margin:10px 0 12px;padding:8px 11px;border:1.5px solid transparent;border-radius:10px;cursor:pointer;text-align:left;font:inherit;background:linear-gradient(#F2F8F7,#F2F8F7) padding-box,linear-gradient(120deg,#8FD0CE,#5FA3A5,#8FD0CE) border-box;background-size:auto,280% 280%;animation:aiGlow 7s ease-in-out infinite,chipPulse 3.2s ease-in-out infinite}
+.srcline--ai svg{width:13px;height:13px;flex:none;color:#4E9598;filter:drop-shadow(0 0 5px rgba(143,208,206,.9));animation:sparkTwinkle 2.4s ease-in-out infinite}
+.srcline--ai i{font-style:normal;margin-left:auto;font-size:11px;font-weight:800;color:#2F6E70;text-decoration:underline;text-underline-offset:2px}
+
+
+.srcrow{margin:10px 0 12px}
+.ai-chip{display:flex;width:100%;align-items:center;gap:6px;text-align:left;font:inherit;font-size:11px;font-weight:700;color:#2F6E70;padding:5px 11px;border:1.5px solid transparent;border-radius:999px;cursor:pointer;background:linear-gradient(#F4FAF9,#F4FAF9) padding-box,linear-gradient(120deg,#8FD0CE,#5FA3A5,#8FD0CE) border-box;background-size:auto,280% 280%;animation:aiGlow 7s ease-in-out infinite,chipPulse 3.2s ease-in-out infinite}
+.ai-chip svg{width:12px;height:12px;flex:none;color:#4E9598;filter:drop-shadow(0 0 5px rgba(143,208,206,.9));animation:sparkTwinkle 2.4s ease-in-out infinite}
+#draftCard .acts{justify-content:flex-end}
+.ai-chip i{font-style:normal;margin-left:auto;font-weight:800;font-size:11px;color:#2F6E70;text-decoration:underline;text-underline-offset:2px;flex:none}
+
+
+/* stray khaki caps from the old theme */
+.dray__k{color:#75807C}
+/* Delivery: dark brand hero card */
+.card--dark{background:linear-gradient(165deg,#2E4B47 0%,#233A36 100%);box-shadow:0 10px 26px rgba(21,34,31,.28),inset 0 0 0 1px rgba(255,255,255,.06)}
+.card--dark .dray__k{color:rgba(244,246,244,.55)}
+.card--dark .pill--ok{background:rgba(143,208,206,.16);color:#A9DDDA}
+.card--dark .dray__eta b{color:#FFFFFF}
+.card--dark .dray__eta s{color:rgba(244,246,244,.55)}
+.card--dark .eta-line{color:rgba(244,246,244,.78)}
+.card--dark .route line[stroke="#E7ECEA"]{stroke:rgba(255,255,255,.14)}
+.card--dark .route circle[fill="#B9C4C0"]{fill:rgba(255,255,255,.35)}
+.card--dark .route g[stroke="#2E4B47"]{stroke:#DCEAE7}
+.card--dark .route circle[fill="#3E7C7E"]{fill:#5FA3A5}
+.card--dark #rg stop:first-child{stop-color:#4E9598}
+.card--dark #rg stop:last-child{stop-color:#A8E0DD}
+.card--dark .route__lbls span{color:rgba(244,246,244,.45)}
+.card--dark .route__lbls b{color:#F4F6F4}
+
+.btn--soft{background:#E6EDEC;color:#2E4B47}
+.assist.prefilled .ask__send{animation:sendPulse 1.5s ease-in-out infinite}
+@keyframes sendPulse{0%,100%{box-shadow:0 0 0 0 rgba(143,208,206,.7),0 0 16px rgba(143,208,206,.5)}50%{box-shadow:0 0 0 7px rgba(143,208,206,0),0 0 26px rgba(143,208,206,.95)}}
+.srcline .srct{background:#E6EEED;color:#33534F}
+.srcline em{color:#8A958F}
+
+.bellbtn{position:relative;width:38px;height:38px;border-radius:11px;background:var(--slip);border:none;display:grid;place-items:center;color:#3F4B48;box-shadow:0 1px 5px rgba(21,34,31,.09);cursor:pointer;flex:none}
+.bellbtn svg{width:18px;height:18px}
+.bell__dot{position:absolute;top:8px;right:9px;width:8px;height:8px;border-radius:50%;background:#C0492F;border:2px solid var(--slip)}
+.tbar .bellbtn{background:rgba(255,255,255,.12);color:#E9F1EF;box-shadow:none;width:36px;height:36px}
+.tbar .bell__dot{border-color:#28423E}
+.hambtn{width:36px;height:36px;border-radius:9px;border:none;display:grid;place-items:center;background:rgba(255,255,255,.1);color:#E9F1EF;cursor:pointer;flex:none}
+.hambtn svg{width:18px;height:18px}
+.tsearch{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border-radius:999px;padding:8px 14px;width:230px}
+.tsearch svg{width:14px;height:14px;color:rgba(244,246,244,.6);flex:none}
+.tsearch input{background:none;border:none;outline:none;color:#F4F6F4;font:inherit;font-size:12.5px;width:100%}
+.tsearch input::placeholder{color:rgba(244,246,244,.5)}
+.snap--3{grid-template-columns:repeat(3,1fr)}
+.task--case{align-items:flex-start;background:#F2F8F7;box-shadow:inset 0 0 0 1.5px rgba(95,163,165,.4)}
+.task--case .task__tx{width:100%}
+.engwrap{display:flex;align-items:center;gap:11px;margin-top:10px;flex-wrap:wrap}
+.engnote{font-size:11.5px;color:var(--muted);flex:1;min-width:170px;line-height:1.45}
+.miniroute svg{width:100%;height:30px;display:block}
+
+.task .li__end{margin-left:auto;flex:none}
+.li .li__end{margin-left:auto}
+
+.tscrim{position:absolute;inset:0;background:rgba(18,28,26,.38);z-index:40}
+.notifpanel{position:absolute;top:62px;right:16px;width:370px;background:var(--slip);border-radius:13px;box-shadow:0 18px 46px rgba(13,22,20,.35);padding:13px 16px 6px;z-index:50}
+.notifpanel .li{width:100%;text-align:left}
+.casesheet{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:440px;background:var(--slip);border-radius:15px;box-shadow:0 26px 64px rgba(13,22,20,.45);padding:18px 19px;z-index:50}
+
+
+.task.onsite .task__tick{background:#EDB44C;border-color:#EDB44C;color:transparent;box-shadow:0 0 0 0 rgba(237,180,76,.5);animation:amberPulse 2s ease-in-out infinite}
+@keyframes amberPulse{0%,100%{box-shadow:0 0 0 0 rgba(237,180,76,.45)}50%{box-shadow:0 0 0 6px rgba(237,180,76,0)}}
+.btn{white-space:nowrap}
+.acts{flex-wrap:nowrap}
+
+.chatbar__tx{color:#F4F6F4}
+.chatbar__go{background:#8FD0CE;color:#17302C}
+.psnap .snap__c{padding:11px 12px}
+.psnap .snap__v{font-size:21px}
+.psnap .snap__k{font-size:8.5px}
+.psnap .snap__d{font-size:9.5px}
+.site{position:relative}
+.pubspanel{position:absolute;top:120px;left:14px;right:14px;background:var(--slip);border-radius:14px;box-shadow:0 20px 50px rgba(13,22,20,.4);padding:13px 15px 6px;z-index:50}
+.psite .tscrim{z-index:40}
+.pcover .bellbtn{background:rgba(255,255,255,.12);color:#E9F1EF;box-shadow:none;width:36px;height:36px}
+.pcover .bell__dot{border-color:#2A423E}
+
+.aifab--phone{position:absolute;bottom:calc(16px + env(safe-area-inset-bottom,0px));right:16px;z-index:30}
+.pcover .appbar{position:relative}
+.pcover .appbar svg.gk{position:absolute;left:50%;transform:translateX(-50%)}
+.pcover{padding-bottom:32px}
+.pcover .datek{margin-top:16px}
+.pcover h1{margin-top:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg style="display:none" aria-hidden="true"><symbol id="gkLogo" viewBox="0 0 94 50"><path d="M54.4 17.9c0-.3-2.6-.6-6-.7l1 1.3c2.9 0 5-.3 5-.6zm-6.3.7l-.8-1.2-.8 1.2h1.6zm-.9-3.6c-.3 0-.6.3-.6.6s.3.6.6.6.6-.3.6-.6-.2-.6-.6-.6zm-7.9 32.2c-.7-.4-.8-.4-.8-.7 0-.1.1-.3.5-.3s.7.1.9.3v-.6c-.4-.2-.7-.2-.9-.2-.5 0-1.1.3-1.1 1 0 .5.4.7 1.1 1.1.2.1.4.2.4.5 0 .2-.2.3-.5.3-.5 0-.7-.2-1-.3v.6c.3.2.6.3 1 .3.5 0 1.1-.3 1.1-1 0-.3-.1-.7-.7-1zm1.8-31.7c-.2 0-.4.2-.4.4s.2.4.4.4.4-.2.4-.4-.2-.4-.4-.4zm4.9 1.7c-3.4.1-6 .4-6 .7 0 .2 2.1.5 5 .6l1-1.3zm7.4-.6c-.4 0-.7-.3-.7-.7 0-.4.3-.7.7-.7.4 0 .7.3.7.7 0 .4-.3.7-.7.7zm-6.2 0c-.5 0-1-.4-1-1 0-.5.4-1 1-1 .5 0 1 .4 1 1 0 .5-.4 1-1 1zm-6.1 0c-.4 0-.7-.3-.7-.7 0-.4.3-.7.7-.7.4 0 .7.3.7.7 0 .4-.3.7-.7.7zm6.1-2.2c-4.2 0-8 .5-8.7 1.1.4.7.8 1.5 1.1 2.2.3-.5 3.8-.8 7.5-.8 3.3 0 7.2.3 7.5.8.3-.7.8-1.5 1.1-2.1-.5-.8-4.2-1.2-8.5-1.2zM38.4 5c-.7-1.1-1.6-.2-2.8-1 .7 1.3 1.5.5 2.8 1zm8.8 9c4.2 0 8.2.5 8.9 1.2 1.3-2.3 2.6-4.1 2.6-4.1-1.4-.2-1.7 1.4-2.1 1.4-.2 0-.2-.3-.3-.5-.2-.5-.6-.8-1.2-.7-1.2.3-.5 1.4-.5 1.4 0-.3.7-.6 1-.1.5.8-.1 1.9-2 1.5-1.4-.3-1.3-.9-1.3-1.4.3-.1.5-.4.5-.7 0-.4-.3-.7-.7-.7-.4 0-.7.3-.7.7 0 .3.1.5.3.6-.3 1.2-3.7 1.9-3.6-.9 0-.9 1.2-1.4 1.9-.7.4-.8-.1-1.6-.9-1.7-.8-.1-1 .5-1.3.2-.1-.2.3-.8.2-1-.1-.8-1-1.5-1-1.5s-.9.7-1 1.5c0 .3.4.9.2 1-.3.3-.5-.3-1.3-.2-.9.1-1.4.9-.9 1.7.7-.7 1.9-.2 1.9.7.1 2.7-3.3 2.1-3.6.9.2-.1.3-.4.3-.6 0-.4-.3-.7-.7-.7-.4 0-.7.3-.7.7 0 .3.2.6.5.7 0 .5.1 1.1-1.3 1.4-1.8.4-2.4-.7-2-1.5.3-.5 1-.2 1 .1 0 0 .7-1.2-.5-1.4-.6-.1-1 .2-1.1.7-.1.3-.1.5-.3.5-.4 0-.7-1.6-2.1-1.4 0 0 1.3 1.9 2.6 4.1 1-.7 5-1.2 9.2-1.2zm-3.8 11.4l-.7-1.7-2.7 3.7 3.4-2zM35.1 3.2c.7 1.3 1.4.5 2.8 1-.7-1.1-1.6-.2-2.8-1zm11.4 14l-4.4 6.1-1.4-.1-1.3 4.5 2.2-3.1 5.3-7.4h-.4zm4.6 8.2l3.4 2.1-2.7-3.7-.7 1.6zm2.7-2.1l-1.4.1-4.4-6.2h-.5l5.3 7.4 2.2 3.1-1.2-4.4zM68 48.5h-.6v-2.3h.6c.8 0 1.2.5 1.2 1.1 0 .6-.4 1.2-1.2 1.2zm0-2.8h-1.3v3.4H68c1.1 0 1.8-.8 1.8-1.7 0-.9-.7-1.7-1.8-1.7zm3.6-12.3h-1.5v9h1.5v-9zm19 3.9l-.4 1.4h2.1v2.1c-.4.1-.8.4-1.7.4-2.1 0-3.5-1.4-3.5-3.2 0-1.8 1.3-3.3 3.3-3.3 1.1 0 2.2.4 3.2 1v-1.5c-1.2-.5-2.1-.8-3.2-.8-2.7 0-4.8 2-4.8 4.7 0 2.6 2 4.5 4.8 4.5 1.2 0 2.2-.2 3.4-.7v-4.4h-3.2v-.2zm-27 .3l3.9-4.2h-1.9l-3.8 4.1v-4.1h-1.5v9h1.5V38l4.6 4.4h2l-4.8-4.8zm8.3 9.6c-.7-.4-.8-.4-.8-.7 0-.1.1-.3.5-.3s.7.1.9.3v-.6c-.4-.2-.7-.2-.9-.2-.5 0-1.1.3-1.1 1 0 .5.4.7 1.1 1.1.2.1.4.2.4.5 0 .2-.2.3-.5.3-.5 0-.7-.2-1-.3v.6c.3.2.6.3 1 .3.5 0 1.1-.3 1.1-1-.1-.3-.2-.7-.7-1zm9.9-7.2l-5.7-6.6H75v9h1.4V36l5.6 6.4h1.3v-9h-1.4V40h-.1zm-32.2-1.5h3.3v-1.4h-3.3v-2.4h3.3l.5-1.4h-5.2v9h5.2V41h-3.7v-2.5h-.1zm-1.4 7.7l.2-.6h-2.2V49h2.1v-.5h-1.5v-.9h1.4v-.5h-1.4v-.8h1.4v-.1zm2.4 2.3H50v-2.3h.6c.8 0 1.2.5 1.2 1.1 0 .6-.4 1.2-1.2 1.2zm.1-2.8h-1.3v3.4h1.3c1.1 0 1.8-.8 1.8-1.7 0-.9-.7-1.7-1.8-1.7zM43.4 40l-5.7-6.6h-1.1v9H38V36l5.6 6.4h1.3v-9h-1.4V40h-.1zm21.4 8.1l-1.9-2.4h-.6v3.4h.7v-2.4l1.9 2.4h.6v-3.4h-.6v2.4h-.1zm-4.3-.5c0 .3 0 .6-.2.7-.1.2-.4.3-.7.3-.3 0-.5-.1-.7-.3-.1-.2-.2-.3-.2-.7v-1.9h-.6v2.1c0 .9.7 1.3 1.4 1.3 1 0 1.5-.5 1.5-1.4v-2.1h-.6v2h.1zm-19.9-1.4h1.1V49h.6v-2.8h1l.2-.6h-2.9v.6zm14.5 1.2l-1.2-1.7h-.5v3.4h.6v-2.3l1 1.4h.3l1-1.4v2.3h.6v-3.4h-.5l-1.3 1.7zm-1.7-31.9c-.2 0-.4.2-.4.4s.2.4.4.4.4-.2.4-.4-.2-.4-.4-.4zm-13.9-9c-.7-1.1-1.6-.2-2.8-1 .7 1.3 1.5.6 2.8 1zm5.1 6.7c.1 0 .3 0 .4-.1 0 0-2.3-3.2-4.4-6.2 0-1.3.8-1.8.2-2.7l-2.2-3.1c-.1-.1-.1-.2-.2-.2.3 1.3-.6 1.9-.1 2.7-.7-.9-1.1-1.6-1.1-1.6-.1-.1-.2-.1-.3 0-.1.1-.1.2-.1.3l7.8 10.9zm-8.4-8.4c.7 1.3 1.4.5 2.8 1-.7-1.1-1.6-.2-2.8-1zm-6.4 9.1v2.4h.6v-3h-.5l-1.1.5.2.5.8-.4zm19.7-.8c.1.1.3.1.4.1l7.9-10.9c0-.1 0-.2-.1-.3-.1-.1-.2 0-.3 0 0 0-.4.6-1.1 1.6.5-.9-.5-1.5-.1-2.7-.1.1-.2.1-.3.2l-2.2 3.1c-.6.9.2 1.4.2 2.7-2.1 2.9-4.4 6.2-4.4 6.2zm-9.4-5.8c-.7-1.1-1.6-.2-2.8-1 .7 1.3 1.4.5 2.8 1zm-7.5 9.6h.7c.2-1.2.7-2.3 1.4-3.4v-.3h-2.5l-.1.6h1.7c-.6 1-1 2-1.2 3.1zm24-12.7c1.4-.4 2.1.3 2.8-1-1.2.8-2.1-.1-2.8 1zm3.6 9.6c.3 0 .7.3.7.7v.3c-.1.1-.3.2-.7.2-.4 0-.6-.2-.6-.6-.1-.3.1-.6.6-.6zm-1.3.6c0 .7.5 1.1 1.1 1.1.2 0 .5-.1.7-.2-.2.7-.8 1-1.3 1.2l.4.4c.8-.4 1.7-1.1 1.7-2.4 0-.9-.6-1.4-1.3-1.4-.8.1-1.3.7-1.3 1.3zm5.1-.6c.3 0 .7.3.7.7v.3c-.1.1-.3.2-.7.2-.4 0-.6-.2-.6-.6-.1-.3.1-.6.6-.6zm-.2 1.7c.2 0 .5-.1.7-.2-.2.7-.8 1-1.3 1.2l.4.4c.8-.4 1.7-1.1 1.7-2.4 0-.9-.6-1.4-1.3-1.4-.7 0-1.2.6-1.2 1.2-.1.8.4 1.2 1 1.2zm-6.1-9.9c-1.2.8-2.1-.1-2.8 1 1.4-.5 2.2.2 2.8-1zm.6-.8c-1.2.8-2.1-.1-2.8 1 1.4-.5 2.1.2 2.8-1zm-3.9 2.5c1.4-.4 2.1.3 2.8-1-1.2.8-2.1-.1-2.8 1zM58.8 4c-1.2.8-2.1-.1-2.8 1 1.4-.5 2.2.3 2.8-1zM30.2 47.2h-.4v-.9h.4c.4 0 .6.2.6.5 0 .2-.2.4-.6.4zm.6.3c.4-.1.6-.5.6-.9 0-.6-.4-1-1.1-1h-1.1V49h.6v-1.3h.4c.1 0 .2 0 .3.3l.6 1h.7c.1.1-.8-1.4-1-1.5zM25.5 41h-3.8v-2.4H25v-1.4h-3.3v-2.4H25l.5-1.4h-5.2v9h5.2V41zm-2.9 7.5h-.5v-.9h.5c.4 0 .6.2.6.5 0 .2-.1.4-.6.4zm-.5-2.3h.5c.3 0 .5.2.5.4 0 .3-.2.4-.5.4h-.5v-.8zm1.1 1.1c.2-.1.5-.2.5-.7 0-.5-.4-.9-1.1-.9h-1.1v3.4h1.2c.6 0 1.2-.3 1.2-1-.1-.3-.2-.7-.7-.8zm4.1.3c0 .3 0 .6-.2.7-.1.2-.4.3-.7.3-.3 0-.5-.1-.7-.3-.1-.2-.2-.3-.2-.7v-1.9H25v2.1c0 .9.7 1.3 1.4 1.3 1 0 1.5-.5 1.5-1.4v-2.1h-.6v2zm6.5-.6l-.8-1.3h-.7l1.2 1.9v1.5h.6v-1.5l1.2-1.9h-.7l-.8 1.3zm-.2-6h-3.8v-2.4h3.3v-1.4h-3.3v-2.4h3.3l.5-1.4h-5.2v9h5.2V41zm-19.9-3.8H13v-2.5h.7c1.1 0 1.5.4 1.6 1.2-.1.6-.4 1.3-1.6 1.3zm1.6.9c1-.4 1.4-1.1 1.4-2.2 0-1.6-1.1-2.5-3-2.5h-2.3v9h1.5v-3.8h.7c.2 0 .4.1.8.8l2.1 3h1.8c.1-.1-2.7-4.3-3-4.3zm-10.4.6H7v2.1c-.4.1-.8.4-1.7.4-2.1 0-3.5-1.4-3.5-3.2 0-1.8 1.3-3.3 3.3-3.3 1.1 0 2.2.4 3.2 1v-1.5c-1.2-.5-2.1-.8-3.2-.8-2.7 0-4.8 2-4.8 4.7 0 2.6 2 4.5 4.8 4.5 1.2 0 2.2-.2 3.4-.7v-4.4H5.4l-.5 1.2z" fill="currentColor"/></symbol></svg>
+<div class="shell">
+  <header class="pbar">
+    <div class="pbar__left">
+      <svg class="pbar__logo"><use href="#gkLogo"/></svg>
+      <div class="pbar__title">Partnership Platform</div>
+      <span class="pbar__tag">Concept demo</span>
+    </div>
+    <div class="pbar__centre">
+      <div class="chapters" id="chapters">
+        <button class="chap on" data-ch="1"><b>1</b>Jess, the licensee</button>
+        <button class="chap" data-ch="2"><b>2</b>Tom, on the bar</button>
+        <button class="chap" data-ch="3"><b>3</b>Priya, the BDM</button>
+      </div>
+    </div>
+    <div class="pbar__right">
+      <button class="pbtn" id="resetBtn">Reset demo</button>
+    </div>
+  </header>
+
+  <div class="stage" id="stage">
+
+    <!-- ============ CH1: JESS / LAPTOP ============ -->
+    <div class="frame laptop on" id="frame1">
+      <div class="laptop__chrome">
+        <div class="laptop__dots"><i></i><i></i><i></i></div>
+        <div class="laptop__url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>partners.greeneking.co.uk</div>
+      </div>
+      <div class="site">
+        <aside class="side">
+          <svg class="side__logo"><use href="#gkLogo"/></svg>
+          <button class="side__pub" id="pubSwitch"><b>The Plough<svg class="pubchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></b><span>Lavenham &middot; Leased &amp; tenanted</span></button>
+          <div class="pubmenu" id="pubMenu" hidden>
+            <button><span><b>The Plough</b><span>Lavenham</span></span><span class="pill pill--ok">Selected</span></button>
+            <button class="demo"><span><b>The Old Forge</b><span>Clare</span></span></button>
+            <p class="pubmenu__cap">One sign-in, every pub you run. Team access is set per venue.</p>
+          </div>
+          <nav class="snav">
+            <button class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10.5 9-7.5 9 7.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9.5 22v-8h5v8"/></svg>My pub</button>
+            <button class="demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="17" rx="2.5"/><path d="M3 10h18M8 2.5V7M16 2.5V7"/></svg>Calendar</button>
+            <button class="demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10l1.5 6c0 6-2 10-6.5 12C7.5 19 5.5 15 5.5 9z"/><path d="M5.8 9h12.4"/></svg>Orders</button>
+            <button class="demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M14.8 9.2a3.2 3.2 0 0 0-5.4 2.3c0 2 1.4 3.3 3.4 3.3.8 0 1.5-.2 2-.6M8.2 11h4.6M8.2 13.4h4.2"/></svg>Money &amp; finances</button>
+            <button class="demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5C10 3.9 7.4 3.5 4 3.5v14c3.4 0 6 .4 8 2 2-1.6 4.6-2 8-2v-14c-3.4 0-6 .4-8 2z"/><path d="M12 5.5v14"/></svg>Learning &amp; resources</button>
+            <button class="demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19c.9-2.9 2.9-4.4 5.5-4.4s4.6 1.5 5.5 4.4"/><circle cx="16.8" cy="9.5" r="2.4"/><path d="M15.5 14.9c2.3.1 4 1.4 4.8 3.8"/></svg>Community</button>
+            <button class="demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 0-8.6-4.9L2 22l5.1-1.4A10 10 0 0 0 12 22z"/><path d="M9.2 9.4a2.8 2.8 0 0 1 5.5.7c0 1.9-2.7 2.3-2.7 3.7M12 17h.01"/></svg>Support</button>
+          </nav>
+          <div class="side__spacer"></div>
+          <div class="side__me"><div class="side__av">JC</div><div><b>Jess Carter</b></div></div>
+        </aside>
+        <main class="main">
+          <div class="mhead">
+            <div>
+              <div class="datek">Friday 19 September</div>
+              <h1>Good evening, Jess</h1>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px"><div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg><input id="searchField" type="text" placeholder="Search orders, invoices, documents" autocomplete="off"></div><button class="bellbtn" id="bell1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 1 0-12 0c0 6-2.5 7-2.5 7h17S18 15 18 9z"/><path d="M10.2 20a2 2 0 0 0 3.6 0"/></svg><span class="bell__dot"></span></button></div>
+          </div>
+          <div class="snap">
+            <div class="snap__c">
+              <div class="snap__k">Wet sales, this week<span class="snap__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l5-6 4 3 6-8"/><path d="M15 6h4v4"/></svg></span></div>
+              <div class="snap__v">&pound;12,450</div>
+              <div class="snap__d"><b class="up">&uarr; 8.4%</b> on last week</div>
+            </div>
+            <div class="snap__c">
+              <div class="snap__k">Open repairs<span class="snap__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6.5a4.5 4.5 0 0 0-6.1 5.2L3 17.1a2 2 0 1 0 2.9 2.9l5.4-5.4a4.5 4.5 0 0 0 5.2-6.1L13.6 11l-2.6-2.6z"/></svg></span></div>
+              <div class="snap__v" id="snapRepairs">1 active</div>
+              <div class="snap__d"><b class="up">1 resolved</b> last week</div>
+            </div>
+            <div class="snap__c">
+              <div class="snap__k">Compliance<span class="snap__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 5 5.5v5c0 4.6 3 8.4 7 10 4-1.6 7-5.4 7-10v-5z"/><path d="m8.8 11.6 2.2 2.2 4-4.2"/></svg></span></div>
+              <div class="snap__v">96%</div>
+              <div class="snap__d"><b class="watch">One item due</b>, fire-risk in 12 days</div>
+            </div>
+            <div class="snap__c">
+              <div class="snap__k">Tonight's delivery<span class="snap__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h11v9H2zM13 10h4l3 3v3h-7z"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/></svg></span></div>
+              <div class="snap__v">18:55</div>
+              <div class="snap__d"><b class="up">On time</b>, tracked below</div>
+            </div>
+          </div>
+          <div class="cols">
+              <div class="card card--tall">
+                <div class="dray__k"><span>Tonight's delivery</span><span class="pill pill--ok">On its way</span></div>
+                <div class="dray__eta"><b class="eta-time">18:55</b><div class="eta-meta"><span class="eta-line">About 12 minutes away, updated just now</span><s>Window 18:45 to 19:15</s></div></div>
+                <div class="route">
+                  <svg viewBox="0 0 340 46" aria-hidden="true">
+                    <defs><linearGradient id="rg" gradientUnits="userSpaceOnUse" x1="12" y1="23" x2="302" y2="23"><stop offset="0" stop-color="#3E7C7E"/><stop offset="1" stop-color="#8FD0CE"/></linearGradient></defs>
+                    <line x1="12" y1="23" x2="302" y2="23" stroke="#E7ECEA" stroke-width="7" stroke-linecap="round"/>
+                    <line class="route-done" x1="12" y1="23" x2="12" y2="23" stroke="url(#rg)" stroke-width="7" stroke-linecap="round" style="transition:all 1s cubic-bezier(.35,.1,.2,1)"/>
+                    <g class="route-ticks"></g>
+                    <circle cx="12" cy="23" r="3.6" fill="#B9C4C0"/>
+                    <g class="dray-group">
+                      <circle class="dray-pulse" cx="0" cy="23" r="10" fill="none" stroke="#8FD0CE" stroke-width="1.8"/>
+                      <circle cx="0" cy="23" r="9.5" fill="#FFFFFF" stroke="#5FA3A5" stroke-width="2.2"/>
+                      <circle cx="0" cy="23" r="4.4" fill="#3E7C7E"/>
+                    </g>
+                    <g transform="translate(322,23) scale(1.15)" fill="none" stroke="#2E4B47" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M-6 6V-3l6-4 6 4v9z"/><path d="M-2.4 6V1h4.8v5"/>
+                    </g>
+                  </svg>
+                  <div class="route__lbls"><span>Bury St Edmunds depot</span><b>The Plough</b></div>
+                </div>
+                <div class="acts" style="justify-content:flex-end;margin-top:4px"><button class="btn btn--soft btn--sm demo">Open tracking</button></div>
+              </div>
+              <div class="card" id="draftCard">
+                <div class="dray__k"><span>Tuesday's order</span><span class="pill pill--late">Review by Sun 5pm</span></div>
+                <table class="draft__lines">
+                  <tr><td>Greene King IPA, 9g cask<small>Your standing order</small></td><td>&times;6</td></tr>
+                  <tr><td>Abbot Ale, 9g cask<small>Your standing order</small></td><td>&times;2</td></tr>
+                  <tr><td>Old Golden Hen, 9g cask<small>Suggested this week</small></td><td>&times;2</td></tr>
+                </table>
+                <div class="draft__why" id="whyBox" hidden>Golden ales sold through on the last two match nights, and there are two more in the next fortnight. Take it out if you'd rather not.</div>
+                <div class="srcrow"><button class="ai-chip" id="whyBtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.6c.9 5 4.5 8.6 9.5 9.5-5 .9-8.6 4.5-9.5 9.5-.9-5-4.5-8.6-9.5-9.5 5-.9 8.6-4.5 9.5-9.5z"/></svg>Drafted from your order history and stock levels<i>Explain</i></button></div>
+                <div class="acts"><button class="btn btn--soft btn--sm demo">Review and edit</button></div>
+              </div>
+              <div class="list" id="openList">
+                <div class="dray__k"><span>Needs your attention <i id="attnCount">(2)</i></span></div>
+                <button class="li demo">
+                  <span class="ric ric--warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8c1.2 3.2-.6 4.8-1.8 6.4C9 10.8 8 12.4 8 14.6a4.6 4.6 0 0 0 9.2 0c0-1.6-.6-3-1.4-4.2-.5 1-1.2 1.7-2.1 2.1.3-2.9-.3-6.5-1.7-9.7z"/></svg></span>
+                  <span class="li__tx"><b>Fire-risk assessment due in 12 days</b></span>
+                  <span class="li__end"><span class="pill pill--warn">Action</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span>
+                </button>
+                <button class="li demo">
+                  <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6.5a4.5 4.5 0 0 0-6.1 5.2L3 17.1a2 2 0 1 0 2.9 2.9l5.4-5.4a4.5 4.5 0 0 0 5.2-6.1L13.6 11l-2.6-2.6z"/></svg></span>
+                  <span class="li__tx"><b>Cellar cooler repair</b></span>
+                  <span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span>
+                </button>
+              </div>
+              <div class="list">
+                <div class="dray__k"><span>Coming up <i>(2)</i></span></div>
+                <div class="li">
+                  <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c1.2-3.6 3.8-5.4 7-5.4s5.8 1.8 7 5.4"/></svg></span>
+                  <span class="li__tx"><b>Priya Shah visiting, Tuesday 10:30</b></span>
+                  <span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span>
+                </div>
+                <div class="li">
+                  <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
+                  <span class="li__tx"><b>Order cut-off, Sunday 5pm</b></span>
+                  <span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span>
+                </div>
+              </div>
+          </div>
+        </main>
+        <button class="aifab" id="chatBar1" title="Ask Partner Assistant">
+          <svg class="aifab__chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/></svg>
+          <svg class="aifab__spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.6c.9 5 4.5 8.6 9.5 9.5-5 .9-8.6 4.5-9.5 9.5-.9-5-4.5-8.6-9.5-9.5 5-.9 8.6-4.5 9.5-9.5z"/></svg>
+        </button>
+        <div class="assist prefilled" id="assist1">
+          <div class="assist__scrim" data-close="1"></div>
+          <div class="assist__panel">
+            <div class="assist__head">
+              <button class="assist__back" data-close="1" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+              <div><b>Partner Assistant</b></div>
+            </div>
+            <div class="assist__body">
+              <div class="chat" id="chat"></div>
+              <div class="opts" id="opts"></div>
+              <div class="ask__input">
+                <input class="ask__field" id="askField" type="text" placeholder="Describe what's happening" autocomplete="off" value="One of our beer lines has gone down and it&#8217;s Friday evening, we need it fixed as soon as possible.">
+                <button class="ask__send" id="askSend" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-11 11M22 2 15 22l-4-9-9-4z"/></svg></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ CH2: TOM / TABLET ============ -->
+    <div class="frame tablet" id="frame2">
+      <div class="site tsite">
+        <div class="tbar">
+          <button class="hambtn" id="ham2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+          <svg class="tbar__logo"><use href="#gkLogo"/></svg>
+          <div><b>The Plough &middot; Bar</b></div>
+          <span class="tbar__role">Team member view</span>
+          <div class="tbar__sp"></div>
+          <div class="tsearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg><input id="searchField2" type="text" placeholder="Search tonight" autocomplete="off"></div>
+          <span class="tbar__time">19:41</span>
+          <button class="bellbtn" id="bell2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 1 0-12 0c0 6-2.5 7-2.5 7h17S18 15 18 9z"/><path d="M10.2 20a2 2 0 0 0 3.6 0"/></svg><span class="bell__dot"></span></button>
+          <div class="side__av">TW</div>
+        </div>
+        <div class="tmain">
+          <div class="mhead" style="margin-bottom:16px">
+            <div>
+              <div class="datek">Friday 19 September</div>
+              <h1>Evening, Tom</h1>
+            </div>
+          </div>
+          <div class="snap snap--3" style="margin-bottom:16px">
+            <div class="snap__c"><div class="snap__k">Covers tonight<span class="snap__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c1-3.2 3.2-4.8 5.5-4.8s4.5 1.6 5.5 4.8"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 15.6c2.6.2 4.3 1.7 5 4.4"/></svg></span></div><div class="snap__v">142</div><div class="snap__d">Busiest Friday this month</div></div>
+            <div class="snap__c"><div class="snap__k">Last orders<span class="snap__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span></div><div class="snap__v">21:00</div><div class="snap__d">Kitchen closes 21:30</div></div>
+            <div class="snap__c"><div class="snap__k">Team on<span class="snap__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c1.2-3.6 3.8-5.4 7-5.4s5.8 1.8 7 5.4"/></svg></span></div><div class="snap__v">3</div><div class="snap__d">Tom, Ash and Jess</div></div>
+          </div>
+          <div class="tcols">
+            <div class="colstack">
+              <div class="list">
+                <div class="dray__k"><span>Tonight's shift <i>(3)</i></span></div>
+                <button class="task" id="rowEng">
+                  <span class="task__tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                  <span class="task__tx"><b>Let the engineer in, tonight by 10pm</b><span id="engLine" hidden></span><span class="tag-case">From tonight's callout &middot; TS-28211</span></span>
+                  <span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span>
+                </button>
+                <button class="task done">
+                  <span class="task__tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                  <span class="task__tx"><b>Line check before service</b><span>Done 17:05</span></span>
+                  <span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span>
+                </button>
+                <button class="task done" id="taskDray">
+                  <span class="task__tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                  <span class="task__tx"><b>Delivery in and stacked</b><span>Dray landed 19:12, signed by you</span></span>
+                  <span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span>
+                </button>
+              </div>
+              <div class="list" style="margin-top:12px">
+                <div class="dray__k"><span>What's on <i>(3)</i></span></div>
+                <button class="li demo"><span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg></span><span class="li__tx"><b>Live music, The Fenmen</b><span>Tomorrow, 8pm</span></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+                <button class="li demo"><span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v7a2 2 0 0 0 2 2v9M5 3v4h4V3M17 3c-1.5 1.5-2 3.5-2 6v3h3v9"/></svg></span><span class="li__tx"><b>Sunday roast service</b><span>Fully booked, 12 to 3</span></span><span class="li__end"><span class="pill pill--ok">Full</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+                <button class="li demo"><span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.4 2.3c-.7.3-.9.8-.9 1.7m0 3h.01"/></svg></span><span class="li__tx"><b>Quiz night</b><span>Tuesday, 7:30pm</span></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+              </div>
+            </div>
+            <div class="colstack">
+              <div class="card">
+                <div class="dray__k"><span>Tonight's delivery</span><span class="pill pill--ok">On its way</span></div>
+                <div style="font-size:13px;font-weight:700;margin:8px 0 2px">18:55 &middot; about 12 minutes away</div>
+                <div class="route miniroute">
+                  <svg viewBox="0 0 340 34" aria-hidden="true">
+                    <defs><linearGradient id="rg2" gradientUnits="userSpaceOnUse" x1="10" y1="17" x2="304" y2="17"><stop offset="0" stop-color="#3E7C7E"/><stop offset="1" stop-color="#8FD0CE"/></linearGradient></defs>
+                    <line x1="10" y1="17" x2="304" y2="17" stroke="#E7ECEA" stroke-width="5" stroke-linecap="round"/>
+                    <line x1="10" y1="17" x2="258" y2="17" stroke="url(#rg2)" stroke-width="5" stroke-linecap="round"/>
+                    <circle cx="10" cy="17" r="3" fill="#B9C4C0"/>
+                    <circle cx="258" cy="17" r="7" fill="#FFFFFF" stroke="#5FA3A5" stroke-width="2"/>
+                    <circle cx="258" cy="17" r="3.2" fill="#3E7C7E"/>
+                    <g transform="translate(322,17)" fill="none" stroke="#2E4B47" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M-6 6V-3l6-4 6 4v9z"/><path d="M-2.4 6V1h4.8v5"/></g>
+                  </svg>
+                </div>
+                <div class="route__lbls"><span>Bury St Edmunds depot</span><b>The Plough</b></div>
+              </div>
+              <div class="list">
+                <div class="dray__k"><span>Who's on <i>(3)</i></span></div>
+                <div class="li"><div class="side__av" style="background:#CBD8C4;color:#31502F">TW</div><span class="li__tx"><b>Tom Wicks</b><span>Bar, till close</span></span><span class="li__end"><span class="pill pill--ok">You</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></div>
+                <div class="li"><div class="side__av" style="background:#D8CFC4;color:#50412F">AN</div><span class="li__tx"><b>Ash Nowak</b><span>Kitchen, till 10</span></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></div>
+                <div class="li"><div class="side__av">JC</div><span class="li__tx"><b>Jess Carter</b><span>On the floor tonight</span></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></div>
+              </div>
+              <div class="card">
+                <div class="lockcard">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+                  <div>
+                    <b>Your view is yours</b>
+                    <p>Money, orders and the agreement stay with Jess. You see tonight, and only The Plough. Same front door, different keys.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="dray__k" style="margin-bottom:8px"><span>Anything urgent</span></div>
+                <p style="font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:12px">Publine answers around the clock, and this tablet can raise a problem the same way Jess does.</p>
+                <div class="acts"><button class="btn btn--soft btn--sm demo">Call Publine</button><button class="btn btn--soft btn--sm demo">Report a problem</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tscrim" id="tscrim" hidden></div>
+        <div class="notifpanel" id="notifPanel" hidden>
+          <div class="dray__k" style="margin-bottom:6px"><span>Notifications</span></div>
+          <button class="li" id="notifCase">
+            <span class="ric ric--warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l-.7 15.2A2.8 2.8 0 0 1 12.5 21h-1a2.8 2.8 0 0 1-2.8-2.8z"/><path d="M8.4 8h7.2"/></svg></span>
+            <span class="li__tx"><b>Engineer callout tonight</b><span>TS-28211, raised by Jess at 19:04</span></span>
+            <span class="li__end"><span class="pill pill--live" id="notifCasePill">New</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span>
+          </button>
+          <button class="li demo">
+            <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 12 4l9 4.5v7L12 20l-9-4.5z"/><path d="M3 8.5 12 13l9-4.5M12 13v7"/></svg></span>
+            <span class="li__tx"><b>Delivery on its way</b><span>Window 18:45 to 19:15</span></span>
+            <span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span>
+          </button>
+        </div>
+        <div class="casesheet" id="caseSheet" hidden>
+          <div class="dray__k" style="margin-bottom:2px"><span>IPA line down &middot; TS-28211</span><span class="pill pill--live" id="sheetPill">Live</span></div>
+          <div class="tl" style="margin-top:10px">
+            <div class="tl__s"><b>Reported by Jess</b><span>19:04, from the back office</span></div>
+            <div class="tl__s"><b>Greene King IPA line down</b><span>Greene King's responsibility, no cost to the pub</span></div>
+            <div class="tl__s"><b>Callout acknowledged</b><span>19:06, Technical Services</span></div>
+            <div class="tl__s live" id="sheetEnroute"><b>Engineer en route</b><span>Due by 10pm tonight</span></div>
+            <div class="tl__s pend" id="sheetOnsite" hidden><b>On site, confirmed by you</b><span>19:58</span></div>
+            <div class="tl__s pend" id="sheetFixed" hidden><b>Fixed and pouring</b><span>20:20, confirmed by you</span></div>
+          </div>
+          <div class="acts" style="margin-top:14px;justify-content:flex-end">
+            <button class="btn btn--soft btn--sm" id="noteEng">Add a note</button>
+            <button class="btn btn--green btn--sm" id="sheetCta">Engineer's here</button>
+          </div>
+        </div>
+        <button class="aifab" id="chatBar2" title="Ask Partner Assistant">
+          <svg class="aifab__chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/></svg>
+          <svg class="aifab__spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.6c.9 5 4.5 8.6 9.5 9.5-5 .9-8.6 4.5-9.5 9.5-.9-5-4.5-8.6-9.5-9.5 5-.9 8.6-4.5 9.5-9.5z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ============ CH3: PRIYA / PHONE ============ -->
+    <div class="frame phone" id="frame3">
+      <div class="site psite">
+        <div class="island"></div>
+        <div class="tscrim" id="pscrim" hidden></div>
+        <button class="aifab aifab--phone" id="chatBar3" title="Ask your assistant">
+          <svg class="aifab__chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/></svg>
+          <svg class="aifab__spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.6c.9 5 4.5 8.6 9.5 9.5-5 .9-8.6 4.5-9.5 9.5-.9-5-4.5-8.6-9.5-9.5 5-.9 8.6-4.5 9.5-9.5z"/></svg>
+        </button>
+
+        <div class="pubspanel" id="pubsPanel" hidden>
+          <div class="dray__k" style="margin-bottom:4px"><span>Your pubs <i>(38)</i></span></div>
+          <button class="li demo"><i class="dot dot--warn" id="panelPloughDot"></i><span class="li__tx"><b>The Plough, Lavenham</b></span><span class="li__end"><span class="pill pill--live" id="panelPloughPill">Live</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+          <button class="li demo"><i class="dot dot--ok"></i><span class="li__tx"><b>The Harbour Light, Ipswich</b></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+          <button class="li demo"><i class="dot dot--ok"></i><span class="li__tx"><b>The Millstone, Sudbury</b></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+          <button class="li demo"><i class="dot dot--ok"></i><span class="li__tx"><b>The Corn Exchange, Bury</b></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+          <button class="li demo"><i class="dot dot--ok"></i><span class="li__tx"><b>The Swan, Long Melford</b></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+          <button class="li demo"><span class="li__tx"><b>All 38 pubs</b></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+        </div>
+
+        <div class="pcover">
+          <div class="status">
+            <span>21:24</span>
+            <span class="status__icons">
+              <svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+              <svg viewBox="0 0 25 12" fill="none"><rect x="1" y="1" width="20" height="10" rx="3" stroke="currentColor" stroke-width="1.2"/><rect x="3" y="3" width="13" height="6" rx="1.5" fill="currentColor"/><path d="M23 4.5v3a2 2 0 0 0 0-3z" fill="currentColor"/></svg>
+            </span>
+          </div>
+          <div class="appbar">
+            <button class="hambtn" id="ham3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+            <svg class="gk"><use href="#gkLogo"/></svg>
+            <span style="flex:1"></span>
+            <button class="bellbtn" id="bell3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 1 0-12 0c0 6-2.5 7-2.5 7h17S18 15 18 9z"/><path d="M10.2 20a2 2 0 0 0 3.6 0"/></svg><span class="bell__dot"></span></button>
+            <div class="side__av">PS</div>
+          </div>
+          <div class="datek">Friday 19 September</div>
+          <h1>Good evening, Priya</h1>
+        </div>
+        <div class="psheet">
+          <div class="snap snap--3 psnap" style="margin-bottom:12px">
+            <div class="snap__c"><div class="snap__k">Your pubs</div><div class="snap__v">38</div><div class="snap__d">East Anglia patch</div></div>
+            <div class="snap__c"><div class="snap__k">Need you</div><div class="snap__v" id="needV">1</div><div class="snap__d" id="needD">The Plough, in hand</div></div>
+            <div class="snap__c"><div class="snap__k">Visits, this week</div><div class="snap__v">9</div><div class="snap__d">Three on Tuesday</div></div>
+          </div>
+          <div class="card">
+            <div class="dray__k"><span>Tonight at The Plough</span><span class="pill pill--live" id="casePill">Live</span></div>
+            <div style="display:flex;align-items:center;gap:9px;margin:9px 0 4px">
+              <i class="dot dot--live" id="caseDot"></i>
+              <b style="font-size:15px">IPA line down &middot; TS-28211</b>
+            </div>
+            <div class="tl" id="caseTl">
+              <div class="tl__s"><b>Reported by Jess, in the app</b><span>19:04, from the back office</span></div>
+              <div class="tl__s"><b>Greene King IPA line down</b><span>Greene King's responsibility, no cost to the pub</span></div>
+              <div class="tl__s"><b>Priority callout acknowledged</b><span>19:06 &middot; TS-28211</span></div>
+              <div class="tl__s live" id="tlEnroute"><b>Engineer en route</b><span>Due by 10pm, Tom's expecting them</span></div>
+              <div class="tl__s pend" id="tlOnsite" hidden><b>On site, confirmed by Tom at the bar</b><span id="tlOnsiteTime">19:58</span></div>
+              <div class="tl__s pend" id="tlFixed" hidden><b>Fixed and pouring again</b><span>20:20, confirmed by Tom</span></div>
+            </div>
+            <div class="acts" style="margin-top:11px;justify-content:flex-end"><button class="btn btn--soft btn--sm" id="noteJess">Note to call Jess tomorrow</button></div>
+          </div>
+          <div class="list" style="margin-top:12px">
+            <div class="dray__k"><span>Your visits this week <i>(9)</i></span></div>
+            <button class="li demo"><span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10.5h17"/></svg></span><span class="li__tx"><b>The Plough, Tuesday 10:30</b><span>Jess. Tonight's fix and the Golden Hen story to cover.</span></span><span class="li__end"><span class="pill pill--ok">Brief ready</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+            <button class="li demo"><span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10.5h17"/></svg></span><span class="li__tx"><b>The Harbour Light, Tuesday 2pm</b><span>Quarterly catch-up</span></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+            <button class="li demo"><span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c1.2-3.6 3.8-5.4 7-5.4s5.8 1.8 7 5.4"/></svg></span><span class="li__tx"><b>The Swan, Wednesday 11am</b><span>Sam Field, day 19 of his first hundred</span></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+          </div>
+          <div class="list" style="margin-top:12px">
+            <div class="dray__k"><span>Your patch tonight <i>(38)</i></span></div>
+            <button class="li demo"><i class="dot dot--warn" id="patchDot"></i><span class="li__tx"><b>The Plough, Lavenham</b><span id="patchPlough">Line fault in hand, engineer en route</span></span></button>
+            <button class="li demo"><i class="dot dot--ok"></i><span class="li__tx"><b>The Harbour Light, Ipswich</b><span>Trading well, nothing needed</span></span></button>
+            <button class="li demo"><i class="dot dot--ok"></i><span class="li__tx"><b>The Millstone, Sudbury</b><span>Quiet, cut-off Sunday</span></span></button>
+            <button class="li demo"><span class="li__tx"><span style="font-size:12px;color:var(--muted)">And 35 more, all quiet</span></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+          </div>
+        </div>
+        <div class="assist" id="assist3">
+          <div class="assist__panel">
+            <div class="assist__head">
+              <button class="assist__back" data-close="3" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 6-6 6 6 6"/></svg></button>
+              <div><b>Partner Assistant</b><span>Answers across your whole patch</span></div>
+            </div>
+            <div class="assist__body">
+              <div class="chat" id="chat3"></div>
+              <div class="opts" id="opts3"></div>
+              <div class="ask__input">
+                <input class="ask__field" id="askField3" type="text" placeholder="Ask across all thirty-eight pubs" autocomplete="off">
+                <button class="ask__send" id="askSend3" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-11 11M22 2 15 22l-4-9-9-4z"/></svg></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="toast" id="toast">Demo. This action is illustrative.</div>
+<div class="mchap" id="mchap">
+  <button class="chap on" data-ch="1">1</button>
+  <button class="chap" data-ch="2">2</button>
+  <button class="chap" data-ch="3">3</button>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var $ = function(s,c){ return (c||document).querySelector(s); };
+  var $$ = function(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); };
+
+  /* ---------- Toast ---------- */
+  var toastT;
+  function toast(msg){
+    var t = $("#toast");
+    t.textContent = msg || "Demo. This action is illustrative.";
+    t.classList.add("show");
+    clearTimeout(toastT);
+    toastT = setTimeout(function(){ t.classList.remove("show"); }, 2300);
+  }
+  document.addEventListener("click", function(e){ if(e.target.closest(".demo")) toast(); });
+
+  /* ---------- Chapters / frames ---------- */
+  var ch = 1;
+  var FRAME_SIZES = {1:[1200,804],2:[1060,768],3:[390,844]};
+  function fitFrame(){
+    var f = $("#frame"+ch);
+    if(window.innerWidth < 1280){ f.style.transform = ""; return; }
+    var r = $("#stage").getBoundingClientRect();
+    var fs = FRAME_SIZES[ch];
+    var s = Math.min(1, (r.height - 26) / fs[1], (r.width - 40) / fs[0]);
+    f.style.transform = "scale(" + s + ")";
+  }
+  function assemble(root){
+    var kids = $$(".snap > *, .cols > *, .colstack > *, .mhead, .pcover > *, .psheet > *", root);
+    kids.forEach(function(k){ k.classList.add("pre"); });
+    kids.forEach(function(k, i){ setTimeout(function(){ k.classList.remove("pre"); }, 180 + i*60); });
+  }
+  var typeT;
+  function typeInto(el, txt){
+    clearInterval(typeT);
+    el.textContent = "";
+    var i = 0;
+    typeT = setInterval(function(){
+      i += 2;
+      el.textContent = txt.slice(0, i);
+      if(i >= txt.length) clearInterval(typeT);
+    }, 18);
+  }
+  function setChapter(n){
+    ch = n;
+    $$(".frame").forEach(function(f){ f.classList.toggle("on", f.id === "frame"+n); });
+    $$("#chapters .chap, #mchap .chap").forEach(function(b){ b.classList.toggle("on", +b.getAttribute("data-ch")===n); });
+    closeAssist(1); closeAssist(3);
+    fitFrame();
+    var f = $("#frame"+n);
+    assemble(f);
+    if(n===1){ runEta(); }
+    if(n===2 && !tomToastShown){
+      tomToastShown = true;
+      setTimeout(function(){ toast("New tonight: engineer callout TS-28211. Added to your shift list."); }, 700);
+    }
+  }
+  $("#chapters").addEventListener("click", function(e){
+    var b = e.target.closest(".chap"); if(!b) return;
+    setChapter(+b.getAttribute("data-ch"));
+  });
+  $("#mchap").addEventListener("click", function(e){
+    var b = e.target.closest(".chap"); if(!b) return;
+    setChapter(+b.getAttribute("data-ch"));
+  });
+  window.addEventListener("resize", fitFrame);
+  var pm = $("#pubMenu");
+  $("#pubSwitch").addEventListener("click", function(e){ e.stopPropagation(); pm.hidden = !pm.hidden; });
+  document.addEventListener("click", function(e){
+    if(!pm.hidden && !e.target.closest("#pubMenu") && !e.target.closest("#pubSwitch")) pm.hidden = true;
+  });
+  $("#searchField").addEventListener("keydown", function(e){
+    if(e.key==="Enter" && this.value.trim()){ toast("Demo. Search spans orders, invoices, documents and the knowledge base."); this.value=""; }
+  });
+
+  /* ---------- Delivery route (ch1) ---------- */
+  var route = (function(){
+    var root = $("#frame1");
+    var ticksG = $(".route-ticks", root), drayG = $(".dray-group", root), doneLine = $(".route-done", root);
+    var STOPS = 12, X0 = 12, X1 = 302;
+    function stopX(i){ return X0 + (X1 - X0) * i / (STOPS - 1); }
+    function set(idx){
+      drayG.style.transform = "translateX(" + stopX(idx) + "px)";
+      doneLine.setAttribute("x2", stopX(idx));
+    }
+    return { set:set, dray:drayG };
+  })();
+  var etaTimer;
+  function runEta(){
+    clearTimeout(etaTimer);
+    var root = $("#frame1");
+    $(".eta-time", root).textContent = "18:55";
+    $(".eta-line", root).textContent = "About 12 minutes away, updated just now";
+    route.dray.style.transition = "none";
+    route.set(8);
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      route.dray.style.transition = "transform 1s cubic-bezier(.35,.1,.2,1)";
+      route.set(9);
+    });});
+    etaTimer = setTimeout(function(){
+      route.set(10);
+      $(".eta-time", root).textContent = "18:53";
+      $(".eta-line", root).textContent = "8 minutes away, 2 stops left";
+    }, 7000);
+  }
+
+  /* ---------- Assistant (two instances) ---------- */
+  var leakRaised = false, engineerArrived = false, msgSent = false, tomToastShown = false, lineFixed = false;
+  var PREFILL = "One of our beer lines has gone down and it\u2019s Friday evening, we need it fixed as soon as possible.";
+  var _af = document.getElementById("askField"); if(_af) _af.value = PREFILL;
+  var CHK_OK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+  var CHK_WATCH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4m0 4h.01"/></svg>';
+  function ctx(){
+    return ch===3
+      ? { chat:$("#chat3"), opts:$("#opts3"), field:$("#askField3"), assist:$("#assist3") }
+      : { chat:$("#chat"),  opts:$("#opts"),  field:$("#askField"),  assist:$("#assist1") };
+  }
+  function openAssist(prefill){
+    var c = ctx();
+    c.assist.classList.add("open");
+    if(c.chat.children.length === 0){
+      if(ch===3){
+        botSay("Evening Priya. Ask across your whole patch, or about any one pub.", [
+          { label:"Anything need me tonight?", next: function(){ sendCanned("patch","Anything need me tonight?",true); } },
+          { label:"Prep me for Tuesday at The Plough", next: function(){ sendCanned("tuesday","Prep me for Tuesday at The Plough",true); } }
+        ]);
+      } else {
+        botSay("Evening Jess. What\u2019s going on at The Plough?", [
+          { label:"Invoices and money", next: function(){ sendCanned("invoice","Invoices and money",true); } },
+          { label:"Orders and deliveries", next: function(){ sendCanned("delivery","Orders and deliveries",true); } },
+          { label:"Report a problem", next: function(){ sendCanned("respo","Report a problem",true); } }
+        ]);
+      }
+    }
+    if(prefill){
+      c.field.value = prefill;
+      c.assist.classList.add("prefilled");
+      c.field.focus();
+      c.field.setSelectionRange(0,0); c.field.scrollLeft = 0;
+      setTimeout(function(){ if(!c.field.value){ c.field.value = prefill; } }, 900);
+    } else {
+      c.assist.classList.remove("prefilled");
+    }
+  }
+  function closeAssist(which){
+    $("#assist"+(which||ch)) && $("#assist"+(which||ch)).classList.remove("open");
+  }
+  document.addEventListener("click", function(e){
+    if(e.target.closest("[data-close]")){ closeAssist(+e.target.closest("[data-close]").getAttribute("data-close")); return; }
+    if(e.target.closest("#chatBar1")){ openAssist(PREFILL); return; }
+    if(e.target.closest("#chatBar3")){ openAssist(); return; }
+    
+  });
+  function addMsg(cls, html){
+    var c = ctx();
+    var d = document.createElement("div");
+    d.className = "msg "+cls;
+    d.innerHTML = html;
+    c.chat.appendChild(d);
+    c.chat.scrollTop = c.chat.scrollHeight;
+    return d;
+  }
+  function botSay(html, options, checked){
+    var c = ctx();
+    c.opts.innerHTML = "";
+    var typing = document.createElement("div");
+    typing.className = "typing"; typing.innerHTML = "<i></i><i></i><i></i>";
+    c.chat.appendChild(typing); c.chat.scrollTop = c.chat.scrollHeight;
+    setTimeout(function(){
+      typing.remove();
+      var h = html;
+      if(checked && checked.length) h += '<div class="srcline"><em>Checked:</em>'+checked.map(function(x){return '<span class="srct">'+x+'</span>';}).join("")+'</div>';
+      addMsg("msg--gk", h);
+      if(options){
+        options.forEach(function(o){
+          var b = document.createElement("button");
+          b.className = "opt";
+          b.innerHTML = o.label + (o.sub ? "<small>"+o.sub+"</small>" : "");
+          b.addEventListener("click", function(){
+            addMsg("msg--me", o.echo || o.label.replace(/<[^>]+>/g,""));
+            c.opts.innerHTML = "";
+            o.next();
+          });
+          c.opts.appendChild(b);
+        });
+        c.chat.scrollTop = c.chat.scrollHeight;
+      }
+    }, 850);
+  }
+
+  /* ---- Line-fault triage ---- */
+  function triageStart(){
+    botSay("Let\u2019s get it sorted quickly. These are the beers on your bar, which one\u2019s playing up?", [
+      { label:"Greene King IPA", next: triageSymptom },
+      { label:"Abbot Ale", next: triageSymptom },
+      { label:"Old Golden Hen", next: triageSymptom },
+      { label:"More than one", next: triageSymptom }
+    ], ["Your bar stock"]);
+  }
+  function triageSymptom(){
+    botSay("And what\u2019s it doing?", [
+      { label:"It\u2019s all foam", next: triageChecks },
+      { label:"Coming out flat", next: triageChecks },
+      { label:"Nothing coming through", next: triageChecks }
+    ]);
+  }
+  function triageChecks(){
+    botSay("One quick check before I book anyone, so the engineer arrives knowing it\u2019s not something simple. Is the gas bottle on and showing pressure?", [
+      { label:"Yes, gas is fine", next: triageVerdict },
+      { label:"Not sure how to check", next: function(){ botSay("No problem, I\u2019ll note that and they\u2019ll check it on arrival."); setTimeout(triageVerdict, 900); } }
+    ]);
+  }
+  function triageVerdict(){
+    botSay("Here\u2019s where you stand. The beer lines and cellar equipment are <b>Greene King\u2019s responsibility</b> under your agreement, at no cost to you. Your best seller down on a Friday evening makes it a <b>priority callout</b>." +
+      '<table class="summary"><tr><td>Line</td><td>Greene King IPA, main bar</td></tr><tr><td>Problem</td><td>All foam, not pouring</td></tr><tr><td>Gas</td><td>Checked, fine</td></tr><tr><td>Priority</td><td>Tonight, attend by 10pm</td></tr></table>',
+      [
+        { label:"Raise the callout", next: triageRaised },
+        { label:"Not now", next: function(){ botSay("No problem, nothing\u2019s been raised. It\u2019s all saved if you change your mind, and Publine can see the same details."); } }
+      ],
+      ["Your agreement","Equipment records"]);
+  }
+  function triageRaised(){
+    if(!leakRaised){
+      leakRaised = true;
+      var row = document.createElement("button");
+      row.className = "li"; row.id = "leakRow";
+      row.innerHTML = '<span class="ric ric--warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l-.7 15.2A2.8 2.8 0 0 1 12.5 21h-1a2.8 2.8 0 0 1-2.8-2.8z"/><path d="M8.4 8h7.2"/></svg></span>' +
+        '<span class="li__tx"><b>IPA line down, priority callout</b><span id="leakSub">Engineer by 10pm tonight. Tom\u2019s been told to expect them.</span></span>' +
+        '<span class="li__end"><span class="pill pill--live">Live</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span>';
+      $("#openList").insertBefore(row, $("#openList").children[1]);
+      $("#snapRepairs").textContent = "2 active";
+      $("#attnCount").textContent = "(3)";
+    }
+    botSay("Done. Job <b>TS-28211</b> is with Technical Services, acknowledged just now." +
+      '<ul class="briefing">' +
+      '<li><span class="b-ok">'+CHK_OK+'</span>An engineer will attend tonight, by 10pm</li>' +
+      '<li><span class="b-ok">'+CHK_OK+'</span>Tom\u2019s shift list at the bar has the two things to do before they arrive</li>' +
+      '<li><span class="b-ok">'+CHK_OK+'</span>Priya can see it too, so nobody needs a phone call</li>' +
+      '</ul>You\u2019ll get a note the moment they\u2019re on site. Anything else I can help with tonight?');
+  }
+
+  /* ---- Canned answers ---- */
+  function sendCanned(key, text, noEcho){
+    if(!noEcho) addMsg("msg--me", text);
+    if(key === "invoice"){
+      botSay('Your September invoice is <b>&pound;212.45 higher</b> than August. Three things moved:' +
+        '<table class="summary"><tr><td>Autumn duty adjustment, 9g casks</td><td>+&pound;96.20</td></tr>' +
+        '<tr><td>2 extra casks of Old Golden Hen</td><td>+&pound;141.50</td></tr>' +
+        '<tr><td>Ullage credit, returned 4.5g</td><td>&minus;&pound;25.25</td></tr>' +
+        '<tr><td>Difference vs August</td><td>+&pound;212.45</td></tr></table>' +
+        'The extra Golden Hen matches your match-weekend order on 4 September.',
+        [ { label:"Download the invoice", next: function(){ toast(); } } ],
+        ["Invoices","Order history"]);
+    } else if(key === "respo"){
+      botSay("It depends what\u2019s broken, your agreement splits repairs between you and Greene King. Tell me what\u2019s happened and I\u2019ll work it out with you, it takes under a minute.", [
+        { label:"Something\u2019s wrong now", echo: PREFILL, next: triageStart }
+      ]);
+    } else if(key === "delivery"){
+      botSay("Tonight\u2019s delivery is about <b>12 minutes away</b>, inside its 18:45 to 19:15 window. Tom\u2019s tablet gets the checklist the moment it lands.",
+        null, ["Delivery routes"]);
+    } else if(key === "patch"){
+      botSay("One thing tonight, and it\u2019s already in hand:" +
+        '<ul class="briefing">' +
+        '<li><span class="b-watch">'+CHK_WATCH+'</span>The Plough\u2019s IPA line went down at 19:04, engineer ' + (lineFixed ? 'fixed it, pouring again since 20:20' : engineerArrived ? 'on site since 19:58' : 'due by 10pm') + '</li>' +
+        '<li><span class="b-ok">'+CHK_OK+'</span>The other thirty-seven are trading normally</li>' +
+        '<li><span class="b-ok">'+CHK_OK+'</span>Both first-hundred-days partners are on track</li>' +
+        '</ul>',
+        [ { label:"Anything for my Tuesday visits?", next: function(){ sendCanned("tuesday","Anything for my Tuesday visits?",true); } } ],
+        ["All 38 pubs","Property cases","Onboarding journeys"]);
+    } else if(key === "tuesday"){
+      botSay("The Plough at 10:30 is your only visit. Walk in knowing:" +
+        '<ul class="briefing">' +
+        '<li><span class="b-ok">'+CHK_OK+'</span>Tonight\u2019s line fault, ask if the fix held</li>' +
+        '<li><span class="b-ok">'+CHK_OK+'</span>Cooler engineer lands Monday morning</li>' +
+        '<li><span class="b-ok">'+CHK_OK+'</span>Golden Hen suggestion sold through twice, worth telling her</li>' +
+        '</ul>No catch-up needed. Start at the point.',
+        null, ["The Plough\u2019s account","Property cases","Sales history"]);
+    }
+  }
+  function sendFree(){
+    var c = ctx();
+    var v = c.field.value.trim(); if(!v) return;
+    c.field.value = "";
+    addMsg("msg--me", v);
+    var low = v.toLowerCase();
+    if(ch!==3 && /line|fob|foam|flat|beer|tap|keg|gone down|broken|broke|leak|water/.test(low)){ triageStart(); return; }
+    if(ch!==3 && /invoice|bill|higher|cost/.test(low)){ sendCanned("invoice", v, true); return; }
+    if(ch!==3 && /deliver|dray|van/.test(low)){ sendCanned("delivery", v, true); return; }
+    if(ch!==3 && /repair|responsib|fix|whose/.test(low)){ sendCanned("respo", v, true); return; }
+    if(ch===3 && /need me|anything|tonight|patch/.test(low)){ sendCanned("patch", v, true); return; }
+    if(ch===3 && /tuesday|visit|plough/.test(low)){ sendCanned("tuesday", v, true); return; }
+    botSay("In the live product I\u2019d search the account and Greene King\u2019s knowledge base for that. For this demo, try one of the suggestions I opened with.");
+  }
+  $("#askSend").addEventListener("click", sendFree);
+  $("#askSend3").addEventListener("click", sendFree);
+  $("#askField").addEventListener("keydown", function(e){ if(e.key==="Enter") sendFree(); });
+  $("#askField3").addEventListener("keydown", function(e){ if(e.key==="Enter") sendFree(); });
+
+  /* ---------- CH2: tasks + the connective tap ---------- */
+  $("#bell1").addEventListener("click", function(){ toast("Every update lands here, in email and as a push on your phone."); });
+  $("#bell3").addEventListener("click", function(){ toast("Case updates across your whole patch land here."); });
+  $("#noteJess").addEventListener("click", function(){ toast("Noted. It\u2019ll be waiting in the morning, and in Tuesday\u2019s brief."); });
+  $("#ham3").addEventListener("click", function(){ var pp=$("#pubsPanel"); pp.hidden=!pp.hidden; $("#pscrim").hidden=pp.hidden; });
+  $("#pscrim").addEventListener("click", function(){ $("#pubsPanel").hidden=true; $("#pscrim").hidden=true; });
+  function tOverlay(panel){
+    var open = panel && !panel.hidden;
+    $("#notifPanel").hidden = true; $("#caseSheet").hidden = true;
+    if(panel && open===false){ panel.hidden = false; }
+    $("#tscrim").hidden = !panel || panel.hidden;
+  }
+  $("#bell2").addEventListener("click", function(){ tOverlay($("#notifPanel")); });
+  $("#tscrim").addEventListener("click", function(){ tOverlay(null); });
+  $("#notifCase").addEventListener("click", function(){ tOverlay($("#caseSheet")); });
+  $("#rowEng").addEventListener("click", function(){ tOverlay($("#caseSheet")); });
+  $("#noteEng").addEventListener("click", function(){ toast("Notes travel with the job. The engineer sees it before they knock."); });
+  $("#sheetCta").addEventListener("click", function(){
+    if(!engineerArrived){
+      engineerArrived = true;
+      $("#rowEng").classList.add("onsite");
+      var el = $("#engLine"); el.hidden = false; el.textContent = "On site since 19:58, working on it";
+      $("#sheetEnroute").classList.remove("live");
+      $("#sheetEnroute").querySelector("span").textContent = "Arrived 19:58";
+      $("#sheetOnsite").hidden = false; $("#sheetOnsite").classList.remove("pend");
+      $("#notifCasePill").textContent = "On site";
+      this.textContent = "Confirm it's fixed and pouring";
+      $("#tlEnroute").classList.remove("live");
+      $("#tlEnroute").querySelector("span").textContent = "Arrived 19:58";
+      $("#tlOnsite").hidden = false; $("#tlOnsite").classList.remove("pend");
+      $("#patchPlough").textContent = "Line fault in hand, engineer on site since 19:58";
+      var ls = $("#leakSub");
+      if(ls) ls.textContent = "Engineer on site, confirmed by Tom, 19:58.";
+      var lr = $("#leakRow"); if(lr){ $(".pill", lr).textContent = "On site"; $(".pill", lr).className = "pill pill--ok"; }
+      toast("Logged. Jess, Priya and Technical Services all know.");
+      setTimeout(function(){ tOverlay(null); }, 850);
+      return;
+    }
+    if(!lineFixed){
+      lineFixed = true;
+      $("#sheetFixed").hidden = false; $("#sheetFixed").classList.remove("pend");
+      $("#sheetPill").textContent = "Resolved"; $("#sheetPill").className = "pill pill--ok";
+      $("#notifCasePill").textContent = "Resolved"; $("#notifCasePill").className = "pill pill--ok";
+      this.textContent = "Closed, 20:20"; this.classList.remove("btn--green"); this.classList.add("btn--soft");
+      $("#rowEng").classList.remove("onsite");
+      $("#rowEng").classList.add("done");
+      var el2 = $("#engLine"); el2.hidden = false; el2.textContent = "Fixed and pouring again, 20:20";
+      $("#tlFixed").hidden = false; $("#tlFixed").classList.remove("pend");
+      $("#casePill").textContent = "Resolved"; $("#casePill").className = "pill pill--ok";
+      $("#caseDot").className = "dot dot--ok";
+      $("#patchDot").className = "dot dot--ok";
+      $("#panelPloughDot").className = "dot dot--ok";
+      $("#panelPloughPill").textContent = "Resolved"; $("#panelPloughPill").className = "pill pill--ok";
+      $("#needV").textContent = "0";
+      $("#needD").textContent = "All quiet";
+      $("#patchPlough").textContent = "Line fixed, pouring again since 20:20";
+      $("#snapRepairs").textContent = "1 active";
+      var ls2 = $("#leakSub");
+      if(ls2) ls2.textContent = "Fixed and pouring, confirmed by Tom, 20:20.";
+      var lr2 = $("#leakRow"); if(lr2){ $(".pill", lr2).textContent = "Fixed"; $(".pill", lr2).className = "pill pill--ok"; }
+      toast("Fixed. The case closes itself, and Jess and Priya both know.");
+      setTimeout(function(){ tOverlay(null); }, 850);
+      return;
+    }
+    toast("Closed at 20:20. It's all on the record.");
+  });
+  
+  $("#ham2").addEventListener("click", function(){ toast("Navigation. Tom sees only what his role needs."); });
+  $("#chatBar2").addEventListener("click", function(){ toast("Same assistant, Tom\u2019s keys. He can ask about tonight, never the money."); });
+  $("#searchField2").addEventListener("keydown", function(e){ if(e.key==="Enter" && this.value.trim()){ toast("Demo. Search spans tonight\u2019s tasks and the knowledge base."); this.value=""; } });
+
+
+  /* ---------- Draft why ---------- */
+  $("#whyBtn").addEventListener("click", function(e){ e.stopPropagation(); $("#whyBox").hidden = !$("#whyBox").hidden; });
+
+  /* ---------- Reset ---------- */
+  function reset(){
+    closeAssist(1); closeAssist(3);
+    $("#chat").innerHTML = ""; $("#opts").innerHTML = ""; $("#askField").value = PREFILL; $("#assist1").classList.add("prefilled");
+    $("#chat3").innerHTML = ""; $("#opts3").innerHTML = ""; $("#askField3").value = "";
+    leakRaised = false; engineerArrived = false; msgSent = false; tomToastShown = false; lineFixed = false;
+    var lr = $("#leakRow"); if(lr) lr.remove();
+    $("#snapRepairs").textContent = "1 active";
+    $("#attnCount").textContent = "(2)";
+    pm.hidden = true;
+    $("#searchField").value = "";
+    $("#whyBox").hidden = true;
+    $("#rowEng").classList.remove("done"); $("#rowEng").classList.remove("onsite");
+    var el0 = $("#engLine"); el0.hidden = true; el0.textContent = "";
+    $("#notifPanel").hidden = true; $("#caseSheet").hidden = true; $("#tscrim").hidden = true;
+    $("#sheetEnroute").classList.add("live");
+    $("#sheetEnroute").querySelector("span").textContent = "Due by 10pm tonight";
+    $("#sheetOnsite").hidden = true; $("#sheetOnsite").classList.add("pend");
+    $("#sheetFixed").hidden = true; $("#sheetFixed").classList.add("pend");
+    $("#sheetPill").textContent = "Live"; $("#sheetPill").className = "pill pill--live";
+    $("#notifCasePill").textContent = "New"; $("#notifCasePill").className = "pill pill--live";
+    var sc = $("#sheetCta"); sc.textContent = "Engineer's here"; sc.classList.add("btn--green"); sc.classList.remove("btn--soft");
+    $("#tlFixed").hidden = true; $("#tlFixed").classList.add("pend");
+    $("#casePill").textContent = "Live"; $("#casePill").className = "pill pill--live";
+    $("#caseDot").className = "dot dot--live";
+    $("#patchDot").className = "dot dot--warn";
+    $("#panelPloughDot").className = "dot dot--warn";
+    $("#panelPloughPill").textContent = "Live"; $("#panelPloughPill").className = "pill pill--live";
+    $("#needV").textContent = "1";
+    $("#needD").textContent = "The Plough, in hand";
+    $("#pubsPanel").hidden = true; $("#pscrim").hidden = true;
+    $("#tlEnroute").classList.add("live");
+    $("#tlEnroute").querySelector("span").textContent = "Due by 10pm, Tom\u2019s expecting them";
+    $("#tlOnsite").hidden = true; $("#tlOnsite").classList.add("pend");
+    $("#patchPlough").textContent = "Line fault in hand, engineer en route";
+    setChapter(1);
+    toast("Demo reset");
+  }
+  $("#resetBtn").addEventListener("click", reset);
+
+  /* ---------- Init ---------- */
+  setChapter(1);
+})();
+</script>
+</body>
+</html>
