@@ -530,6 +530,43 @@ body{background:#141D1B}
 
 .ahead__sub{display:block;font-size:12px;color:rgba(244,246,244,.72);margin-top:5px;line-height:1.45}
 .ahead b{font-size:22px;display:block;margin-top:3px}
+
+/* Jess on the phone */
+.cols--stack{display:flex;flex-direction:column;gap:12px}
+.psnap2{grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:12px}
+.cols--stack .dray__eta b{font-size:46px}
+.cols--stack .card--tall{min-height:0}
+.coverpub{position:relative;margin-top:12px}
+.coverpub .side__pub{background:rgba(255,255,255,.1);border-radius:12px;padding:11px 14px;width:100%;display:block}
+.coverpub .side__pub b{display:flex;align-items:center;width:100%}
+.coverpub .side__pub .pubchev{margin-left:auto}
+.coverpub .side__pub b{color:#F4F6F4}
+.coverpub .side__pub span{color:rgba(244,246,244,.6)}
+.coverpub .pubmenu{left:0;right:auto;top:calc(100% + 8px);width:300px;z-index:60}
+/* Priya on the desktop */
+.laptop .pubspanel{left:262px;right:auto;top:74px;width:400px}
+.side__me{margin-top:auto;display:flex;align-items:center;gap:10px;padding:14px 6px 4px}
+.side__me b{font-size:13px;color:#E9F1EF}
+
+@media (max-width:1279px){
+  .laptop .side{width:206px;padding:18px 12px}
+  .cols{grid-template-columns:1fr 1fr;gap:12px}
+  .mhead h1{font-size:24px}
+  .search{width:200px}
+}
+@media (max-width:1279px){.mchap{display:flex}}
+
+.ustrip{display:flex;align-items:center;gap:10px;width:100%;text-align:left;font:inherit;cursor:pointer;background:#FBEFE3;border:1px solid rgba(180,98,42,.28);border-radius:12px;padding:11px 14px;margin-bottom:12px}
+.ustrip .chev{width:15px;height:15px;flex:none;color:#8A4A16;margin-left:2px}
+.ustrip--ok .chev{color:#2A5C3C}
+.ustrip[hidden]{display:none}
+.ustrip b{font-size:13px}
+.ustrip__ref{margin-left:auto;font-size:10.5px;font-weight:800;letter-spacing:.05em;color:#8A4A16}
+.ustrip--ok{background:#E7F1E9;border-color:rgba(62,124,82,.3)}
+.ustrip--ok .ustrip__ref{color:#2A5C3C}
+.cols .list{display:flex;flex-direction:column}
+.cols .list .acts{margin-top:auto}
+[hidden]{display:none!important}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -554,44 +591,51 @@ body{background:#141D1B}
     </div>
   </header>
 
+  <div class="mchap" id="mchap">
+  <button class="chap on" data-ch="1">1</button>
+  <button class="chap" data-ch="2">2</button>
+  <button class="chap" data-ch="3">3</button>
+</div>
   <div class="stage" id="stage">
 
     <!-- ============ CH1: JESS / LAPTOP ============ -->
-    <div class="frame laptop on" id="frame1">
-      <div class="laptop__chrome">
-        <div class="laptop__dots"><i></i><i></i><i></i></div>
-        <div class="laptop__url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>partners.greeneking.co.uk</div>
-      </div>
-      <div class="site">
-        <aside class="side">
-          <svg class="side__logo"><use href="#gkLogo"/></svg>
-          <button class="side__pub" id="pubSwitch"><b>The Plough<svg class="pubchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></b><span>Lavenham &middot; Leased &amp; tenanted</span></button>
-          <div class="pubmenu" id="pubMenu" hidden>
+    <div class="frame phone on" id="frame1">
+      <div class="site psite">
+        <div class="island"></div>
+        <button class="aifab aifab--phone" id="chatBar1" title="Ask Partner Assistant">
+          <svg class="aifab__chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/></svg>
+          <svg class="aifab__spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.6c.9 5 4.5 8.6 9.5 9.5-5 .9-8.6 4.5-9.5 9.5-.9-5-4.5-8.6-9.5-9.5 5-.9 8.6-4.5 9.5-9.5z"/></svg>
+        </button>
+        <div class="push push--phone" id="push1" hidden><span class="push__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 1 0-12 0c0 6-2.5 7-2.5 7h17S18 15 18 9z"/><path d="M10.2 20a2 2 0 0 0 3.6 0"/></svg></span><div class="push__tx"><b>Pub Partners</b><span>Engineer arranged for tonight, by 10pm. TS-28211.</span></div><span class="push__t">now</span></div>
+        <div class="pcover">
+          <div class="status">
+            <span>19:02</span>
+            <span class="status__icons">
+              <svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+              <svg viewBox="0 0 25 12" fill="none"><rect x="1" y="1" width="20" height="10" rx="3" stroke="currentColor" stroke-width="1.2"/><rect x="3" y="3" width="13" height="6" rx="1.5" fill="currentColor"/><path d="M23 4.5v3a2 2 0 0 0 0-3z" fill="currentColor"/></svg>
+            </span>
+          </div>
+          <div class="appbar">
+            <button class="hambtn" id="ham1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+            <svg class="gk"><use href="#gkLogo"/></svg>
+            <span style="flex:1"></span>
+            <button class="bellbtn" id="bell1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 1 0-12 0c0 6-2.5 7-2.5 7h17S18 15 18 9z"/><path d="M10.2 20a2 2 0 0 0 3.6 0"/></svg><span class="bell__dot"></span></button>
+            <div class="side__av">JC</div>
+          </div>
+          <div class="datek">Friday 19 September</div>
+          <h1>Good evening, Jess</h1>
+          <div class="coverpub">
+            <button class="side__pub" id="pubSwitch"><b>The Plough<svg class="pubchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></b><span>Lavenham &middot; Leased &amp; tenanted</span></button>
+            <div class="pubmenu" id="pubMenu" hidden>
             <button><span><b>The Plough</b><span>Lavenham</span></span><span class="pill pill--ok">Selected</span></button>
             <button class="demo"><span><b>The Old Forge</b><span>Clare</span></span></button>
             <p class="pubmenu__cap">One sign-in, every pub you run. Team access is set per venue.</p>
           </div>
-          <nav class="snav">
-            <button class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10.5 9-7.5 9 7.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9.5 22v-8h5v8"/></svg>My pub</button>
-            <button class="demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="17" rx="2.5"/><path d="M3 10h18M8 2.5V7M16 2.5V7"/></svg>Calendar</button>
-            <button class="demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10l1.5 6c0 6-2 10-6.5 12C7.5 19 5.5 15 5.5 9z"/><path d="M5.8 9h12.4"/></svg>Orders</button>
-            <button class="demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M14.8 9.2a3.2 3.2 0 0 0-5.4 2.3c0 2 1.4 3.3 3.4 3.3.8 0 1.5-.2 2-.6M8.2 11h4.6M8.2 13.4h4.2"/></svg>Money &amp; finances</button>
-            <button class="demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5C10 3.9 7.4 3.5 4 3.5v14c3.4 0 6 .4 8 2 2-1.6 4.6-2 8-2v-14c-3.4 0-6 .4-8 2z"/><path d="M12 5.5v14"/></svg>Learning &amp; resources</button>
-            <button class="demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19c.9-2.9 2.9-4.4 5.5-4.4s4.6 1.5 5.5 4.4"/><circle cx="16.8" cy="9.5" r="2.4"/><path d="M15.5 14.9c2.3.1 4 1.4 4.8 3.8"/></svg>Community</button>
-            <button class="demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 0-8.6-4.9L2 22l5.1-1.4A10 10 0 0 0 12 22z"/><path d="M9.2 9.4a2.8 2.8 0 0 1 5.5.7c0 1.9-2.7 2.3-2.7 3.7M12 17h.01"/></svg>Support</button>
-          </nav>
-          <div class="side__spacer"></div>
-          <div class="side__me"><div class="side__av">JC</div><div><b>Jess Carter</b></div></div>
-        </aside>
-        <main class="main">
-          <div class="mhead">
-            <div>
-              <div class="datek">Friday 19 September</div>
-              <h1>Good evening, Jess</h1>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;margin-left:auto"><div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg><input id="searchField" type="text" placeholder="Search orders, invoices, documents" autocomplete="off"></div><button class="bellbtn" id="bell1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 1 0-12 0c0 6-2.5 7-2.5 7h17S18 15 18 9z"/><path d="M10.2 20a2 2 0 0 0 3.6 0"/></svg><span class="bell__dot"></span></button></div>
           </div>
-          <div class="snap">
+        </div>
+        <div class="psheet">
+          <button class="ustrip" id="ustrip" hidden><i class="dot dot--warn" id="ustripDot"></i><b id="ustripTx">Engineer tonight, by 10pm</b><span class="ustrip__ref">TS-28211</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></button>
+          <div class="snap psnap psnap2">
             <div class="snap__c">
               <div class="snap__k">Wet sales, this week<span class="snap__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l5-6 4 3 6-8"/><path d="M15 6h4v4"/></svg></span></div>
               <div class="snap__v">&pound;12,450</div>
@@ -613,7 +657,7 @@ body{background:#141D1B}
               <div class="snap__d"><b class="up">On time</b>, tracked below</div>
             </div>
           </div>
-          <div class="cols">
+          <div class="cols cols--stack">
               <div class="card card--tall">
                 <div class="dray__k"><span>Tonight's delivery</span><span class="pill pill--ok">On its way</span></div>
                 <div class="dray__eta"><b class="eta-time">18:55</b><div class="eta-meta"><span class="eta-line">About 12 minutes away, updated just now</span><s>Window 18:45 to 19:15</s></div></div>
@@ -696,11 +740,7 @@ body{background:#141D1B}
               </div>
 
           </div>
-        </main>
-        <button class="aifab" id="chatBar1" title="Ask Partner Assistant">
-          <svg class="aifab__chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/></svg>
-          <svg class="aifab__spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.6c.9 5 4.5 8.6 9.5 9.5-5 .9-8.6 4.5-9.5 9.5-.9-5-4.5-8.6-9.5-9.5 5-.9 8.6-4.5 9.5-9.5z"/></svg>
-        </button>
+        </div>
         <div class="assist prefilled" id="assist1">
           <div class="assist__scrim" data-close="1"></div>
           <div class="assist__panel">
@@ -814,7 +854,7 @@ body{background:#141D1B}
             </div>
           </div>
         </div>
-        <div class="push" id="push2" hidden><span class="push__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 1 0-12 0c0 6-2.5 7-2.5 7h17S18 15 18 9z"/><path d="M10.2 20a2 2 0 0 0 3.6 0"/></svg></span><div class="push__tx"><b>Pub Partners</b><span id="push2Body">Engineer callout tonight, TS-28211. Two tasks on your shift list.</span></div><span class="push__t">now</span></div>
+        <div class="push" id="push2" hidden><span class="push__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 1 0-12 0c0 6-2.5 7-2.5 7h17S18 15 18 9z"/><path d="M10.2 20a2 2 0 0 0 3.6 0"/></svg></span><div class="push__tx"><b>Pub Partners</b><span id="push2Body">Engineer callout tonight, TS-28211. Added to your shift list.</span></div><span class="push__t">now</span></div>
         <div class="tscrim" id="tscrim" hidden></div>
         <div class="notifpanel" id="notifPanel" hidden>
           <div class="dray__k" style="margin-bottom:6px"><span>Notifications</span></div>
@@ -852,51 +892,40 @@ body{background:#141D1B}
     </div>
 
     <!-- ============ CH3: PRIYA / PHONE ============ -->
-    <div class="frame phone" id="frame3">
-      <div class="site psite">
-        <div class="island"></div>
-        <div class="push push--phone" id="push3" hidden><span class="push__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 1 0-12 0c0 6-2.5 7-2.5 7h17S18 15 18 9z"/><path d="M10.2 20a2 2 0 0 0 3.6 0"/></svg></span><div class="push__tx"><b>Pub Partners</b><span id="push3Body">TS-28211 raised at The Plough. Engineer booked, tonight by 10pm.</span></div><span class="push__t">now</span></div>
-        <div class="tscrim" id="pscrim" hidden></div>
-        <button class="aifab aifab--phone" id="chatBar3" title="Ask your assistant">
-          <svg class="aifab__chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/></svg>
-          <svg class="aifab__spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.6c.9 5 4.5 8.6 9.5 9.5-5 .9-8.6 4.5-9.5 9.5-.9-5-4.5-8.6-9.5-9.5 5-.9 8.6-4.5 9.5-9.5z"/></svg>
-        </button>
-
-        <div class="pubspanel" id="pubsPanel" hidden>
-          <div class="dray__k" style="margin-bottom:4px"><span>Your pubs <i>(38)</i></span></div>
-          <button class="li demo"><i class="dot dot--warn" id="panelPloughDot"></i><span class="li__tx"><b>The Plough, Lavenham</b></span><span class="li__end"><span class="pill pill--live" id="panelPloughPill">Live</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
-          <button class="li demo"><i class="dot dot--ok"></i><span class="li__tx"><b>The Harbour Light, Ipswich</b></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
-          <button class="li demo"><i class="dot dot--ok"></i><span class="li__tx"><b>The Millstone, Sudbury</b></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
-          <button class="li demo"><i class="dot dot--ok"></i><span class="li__tx"><b>The Corn Exchange, Bury</b></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
-          <button class="li demo"><i class="dot dot--ok"></i><span class="li__tx"><b>The Swan, Long Melford</b></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
-          <button class="li demo"><span class="li__tx"><b>All 38 pubs</b></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
-        </div>
-
-        <div class="pcover">
-          <div class="status">
-            <span>21:24</span>
-            <span class="status__icons">
-              <svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
-              <svg viewBox="0 0 25 12" fill="none"><rect x="1" y="1" width="20" height="10" rx="3" stroke="currentColor" stroke-width="1.2"/><rect x="3" y="3" width="13" height="6" rx="1.5" fill="currentColor"/><path d="M23 4.5v3a2 2 0 0 0 0-3z" fill="currentColor"/></svg>
-            </span>
+    <div class="frame laptop" id="frame3">
+      <div class="laptop__chrome">
+        <div class="laptop__dots"><i></i><i></i><i></i></div>
+        <div class="laptop__url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>partners.greeneking.co.uk</div>
+      </div>
+      <div class="site">
+        <aside class="side">
+          <svg class="side__logo"><use href="#gkLogo"/></svg>
+          <div class="side__pub" style="cursor:default"><b>Priya Shah</b><span>BDM &middot; East Anglia patch</span></div>
+          <nav class="snav">
+            <button class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10.5 9-7.5 9 7.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9.5 22v-8h5v8"/></svg>My patch</button>
+            <button id="navPubs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6M4 21h16"/></svg>Pubs</button>
+            <button class="demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="17" rx="2.5"/><path d="M3 10h18M8 2.5V7M16 2.5V7"/></svg>Calendar</button>
+            <button class="demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l-.7 15.2A2.8 2.8 0 0 1 12.5 21h-1a2.8 2.8 0 0 1-2.8-2.8z"/><path d="M8.4 8h7.2"/></svg>Cases</button>
+            <button class="demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></svg>Reports</button>
+            <button class="demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.4 2.3c-.7.3-.9.8-.9 1.7m0 3h.01"/></svg>Support</button>
+          </nav>
+          <div class="side__me"><div class="side__av">PS</div><b>Priya Shah</b></div>
+        </aside>
+        <main class="main">
+          <div class="mhead">
+            <div>
+              <div class="datek">Friday 19 September &middot; 21:24</div>
+              <h1>Good evening, Priya</h1>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;margin-left:auto"><div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg><input id="searchField" type="text" placeholder="Search pubs, cases, documents" autocomplete="off"></div><button class="bellbtn" id="bell3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 1 0-12 0c0 6-2.5 7-2.5 7h17S18 15 18 9z"/><path d="M10.2 20a2 2 0 0 0 3.6 0"/></svg><span class="bell__dot"></span></button></div>
           </div>
-          <div class="appbar">
-            <button class="hambtn" id="ham3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-            <svg class="gk"><use href="#gkLogo"/></svg>
-            <span style="flex:1"></span>
-            <button class="bellbtn" id="bell3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 1 0-12 0c0 6-2.5 7-2.5 7h17S18 15 18 9z"/><path d="M10.2 20a2 2 0 0 0 3.6 0"/></svg><span class="bell__dot"></span></button>
-            <div class="side__av">PS</div>
-          </div>
-          <div class="datek">Friday 19 September</div>
-          <h1>Good evening, Priya</h1>
-        </div>
-        <div class="psheet">
-          <div class="snap snap--3 psnap" style="margin-bottom:12px">
+          <div class="snap snap--3" style="margin-bottom:12px">
             <div class="snap__c"><div class="snap__k">Your pubs</div><div class="snap__v">38</div><div class="snap__d">East Anglia patch</div></div>
             <div class="snap__c"><div class="snap__k">Need you</div><div class="snap__v" id="needV">1</div><div class="snap__d" id="needD">The Plough, in hand</div></div>
             <div class="snap__c"><div class="snap__k">Visits, this week</div><div class="snap__v">9</div><div class="snap__d">Three on Tuesday</div></div>
           </div>
-          <div class="card">
+          <div class="cols" style="margin-top:16px">
+              <div class="card">
             <div class="dray__k"><span>Tonight at The Plough</span><span class="pill pill--live" id="casePill">Live</span></div>
             <div style="display:flex;align-items:center;gap:9px;margin:9px 0 4px">
               <i class="dot dot--live" id="caseDot"></i>
@@ -910,23 +939,46 @@ body{background:#141D1B}
               <div class="tl__s pend" id="tlOnsite" hidden><b>On site, confirmed by Tom at the bar</b><span id="tlOnsiteTime">19:58</span></div>
               <div class="tl__s pend" id="tlFixed" hidden><b>Fixed and pouring again</b><span>20:20, confirmed by Tom</span></div>
             </div>
-            <div class="acts" style="margin-top:11px;justify-content:flex-end"><button class="btn btn--soft btn--sm" id="noteJess">Note to call Jess tomorrow</button></div>
+            <div class="acts" style="margin-top:11px;justify-content:flex-end"><button class="btn btn--soft btn--sm" id="noteJess">Note to call Jess tomorrow</button><button class="btn btn--soft btn--sm" id="viewTicket">View ticket</button></div>
           </div>
-          <div class="list" style="margin-top:12px">
+              <div class="list">
             <div class="dray__k"><span>Your visits this week <i>(9)</i></span></div>
             <button class="li demo"><span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10.5h17"/></svg></span><span class="li__tx"><b>The Plough, Tuesday 10:30</b><span>Jess. Tonight's fix and the Golden Hen story to cover.</span></span><span class="li__end"><span class="pill pill--ok">Brief ready</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
             <button class="li demo"><span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10.5h17"/></svg></span><span class="li__tx"><b>The Harbour Light, Tuesday 2pm</b><span>Quarterly catch-up</span></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
             <button class="li demo"><span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c1.2-3.6 3.8-5.4 7-5.4s5.8 1.8 7 5.4"/></svg></span><span class="li__tx"><b>The Swan, Wednesday 11am</b><span>Sam Field, day 19 of his first hundred</span></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+            <div class="acts" style="padding:10px 15px 13px;margin:0"><button class="btn btn--soft btn--sm demo">View all</button></div>
           </div>
-          <div class="list" style="margin-top:12px">
+              <div class="list">
             <div class="dray__k"><span>Your patch tonight <i>(38)</i></span></div>
             <button class="li demo"><i class="dot dot--warn" id="patchDot"></i><span class="li__tx"><b>The Plough, Lavenham</b><span id="patchPlough">Line fault in hand, engineer en route</span></span></button>
             <button class="li demo"><i class="dot dot--ok"></i><span class="li__tx"><b>The Harbour Light, Ipswich</b><span>Trading well, nothing needed</span></span></button>
             <button class="li demo"><i class="dot dot--ok"></i><span class="li__tx"><b>The Millstone, Sudbury</b><span>Quiet, cut-off Sunday</span></span></button>
-            <button class="li demo"><span class="li__tx"><span style="font-size:12px;color:var(--muted)">And 35 more, all quiet</span></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+            <div class="acts" style="padding:10px 15px 13px;margin:0"><button class="btn btn--soft btn--sm demo">View all</button></div>
           </div>
+              <div class="list">
+                <div class="dray__k"><span>First hundred days <i>(2)</i></span></div>
+                <button class="li demo"><span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c1.2-3.6 3.8-5.4 7-5.4s5.8 1.8 7 5.4"/></svg></span><span class="li__tx"><b>Sam Field, The Swan</b><span>Day 19. First order sent today, on his own.</span></span><span class="li__end"><span class="pill pill--ok">On track</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+                <button class="li demo"><span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c1.2-3.6 3.8-5.4 7-5.4s5.8 1.8 7 5.4"/></svg></span><span class="li__tx"><b>Ravi Modi, The Corn Exchange</b><span>Day 64. Cellar training booked for next week.</span></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+              </div>
+          </div>
+        </main>
+        <div class="push" id="push3" hidden><span class="push__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 1 0-12 0c0 6-2.5 7-2.5 7h17S18 15 18 9z"/><path d="M10.2 20a2 2 0 0 0 3.6 0"/></svg></span><div class="push__tx"><b>Pub Partners</b><span id="push3Body">TS-28211 raised at The Plough. Engineer booked, tonight by 10pm.</span></div><span class="push__t">now</span></div>
+        <div class="tscrim" id="pscrim" hidden></div>
+        <div class="pubspanel" id="pubsPanel" hidden>
+          <div class="dray__k" style="margin-bottom:4px"><span>Your pubs <i>(38)</i></span></div>
+          <button class="li demo"><i class="dot dot--warn" id="panelPloughDot"></i><span class="li__tx"><b>The Plough, Lavenham</b></span><span class="li__end"><span class="pill pill--live" id="panelPloughPill">Live</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+          <button class="li demo"><i class="dot dot--ok"></i><span class="li__tx"><b>The Harbour Light, Ipswich</b></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+          <button class="li demo"><i class="dot dot--ok"></i><span class="li__tx"><b>The Millstone, Sudbury</b></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+          <button class="li demo"><i class="dot dot--ok"></i><span class="li__tx"><b>The Corn Exchange, Bury</b></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+          <button class="li demo"><i class="dot dot--ok"></i><span class="li__tx"><b>The Swan, Long Melford</b></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
+          <button class="li demo"><span class="li__tx"><b>All 38 pubs</b></span><span class="li__end"><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></span></button>
         </div>
-        <div class="assist" id="assist3">
+      </div>
+      <button class="aifab" id="chatBar3" title="Ask your assistant">
+          <svg class="aifab__chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/></svg>
+          <svg class="aifab__spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.6c.9 5 4.5 8.6 9.5 9.5-5 .9-8.6 4.5-9.5 9.5-.9-5-4.5-8.6-9.5-9.5 5-.9 8.6-4.5 9.5-9.5z"/></svg>
+        </button>
+      <div class="assist" id="assist3">
           <div class="assist__panel">
             <div class="assist__head">
               <button class="assist__back" data-close="3" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 6-6 6 6 6"/></svg></button>
@@ -942,18 +994,13 @@ body{background:#141D1B}
             </div>
           </div>
         </div>
-      </div>
     </div>
 
   </div>
 </div>
 
 <div class="toast" id="toast">Demo. This action is illustrative.</div>
-<div class="mchap" id="mchap">
-  <button class="chap on" data-ch="1">1</button>
-  <button class="chap" data-ch="2">2</button>
-  <button class="chap" data-ch="3">3</button>
-</div>
+
 
 <script>
 (function(){
@@ -974,13 +1021,12 @@ body{background:#141D1B}
 
   /* ---------- Chapters / frames ---------- */
   var ch = 1;
-  var FRAME_SIZES = {1:[1200,804],2:[1060,768],3:[390,844]};
+  var FRAME_SIZES = {1:[390,844],2:[1060,768],3:[1200,804]};
   function fitFrame(){
     var f = $("#frame"+ch);
-    if(window.innerWidth < 1280){ f.style.transform = ""; return; }
     var r = $("#stage").getBoundingClientRect();
     var fs = FRAME_SIZES[ch];
-    var s = Math.min(1, (r.height - 26) / fs[1], (r.width - 40) / fs[0]);
+    var s = Math.min(1, (r.height - 26) / fs[1], (r.width - 24) / fs[0]);
     f.style.transform = "scale(" + s + ")";
   }
   function assemble(root){
@@ -1072,7 +1118,7 @@ body{background:#141D1B}
   }
 
   /* ---------- Assistant (two instances) ---------- */
-  var leakRaised = false, engineerArrived = false, msgSent = false, tomToastShown = false, priyaPushShown = false, lineFixed = false;
+  var leakRaised = false, engineerArrived = false, msgSent = false, tomToastShown = false, priyaPushShown = false, lineFixed = false, awaitingClose = false;
   var PREFILL = "One of our beer lines has gone down and it\u2019s Friday evening, we need it fixed as soon as possible.";
   var _af = document.getElementById("askField"); if(_af) _af.value = PREFILL;
   var CHK_OK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
@@ -1204,6 +1250,12 @@ body{background:#141D1B}
       '<li><span class="b-ok">'+CHK_OK+'</span>Tom\u2019s shift list at the bar has the two things to do before they arrive</li>' +
       '<li><span class="b-ok">'+CHK_OK+'</span>Priya can see it too, so nobody needs a phone call</li>' +
       '</ul>You\u2019ll get a note the moment they\u2019re on site. Anything else I can help with tonight?');
+    $("#ustrip").hidden = false;
+    awaitingClose = true;
+    setTimeout(function(){
+      var f = $("#askField"); if(f){ f.value = "No, that\u2019s everything, thanks."; }
+      $("#assist1").classList.add("prefilled");
+    }, 1100);
   }
 
   /* ---- Canned answers ---- */
@@ -1249,6 +1301,15 @@ body{background:#141D1B}
     var v = c.field.value.trim(); if(!v) return;
     c.field.value = "";
     addMsg("msg--me", v);
+    if(awaitingClose && ch===1){
+      awaitingClose = false;
+      $("#assist1").classList.remove("prefilled");
+      setTimeout(function(){
+        closeAssist(1);
+        showPush("push1");
+      }, 700);
+      return;
+    }
     var low = v.toLowerCase();
     if(ch!==3 && /line|fob|foam|flat|beer|tap|keg|gone down|broken|broke|leak|water/.test(low)){ triageStart(); return; }
     if(ch!==3 && /invoice|bill|higher|cost/.test(low)){ sendCanned("invoice", v, true); return; }
@@ -1267,8 +1328,11 @@ body{background:#141D1B}
   $("#bell1").addEventListener("click", function(){ toast("Every update lands here, in email and as a push on your phone."); });
   $("#bell3").addEventListener("click", function(){ toast("Case updates across your whole patch land here."); });
   $("#promoAdd").addEventListener("click", function(){ toast("Added to Tuesday\u2019s draft. You approve before anything orders."); });
-  $("#noteJess").addEventListener("click", function(){ toast("Noted. It\u2019ll be waiting in the morning, and in Tuesday\u2019s brief."); });
-  $("#ham3").addEventListener("click", function(){ var pp=$("#pubsPanel"); pp.hidden=!pp.hidden; $("#pscrim").hidden=pp.hidden; });
+  $("#noteJess").addEventListener("click", function(){ this.hidden = true; $("#push3Body").textContent = "Noted. It\u2019ll be waiting in the morning, and in Tuesday\u2019s brief."; showPush("push3"); });
+  $("#viewTicket").addEventListener("click", function(){ toast("The full ticket, every step timestamped. The same record Jess and Tom see."); });
+  $("#navPubs").addEventListener("click", function(){ var pp=$("#pubsPanel"); pp.hidden=!pp.hidden; $("#pscrim").hidden=pp.hidden; });
+  $("#ustrip").addEventListener("click", function(){ openAssist(); });
+  $("#ham1").addEventListener("click", function(){ toast("Navigation. Orders, money, learning and support live here."); });
   $("#pscrim").addEventListener("click", function(){ $("#pubsPanel").hidden=true; $("#pscrim").hidden=true; });
   var pushTimers = {};
   function showPush(id){
@@ -1280,6 +1344,7 @@ body{background:#141D1B}
   }
   $("#push2").addEventListener("click", function(){ this.classList.remove("show"); this.hidden = true; tOverlay($("#caseSheet")); });
   $("#push3").addEventListener("click", function(){ this.classList.remove("show"); this.hidden = true; });
+  $("#push1").addEventListener("click", function(){ this.classList.remove("show"); this.hidden = true; });
   document.addEventListener("click", function(e){
     var t = e.target.closest(".ai-tag");
     if(t){ e.stopPropagation(); toast("Flagged into the next order draft. Jess approves it, as always."); }
@@ -1312,8 +1377,11 @@ body{background:#141D1B}
       var ls = $("#leakSub");
       if(ls) ls.textContent = "Engineer on site, confirmed by Tom, 19:58.";
       var lr = $("#leakRow"); if(lr){ $(".pill", lr).textContent = "On site"; $(".pill", lr).className = "pill pill--ok"; }
-      toast("Logged. Jess, Priya and Technical Services all know.");
       setTimeout(function(){ tOverlay(null); }, 850);
+      setTimeout(function(){
+        $("#push2Body").textContent = "Engineer on site, 19:58. Jess, Priya and Technical Services have been told.";
+        showPush("push2");
+      }, 1000);
       return;
     }
     if(!lineFixed){
@@ -1332,14 +1400,20 @@ body{background:#141D1B}
       $("#panelPloughDot").className = "dot dot--ok";
       $("#panelPloughPill").textContent = "Resolved"; $("#panelPloughPill").className = "pill pill--ok";
       $("#needV").textContent = "0";
+      var us = $("#ustrip"); us.classList.add("ustrip--ok");
+      $("#ustripTx").textContent = "Fixed and pouring again, 20:20";
+      $("#ustripDot").className = "dot dot--ok";
       $("#needD").textContent = "All quiet";
       $("#patchPlough").textContent = "Line fixed, pouring again since 20:20";
       $("#snapRepairs").textContent = "1 active";
       var ls2 = $("#leakSub");
       if(ls2) ls2.textContent = "Fixed and pouring, confirmed by Tom, 20:20.";
       var lr2 = $("#leakRow"); if(lr2){ $(".pill", lr2).textContent = "Fixed"; $(".pill", lr2).className = "pill pill--ok"; }
-      toast("Fixed. The case closes itself, and Jess and Priya both know.");
       setTimeout(function(){ tOverlay(null); }, 850);
+      setTimeout(function(){
+        $("#push2Body").textContent = "All fixed and logged, 20:20. Jess, Priya and Technical Services have been told.";
+        showPush("push2");
+      }, 1000);
       return;
     }
     toast("Closed at 20:20. It's all on the record.");
@@ -1358,8 +1432,13 @@ body{background:#141D1B}
     closeAssist(1); closeAssist(3);
     $("#chat").innerHTML = ""; $("#opts").innerHTML = ""; $("#askField").value = PREFILL; $("#assist1").classList.add("prefilled");
     $("#chat3").innerHTML = ""; $("#opts3").innerHTML = ""; $("#askField3").value = "";
-    leakRaised = false; engineerArrived = false; msgSent = false; tomToastShown = false; priyaPushShown = false; lineFixed = false;
-    ["push2","push3"].forEach(function(id){ var el=$("#"+id); el.classList.remove("show"); el.hidden=true; clearTimeout(pushTimers[id]); });
+    leakRaised = false; engineerArrived = false; msgSent = false; tomToastShown = false; priyaPushShown = false; lineFixed = false; awaitingClose = false;
+    $("#push2Body").textContent = "Engineer callout tonight, TS-28211. Added to your shift list.";
+    $("#noteJess").hidden = false;
+    var us0 = $("#ustrip"); us0.hidden = true; us0.classList.remove("ustrip--ok");
+    $("#ustripTx").textContent = "Engineer tonight, by 10pm";
+    $("#ustripDot").className = "dot dot--warn";
+    ["push1","push2","push3"].forEach(function(id){ var el=$("#"+id); el.classList.remove("show"); el.hidden=true; clearTimeout(pushTimers[id]); });
     var lr = $("#leakRow"); if(lr) lr.remove();
     $("#snapRepairs").textContent = "1 active";
     $("#attnCount").textContent = "(4)";
