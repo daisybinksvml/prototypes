@@ -1125,6 +1125,37 @@ body{background:radial-gradient(ellipse 80% 70% at 50% 45%,#215660 0%,#18434A 45
 .pbtn:hover{background:rgba(255,255,255,.1)}
 .mchap{background:rgba(12,36,40,.92)}
 .frame{box-shadow:0 30px 80px rgba(4,18,21,.55)}
+/* Tom's case modal (per supplied design) */
+.tsite .casesheet{width:520px;box-sizing:border-box;background:#fff;border-radius:13px;padding:16px 22px 21px;box-shadow:0 26px 64px rgba(13,22,20,.35)}
+.cs__head{display:flex;align-items:center;gap:16px;min-height:22px}
+.cs__head .pill{height:21px;display:inline-flex;align-items:center;gap:6px;padding:0 11px;border-radius:999px;background:#FBE3E0;color:#B2432A;font-family:Figtree,sans-serif;font-weight:700;font-size:13px;letter-spacing:0;text-transform:none;flex:none}
+.cs__head .pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.cs__head .pill.pill--ok{background:#DCEBC9;color:#4D7C0F}
+.cs__t{flex:1;margin:0;font-family:Gilroy,sans-serif;font-weight:800;font-size:18.5px;line-height:22px;color:#44334C}
+.cs__x{width:32px;height:32px;margin-right:-8px;display:grid;place-items:center;background:none;color:#1D1D1D;cursor:pointer;border-radius:50%}
+.cs__x:hover{background:#F2F3F1}
+.cs__x svg{width:18px;height:18px}
+.cs__tl::before{display:none}
+.cs__tl{margin:18px 0 0;padding-left:28.5px;display:flex;flex-direction:column;gap:8.5px}
+.cs__tl .tl__s{padding:0;display:flex;flex-direction:column}
+.cs__tl .tl__s[hidden]{display:none}
+.cs__tl .tl__s::before{left:-28.5px;top:4.5px;width:10px;height:10px;background:#355A58;box-shadow:none;animation:none}
+.cs__tl .tl__s::after{content:"";position:absolute;left:-24px;top:14.5px;height:calc(100% + 0px);border-left:1.5px solid #A8B7B6}
+.cs__tl .tl__s:not(:has(~ .tl__s:not([hidden])))::after{display:none}
+.cs__tl .tl__s.live::before{left:-29.5px;top:3.5px;width:12px;height:12px;background:#CB7663;box-shadow:0 0 0 4px rgba(203,118,99,.15)}
+.cs__tl .tl__s b{font-family:Gilroy,sans-serif;font-weight:800;font-size:15.5px;line-height:18px;color:#1D1D1D}
+.cs__tl .tl__s span{font-family:Figtree,sans-serif;font-size:13.5px;line-height:17px;color:#767676}
+.cs__btns{display:grid!important;grid-template-columns:1fr 1fr;gap:17px;margin-top:24px}
+.cs__btns .btn{height:38px;border-radius:4px;border:2px solid #44334C;font-family:Gilroy,sans-serif;font-weight:800;font-size:13px;letter-spacing:.78px;text-transform:uppercase;box-shadow:none;padding:0}
+.cs__btns #noteEng{background:#fff;color:#44334C}
+.cs__btns #noteEng:hover{background:#F7F4F8}
+.cs__btns #sheetCta{background:#44334C;color:#fff}
+.cs__btns #sheetCta.btn--soft{background:#EEF5E6;border-color:#C9DDB0;color:#4D7C0F}
+/* Once fixed, the action is done: drop the CTA */
+.talert.done #engHereBtn{display:none}
+.talert.done .talert__btns{grid-template-columns:1fr}
+.cs__btns #sheetCta.btn--soft{display:none}
+.cs__btns:has(#sheetCta.btn--soft){grid-template-columns:1fr}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -1393,16 +1424,16 @@ body{background:radial-gradient(ellipse 80% 70% at 50% 45%,#215660 0%,#18434A 45
           </button>
         </div>
         <div class="casesheet" id="caseSheet" hidden>
-          <div class="dray__k" style="margin-bottom:2px"><span>IPA line down &middot; TS-28211</span><span class="pill pill--live" id="sheetPill">Live</span></div>
-          <div class="tl" style="margin-top:10px">
+          <div class="cs__head"><span class="pill pill--live" id="sheetPill">Live</span><h3 class="cs__t">IPA line down &middot; TS-28211</h3><button class="cs__x" id="caseClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+          <div class="tl cs__tl">
             <div class="tl__s"><b>Reported by Jess</b><span>19:04, from the back office</span></div>
             <div class="tl__s"><b>Greene King IPA line down</b><span>Greene King's responsibility, no cost to the pub</span></div>
             <div class="tl__s"><b>Callout acknowledged</b><span>19:06, Technical Services</span></div>
-            <div class="tl__s live" id="sheetEnroute"><b>Engineer en route</b><span>Due by 10pm tonight</span></div>
+            <div class="tl__s live" id="sheetEnroute"><b>Engineer en route</b><span>Due by 22:00</span></div>
             <div class="tl__s pend" id="sheetOnsite" hidden><b>On site, confirmed by you</b><span>19:58</span></div>
             <div class="tl__s pend" id="sheetFixed" hidden><b>Fixed and pouring</b><span>20:20, confirmed by you</span></div>
           </div>
-          <div class="acts" style="margin-top:16px;justify-content:flex-end">
+          <div class="acts cs__btns">
             <button class="btn btn--soft btn--sm" id="noteEng">Add a note</button>
             <button class="btn btn--green btn--sm" id="sheetCta">Engineer's here</button>
           </div>
@@ -1879,6 +1910,7 @@ body{background:radial-gradient(ellipse 80% 70% at 50% 45%,#215660 0%,#18434A 45
   $("#tscrim").addEventListener("click", function(){ tOverlay(null); });
   $("#notifCase").addEventListener("click", function(){ tOverlay($("#caseSheet")); });
   $("#rowEng").addEventListener("click", function(){ tOverlay($("#caseSheet")); });
+  $("#caseClose").addEventListener("click", function(){ tOverlay(null); });
   $("#noteEng").addEventListener("click", function(){ toast("Notes travel with the job. The engineer sees it before they knock."); });
   $("#sheetCta").addEventListener("click", function(){
     if(!engineerArrived){
@@ -1966,7 +1998,7 @@ body{background:radial-gradient(ellipse 80% 70% at 50% 45%,#215660 0%,#18434A 45
     var el0 = $("#engLine"); el0.hidden = true; el0.textContent = "";
     $("#notifPanel").hidden = true; $("#caseSheet").hidden = true; $("#tscrim").hidden = true;
     $("#sheetEnroute").classList.add("live");
-    $("#sheetEnroute").querySelector("span").textContent = "Due by 10pm tonight";
+    $("#sheetEnroute").querySelector("span").textContent = "Due by 22:00";
     $("#sheetOnsite").hidden = true; $("#sheetOnsite").classList.add("pend");
     $("#sheetFixed").hidden = true; $("#sheetFixed").classList.add("pend");
     $("#sheetPill").textContent = "Live"; $("#sheetPill").className = "pill pill--live";
