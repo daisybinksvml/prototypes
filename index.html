@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clarks Shoes & Footwear | Sandals, Shoes, Boots & Accessories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1a1a; --grey:#6b6b6b; --line:#e4e2de; --panel:#f5f4f2;
+  --bone:#f7f6f4; --brass:#1a1a1a; --brass-deep:#4a4a4a; --red:#c8102e; --disp:'Oswald',sans-serif;
+  --sans:'Montserrat',-apple-system,sans-serif; --serif:'Montserrat',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--sans);cursor:pointer;border:none;background:none;color:inherit}
+.wrap{max-width:1440px;margin:0 auto;padding:0 40px}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+.btn{display:inline-block;background:var(--ink);color:#fff;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:16px 34px;transition:background .2s}
+.btn:hover{background:#000}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+/* ---------- promo + utility ---------- */
+.promo{background:#000;color:#fff;font-size:12px;text-align:center;padding:9px 0}
+.promo b{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.promo span{margin:0 14px}
+.util{border-bottom:1px solid var(--line);font-size:11.5px;color:var(--grey)}
+.util .wrap{display:flex;justify-content:flex-end;gap:26px;padding-top:8px;padding-bottom:8px}
+.util a:hover{color:var(--ink)}
+/* ---------- header ---------- */
+header.site{border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:60}
+.hd{display:flex;align-items:center;gap:44px;height:74px}
+.hd .logo img{height:26px;width:auto}
+nav.main{display:flex;gap:30px;flex:1}
+nav.main a{font-size:13.5px;font-weight:600;letter-spacing:.02em;padding:27px 0;border-bottom:2px solid transparent}
+nav.main a:hover{border-color:var(--ink)}
+nav.main a.sale{color:var(--red)}
+.hd-icons{display:flex;gap:22px;align-items:center}
+.hd-icons svg{width:21px;height:21px;stroke:var(--ink);fill:none;stroke-width:1.6}
+.search{display:flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--panel);padding:10px 16px;width:230px;color:var(--grey);font-size:13px}
+.search svg{width:16px;height:16px;stroke:var(--grey);fill:none;stroke-width:1.8}
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden}
+.hero img{width:100%;height:520px;object-fit:cover;object-position:center 30%}
+.hero-card{position:absolute;left:64px;bottom:56px;background:#fff;padding:38px 44px;max-width:470px}
+.hero-card h1{font-family:var(--disp);font-size:44px;font-weight:600;text-transform:uppercase;letter-spacing:.01em;line-height:1.04;margin:8px 0 20px}
+.hero-links{display:flex;flex-wrap:wrap;gap:10px}
+.hero-links .btn{padding:13px 18px;font-size:10.5px}
+/* ---------- style finder band ---------- */
+.finderband{background:var(--bone);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.fb-grid{display:grid;grid-template-columns:1.05fr 1fr;align-items:center;min-height:480px}
+.fb-copy{padding:70px 70px 70px 40px}
+.fb-copy .eyebrow{color:var(--brass-deep)}
+.fb-copy h2{font-size:42px;font-weight:800;letter-spacing:-.015em;line-height:1.08;margin:16px 0 18px}
+.fb-copy p.lead{font-size:16px;line-height:1.65;color:#444;max-width:480px;margin-bottom:14px}
+.fb-copy p.note{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--brass-deep);margin:22px 0 30px;max-width:440px}
+.fb-cta{display:flex;align-items:center;gap:22px}
+.fb-cta .time{font-size:12px;color:var(--grey);letter-spacing:.06em}
+.fb-visual{position:relative;height:100%;min-height:480px;background:#fff;border-left:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
+.fb-visual .cell{position:relative;border-left:1px solid var(--line);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff}
+.fb-visual .cell:nth-child(1),.fb-visual .cell:nth-child(2){border-top:none}
+.fb-visual .cell:nth-child(1){border-left:none}
+.fb-visual .cell:nth-child(3){border-left:none}
+.fb-visual .cell img{width:82%;height:82%;object-fit:contain;transition:transform .5s}
+.fb-visual .cell:hover img{transform:scale(1.06)}
+.fb-visual .cell .tag{position:absolute;left:14px;bottom:12px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);font-weight:600}
+.fb-visual .gaugecell{background:var(--ink);color:var(--bone);flex-direction:column;gap:14px;padding:26px;text-align:center}
+.gaugecell .num{font-size:44px;font-weight:800;letter-spacing:-.02em}
+.gaugecell .lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#b9b2a6}
+.gaugecell svg{width:120px}
+/* ---------- content strips ---------- */
+.strip{padding:64px 0}
+.strip h2{font-family:var(--disp);font-size:28px;font-weight:600;text-transform:uppercase;letter-spacing:.02em;margin-bottom:8px}
+.strip p.sub{color:var(--grey);font-size:14.5px;margin-bottom:28px}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.tile{position:relative;background:var(--panel);overflow:hidden}
+.tile img{width:100%;height:340px;object-fit:cover;transition:transform .5s}
+.tile:hover img{transform:scale(1.04)}
+.tile .lab{position:absolute;left:0;bottom:0;background:#fff;padding:12px 20px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.dark-strip{background:#000;color:#fff;padding:56px 0}
+.ds-grid{display:flex;align-items:center;justify-content:space-between;gap:40px}
+.ds-grid h2{font-family:var(--disp);font-size:30px;font-weight:600;text-transform:uppercase;letter-spacing:.02em}
+.ds-grid p{color:#bbb;font-size:14px;margin-top:8px}
+.usp{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.usp .wrap{display:flex;justify-content:center;gap:80px;padding:26px 40px;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.usp span{display:flex;align-items:center;gap:10px}
+.usp svg{width:18px;height:18px;stroke:var(--ink);fill:none;stroke-width:1.6}
+footer.site{background:var(--panel);padding:52px 0 30px;font-size:12.5px;color:var(--grey)}
+.ft{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
+.ft .cols{display:flex;gap:70px}
+.ft h4{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin-bottom:14px}
+.ft a{display:block;margin-bottom:9px}
+.ft a:hover{color:var(--ink)}
+.ft-bottom{border-top:1px solid var(--line);margin-top:40px;padding-top:22px;font-size:11.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+/* ================= FINDER OVERLAY ================= */
+.ov{position:fixed;inset:0;background:var(--bone);z-index:100;display:none;flex-direction:column;opacity:0;transition:opacity .3s}
+.ov.open{display:flex}
+.ov.vis{opacity:1}
+.ov-hd{display:flex;align-items:center;justify-content:space-between;padding:22px 48px;border-bottom:1px solid var(--line);background:var(--bone)}
+.ov-hd .brand{display:flex;align-items:baseline;gap:16px}
+.ov-hd .brand img{height:20px;position:relative;top:2px}
+.ov-hd .brand .fname{font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--brass-deep);border-left:1px solid var(--line);padding-left:16px}
+.ov-close{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--grey);padding:8px 0}
+.ov-close:hover{color:var(--ink)}
+.ov-close svg{width:16px;height:16px;stroke:currentColor;stroke-width:1.8;fill:none}
+/* gauge */
+.gauge{padding:26px 48px 0;background:var(--bone)}
+.gauge-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.gauge-top .step{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+.gauge-top .step b{color:var(--brass-deep)}
+.gauge-top .qname{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);font-weight:600}
+.rail{position:relative;height:26px}
+.rail svg{position:absolute;inset:0;width:100%;height:100%}
+.rail .fill{position:absolute;bottom:0;left:0;height:2px;background:var(--brass);transition:width .45s cubic-bezier(.7,0,.2,1)}
+.rail .marker{position:absolute;top:0;width:2px;height:16px;background:var(--brass);transition:left .45s cubic-bezier(.7,0,.2,1)}
+.rail .marker::after{content:"";position:absolute;top:-5px;left:-4px;border:5px solid transparent;border-top-color:var(--brass)}
+/* stage */
+.stage{flex:1;overflow-y:auto;display:flex;align-items:flex-start;justify-content:center}
+.qpane{width:100%;max-width:1080px;padding:44px 48px 80px;animation:qin .45s cubic-bezier(.2,.7,.3,1)}
+@keyframes qin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.opts .opt{animation:qin .5s cubic-bezier(.2,.7,.3,1) both}
+.opts .opt:nth-child(2){animation-delay:.06s}.opts .opt:nth-child(3){animation-delay:.12s}.opts .opt:nth-child(4){animation-delay:.18s}
+.qpane h2{font-size:34px;font-weight:800;letter-spacing:-.015em;line-height:1.12;max-width:640px}
+.qpane .qsub{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--brass-deep);margin:14px 0 34px;max-width:560px;line-height:1.6}
+.opts{display:grid;gap:14px}
+.opts.c2{grid-template-columns:1fr 1fr}
+.opts.c3{grid-template-columns:repeat(3,1fr)}
+.opts.c4{grid-template-columns:repeat(4,1fr)}
+.opt{background:#fff;border:1px solid var(--line);text-align:left;padding:26px 26px 24px;display:flex;flex-direction:column;gap:10px;min-height:170px;transition:border-color .15s, transform .15s, box-shadow .15s;position:relative}
+.opt:hover{border-color:var(--ink);transform:translateY(-3px);box-shadow:0 12px 28px rgba(20,16,8,.07)}
+.opt .pimg{width:100%;height:150px;object-fit:contain;background:#fafafa;margin:-6px 0 4px}
+.opt .k{font-size:10px;letter-spacing:.2em;color:var(--brass);font-weight:700}
+.opt .t{font-size:19px;font-weight:700;letter-spacing:-.01em}
+.opt .d{font-size:13px;line-height:1.55;color:#5c5c5c;flex:1}
+.opt .go{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;display:flex;align-items:center;gap:8px;margin-top:6px}
+.opt .go svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none;transition:transform .15s}
+.opt:hover .go svg{transform:translateX(4px)}
+.backlink{margin-top:30px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--grey);display:inline-flex;align-items:center;gap:8px}
+.backlink:hover{color:var(--ink)}
+.backlink svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
+/* analysing */
+.think{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 40px;text-align:center;animation:qin .4s}
+.think .g{width:200px;margin-bottom:30px}
+.think h3{font-size:22px;font-weight:700;margin-bottom:10px}
+.think p{color:#777;font-size:13px}
+.sweep{animation:sweep 1.4s ease-in-out infinite alternate}
+@keyframes sweep{from{transform:translateX(0)}to{transform:translateX(150px)}}
+/* results */
+.res{width:100%;max-width:1180px;padding:44px 48px 90px;animation:qin .5s}
+.res .eyebrow{color:var(--brass-deep)}
+.res h2{font-size:34px;font-weight:800;letter-spacing:-.015em;margin:12px 0 6px}
+.fitterword{background:#f7f7f5;border-left:3px solid var(--ink);padding:20px 24px;margin:26px 0 38px;max-width:760px;display:flex;gap:20px;align-items:flex-start}
+.fitterword .avatar{display:none}
+.fitterword p{font-family:var(--serif);font-size:15.5px;line-height:1.7;color:#333}
+.fitterword .sig{display:block;margin-top:10px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#777}
+.picks{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:18px;align-items:stretch}
+.pick{background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;transition:box-shadow .2s,transform .2s}
+.pick:hover{box-shadow:0 16px 40px rgba(20,16,8,.08);transform:translateY(-3px)}
+.pick .ph{position:relative;background:#fff;padding:8%}
+.pick .ph img{width:100%;aspect-ratio:1;object-fit:contain}
+.pick .flag{position:absolute;top:14px;left:14px;background:var(--ink);color:#fff;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:7px 12px}
+.pick .flag.brass{background:var(--brass-deep)}
+.pick .wf{position:absolute;top:14px;right:14px;border:1px solid var(--ink);background:#fff;font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px}
+.pick .bd{padding:20px 22px 24px;display:flex;flex-direction:column;gap:8px;flex:1;border-top:1px solid var(--line)}
+.pick .nm{font-size:16.5px;font-weight:700}
+.pick .cl{font-size:12.5px;color:var(--grey)}
+.pick .pr{font-size:15px;font-weight:700;margin-top:2px}
+.pick .pr s{color:var(--grey);font-weight:400;margin-right:8px}
+.pick .why{font-family:var(--serif);font-style:italic;font-size:13.5px;line-height:1.6;color:#4a4436;background:var(--bone);border-left:2px solid var(--brass);padding:12px 14px;margin-top:8px;flex:1}
+.pick .why b{font-style:normal;font-family:var(--sans);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass-deep);display:block;margin-bottom:6px;font-weight:700}
+.pick .actions{display:flex;gap:8px;margin-top:14px}
+.pick .actions .btn{flex:1;text-align:center;padding:13px 8px;font-size:10.5px}
+.res-foot{display:flex;justify-content:space-between;align-items:center;margin-top:38px;padding-top:26px;border-top:1px solid var(--line);flex-wrap:wrap;gap:18px}
+.res-foot .store{font-size:13.5px;color:#444;max-width:520px;line-height:1.6}
+.res-foot .store b{font-weight:700}
+.res-foot .again{display:flex;gap:12px}
+@media (max-width:1100px){
+  .fb-grid{grid-template-columns:1fr}
+  .fb-visual{min-height:380px}
+  .opts.c4,.opts.c3{grid-template-columns:1fr 1fr}
+  .picks{grid-template-columns:1fr}
+  .tiles{grid-template-columns:1fr 1fr}
+  .hero-card{left:24px;bottom:24px;padding:26px}
+  nav.main{display:none}
+  .search{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---- Sandra ---- */
+.sandra-face{display:none}
+.sf-body{flex:1;display:grid;grid-template-columns:1fr 320px;min-height:0}
+.sf-main{overflow-y:auto;padding:36px 44px 90px}
+.sf-notes{border-left:1px solid var(--line);background:#fbfaf7;padding:28px 26px;overflow-y:auto}
+.sf-notes h3{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-deep);margin-bottom:6px}
+.sf-notes .nsub{font-size:12px;color:var(--grey);line-height:1.5;margin-bottom:18px}
+.note-chip{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-left:2px solid var(--brass);padding:10px 12px;margin-bottom:8px;animation:qin .35s}
+.note-chip .nl{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);font-weight:700;display:block;margin-bottom:2px}
+.note-chip .nv{font-size:13px;font-weight:600}
+.note-chip button{color:#b5ad9e;font-size:15px;line-height:1;padding:4px}
+.note-chip button:hover{color:var(--ink)}
+.notes-empty{font-family:var(--serif);font-style:italic;font-size:13.5px;color:#9a917f;line-height:1.6}
+.sandra-card{margin-top:26px;border-top:1px solid var(--line);padding-top:20px;display:flex;gap:12px;align-items:flex-start}
+.sandra-card .sandra-face{width:42px;height:42px;font-size:18px;flex-shrink:0}
+.sandra-card p{font-size:11.5px;color:var(--grey);line-height:1.55}
+.sandra-card b{color:var(--ink);display:block;font-size:12.5px;margin-bottom:2px}
+/* opening */
+.sopen{max-width:720px;animation:qin .45s}
+.sopen .hello{display:flex;gap:16px;align-items:flex-start;margin-bottom:26px}
+.sopen .hello .sandra-face{flex-shrink:0}
+.sopen .hello p{font-family:var(--serif);font-size:16.5px;line-height:1.65;color:#3a3428;padding-top:6px}
+.sopen h2{font-size:32px;font-weight:800;letter-spacing:-.015em;margin-bottom:20px}
+.ask{background:#fff;border:1px solid var(--ink);display:flex;align-items:stretch}
+.ask textarea{flex:1;border:none;outline:none;resize:none;font-family:var(--sans);font-size:15px;line-height:1.6;padding:18px 20px;color:var(--ink);background:transparent}
+.ask button{background:var(--ink);color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:0 28px;display:flex;align-items:center;gap:10px}
+.ask button:hover{background:#000}
+.ask button svg{width:16px;height:16px;stroke:currentColor;stroke-width:2.2;fill:none}
+.quick{margin-top:18px}
+.quick p{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);font-weight:600;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:#fff;font-size:13px;padding:10px 16px;transition:all .15s}
+.chip:hover{border-color:var(--ink)}
+/* conversation */
+.yousaid{display:flex;justify-content:flex-end;margin-bottom:16px;animation:qin .3s}
+.yousaid span{background:var(--ink);color:#f2efe8;font-size:13.5px;line-height:1.55;padding:12px 16px;max-width:520px}
+.topline{display:flex;gap:14px;align-items:flex-start;margin-bottom:26px;animation:qin .4s}
+.topline .sandra-face{width:40px;height:40px;font-size:17px;flex-shrink:0}
+.topline p{font-family:var(--serif);font-size:16px;line-height:1.65;color:#33301f;padding-top:6px;max-width:640px}
+.qcard .qsub{margin:8px 0 22px}
+.qcard h2{font-size:26px}
+/* talkbar */
+.talkbar{position:sticky;bottom:0;margin-top:34px;background:var(--bone);padding:14px 0 4px}
+.talkbar .ask textarea{padding:14px 18px;font-size:14px}
+.talkbar .hint{font-size:11px;color:var(--grey);margin-top:8px}
+@media(max-width:1100px){.sf-body{grid-template-columns:1fr}.sf-notes{display:none}}
+
+/* ---- slim Sandra strip + New & Now ---- */
+.sandra-strip{background:var(--bone);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ss-in{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:16px;padding-bottom:16px;flex-wrap:wrap}
+.ss-copy{font-size:14px;color:#454234}
+.ss-copy b{font-weight:700;color:var(--ink)}
+.ss-cta{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:13px 22px}
+.ss-cta:hover{background:#000}
+.ss-cta svg{width:15px;height:15px;stroke:currentColor;stroke-width:2.2;fill:none}
+.nn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:26px}
+.nn-card h3{font-size:16.5px;font-weight:700;margin:16px 0 8px}
+.nn-card p{font-size:13.5px;line-height:1.6;color:#555}
+.nn-img{display:block;position:relative;width:100%;background:var(--panel);border:none;padding:0;cursor:pointer;overflow:hidden}
+.nn-img img{width:100%;height:300px;object-fit:contain;padding:8%;transition:transform .5s}
+.nn-img:hover img{transform:scale(1.05)}
+.nn-badge{position:absolute;top:14px;left:14px;background:var(--ink);color:#fff;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:7px 12px}
+.nn-link{display:inline-block;margin-top:12px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px;background:none;border:none;cursor:pointer;padding:0}
+.nn-link:hover{color:var(--brass-deep)}
+@media(max-width:1100px){.nn-grid{grid-template-columns:1fr}}
+
+/* ---- Style Finder modal widget ---- */
+.mback{position:fixed;inset:0;background:rgba(15,13,9,.55);z-index:100;display:none;align-items:center;justify-content:center;padding:30px;opacity:0;transition:opacity .25s}
+.mback.open{display:flex}
+.mback.vis{opacity:1}
+.modal{background:#fff;width:min(940px,100%);max-height:min(680px,92vh);display:grid;grid-template-columns:340px 1fr;position:relative;box-shadow:0 30px 80px rgba(10,8,4,.35);transform:translateY(14px);transition:transform .3s cubic-bezier(.2,.7,.3,1)}
+.mback.vis .modal{transform:none}
+.modal.wide{grid-template-columns:1fr;width:min(880px,100%)}
+.modal.wide .m-left{display:none}
+.m-x{position:absolute;top:14px;right:14px;z-index:5;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:#fff}
+.m-x svg{width:17px;height:17px;stroke:var(--ink);stroke-width:2;fill:none}
+.m-x:hover{background:var(--panel)}
+.m-left{position:relative;background:var(--bone);overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:0;padding:26px}
+.m-left .st1,.m-left .st2{width:78%;background:#fff;border:1px solid var(--line);padding:10px}
+.m-left .st1{align-self:flex-start;transform:rotate(-2deg)}
+.m-left .st2{align-self:flex-end;transform:rotate(1.5deg);margin-top:-30px}
+.m-left img{width:100%;aspect-ratio:1;object-fit:contain}
+.m-left .cap{position:absolute;left:22px;bottom:16px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a8378;font-weight:600}
+.m-right{display:flex;flex-direction:column;min-height:520px;max-height:min(680px,92vh)}
+.m-top{display:flex;align-items:center;justify-content:center;padding:18px 56px 0;position:relative}
+.m-top .mstep{font-size:11px;letter-spacing:.18em;font-weight:700;color:var(--grey)}
+.m-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;padding:12px 40px 0;min-height:10px}
+.fchip{display:inline-flex;align-items:center;gap:8px;border:1px solid #ddd;background:#fff;font-size:11px;font-weight:600;padding:6px 8px 6px 10px;animation:qin .3s}
+.fchip b{font-weight:700;color:#888;letter-spacing:.06em;text-transform:uppercase;font-size:9px}
+.fchip button{color:#a99f8d;font-size:13px;line-height:1;padding:0 2px}
+.fchip button:hover{color:var(--ink)}
+.m-body{flex:1;overflow-y:auto;padding:16px 44px 10px;text-align:center}
+.m-body .sline{display:flex;gap:12px;align-items:flex-start;text-align:left;max-width:460px;margin:0 auto 16px}
+.m-body .sline .sandra-face{width:36px;height:36px;font-size:15px;flex-shrink:0}
+.m-body .sline p{font-size:13.5px;line-height:1.6;color:#444;padding-top:4px}
+.m-body h2{font-family:var(--disp);font-size:24px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px}
+.m-body .msub{font-size:13px;color:var(--grey);margin-bottom:20px}
+.tilegrid{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+.tilegrid.t3{grid-template-columns:repeat(3,1fr)}
+.tilegrid.t4{grid-template-columns:repeat(2,1fr)}
+.tile-opt{border:1.5px solid var(--line);background:#fff;padding:0 0 12px;cursor:pointer;transition:border-color .15s,transform .15s;position:relative}
+.tile-opt:hover{border-color:#9d9789;transform:translateY(-2px)}
+.tile-opt.sel{border-color:var(--ink)}
+.tile-opt.sel::after{content:"✓";position:absolute;top:8px;right:8px;width:22px;height:22px;background:var(--ink);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.tile-opt img{width:100%;height:120px;object-fit:contain;padding:10px 10px 4px;background:#fff}
+.tile-opt .tl{font-size:13.5px;font-weight:700;display:block}
+.tile-opt .ts{font-size:11px;color:var(--grey);display:block;margin-top:2px;padding:0 10px}
+.m-ask{display:flex;border:1px solid var(--ink);margin:4px auto 0;max-width:520px;text-align:left}
+.m-ask textarea{flex:1;border:none;outline:none;resize:none;font-family:var(--sans);font-size:13.5px;line-height:1.55;padding:13px 15px}
+.m-ask button{background:var(--ink);color:#fff;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:0 20px}
+.m-chipsrow{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:12px}
+.m-foot{display:flex;align-items:center;justify-content:space-between;padding:14px 30px 18px;border-top:1px solid var(--line)}
+.m-foot .prev{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);text-decoration:underline;text-underline-offset:3px}
+.m-foot .prev:hover{color:var(--ink)}
+.m-foot .next{background:var(--ink);color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:13px 30px}
+.m-foot .next:disabled{background:#cfc9bd;cursor:default}
+.m-note{font-size:11px;color:var(--grey)}
+/* modal results */
+.mres{text-align:left;max-width:760px;margin:0 auto}
+.mres .fitterword{margin:14px 0 20px;padding:18px 20px}
+.mres .fitterword p{font-size:13.5px;font-family:var(--sans);line-height:1.65;color:#333}
+.mpick{display:grid;grid-template-columns:120px 1fr auto;gap:16px;align-items:center;border:1px solid var(--line);padding:14px 16px;margin-bottom:10px;position:relative}
+.mpick img{width:120px;height:100px;object-fit:contain}
+.mpick .nm{font-size:15px;font-weight:700}
+.mpick .cl{font-size:12px;color:var(--grey);margin:2px 0 6px}
+.mpick .why{font-size:12.5px;line-height:1.6;color:#555}
+.mpick .side{text-align:right;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.mpick .pr{font-size:14.5px;font-weight:700}
+.mpick .pr s{color:var(--grey);font-weight:400;margin-right:6px}
+.mpick .btn{padding:10px 16px;font-size:10px}
+.mpick .mflag{position:absolute;top:-1px;left:-1px;background:var(--ink);color:#fff;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:5px 9px}
+.mpick .mflag.brass{background:var(--brass-deep)}
+.mpick .wfb{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--ink);padding:4px 7px}
+.m-talk{display:flex;border:1px solid var(--line);background:var(--bone)}
+.m-talk textarea{flex:1;border:none;outline:none;resize:none;background:transparent;font-family:var(--sans);font-size:13px;padding:12px 14px}
+.m-talk button{background:var(--ink);color:#fff;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:0 18px}
+@media(max-width:900px){.modal{grid-template-columns:1fr}.m-left{display:none}}
+</style>
+</head>
+<body>
+
+<div class="promo">Free Delivery over £50* &nbsp;·&nbsp; <b>Free Exchanges</b><span>|</span>Back to School: Buy 2 pairs, get 3rd item half price &nbsp;<b>Shop the offer</b></div>
+<div class="util"><div class="wrap"><a href="#">Track Order</a><a href="#">Store Locator</a><a href="#">FAQs</a></div></div>
+
+<header class="site"><div class="wrap hd">
+  <a class="logo" href="#"><img src="https://clarks.a.bigcontent.io/v1/static/ClarksLogo_Update" alt="Clarks"></a>
+  <nav class="main">
+    <a href="#">School</a><a href="#">Women</a><a href="#">Men</a><a href="#">Kids</a><a href="#">Originals</a><a href="#">Accessories</a><a href="#">Clothing</a><a href="#">Brands</a><a href="#" class="sale">Sale</a>
+  </nav>
+  <div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>Search for shoes…</div>
+  <div class="hd-icons">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M6 8h12l1.2 13H4.8L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+  </div>
+</div></header>
+
+<section class="hero">
+  <img src="https://cdn.media.amplience.net/i/clarks/uk-sandal-promo-desktop?w=1780&fmt=auto" alt="Sandals up to 50% off">
+  <div class="hero-card">
+    <span class="eyebrow">Summer offers</span>
+    <h1>Sandals up to 50% off</h1>
+    <div class="hero-links"><a class="btn" href="#">Shop All</a><a class="btn ghost" href="#">Women's</a><a class="btn ghost" href="#">Men's</a></div>
+  </div>
+</section>
+
+<!-- ============ STYLE FINDER BAND (the concept) ============ -->
+<div class="sandra-strip">
+  <div class="wrap ss-in">
+    <span class="ss-copy"><b>Not sure where to start?</b>&nbsp; Take the Style Finder — a few quick questions, matched by 200 years of Clarks fitting expertise.</span>
+    <button class="ss-cta" onclick="Finder.open()">Take the Style Finder<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </div>
+</div>
+
+<section class="strip"><div class="wrap">
+  <h2>New &amp; now</h2>
+  <div class="nn-grid">
+    <article class="nn-card">
+      <button class="nn-img" onclick="Finder.open()" aria-label="Open the Style Finder">
+        <img src="https://cdn.media.amplience.net/i/clarks/26166779_GW_1?fmt=auto&w=800" alt="">
+        <span class="nn-badge">Style Finder</span>
+      </button>
+      <h3>Find your Clarks style</h3>
+      <p>Not sure what suits? Answer a few quick questions and we’ll match you with your perfect Clarks style — fitted, not just found.</p>
+      <button class="nn-link" onclick="Finder.open()">Take the Style Finder Quiz</button>
+    </article>
+    <article class="nn-card">
+      <a class="nn-img" href="#"><img src="https://cdn.media.amplience.net/i/clarks/26320234_GW_1?fmt=auto&w=800" alt=""></a>
+      <h3>Walking boots that don’t look it</h3>
+      <p>Contour Cushion footbeds and proper tread, hidden inside everyday silhouettes built for British weather.</p>
+      <a class="nn-link" href="#">Shop Walking</a>
+    </article>
+    <article class="nn-card">
+      <a class="nn-img" href="#"><img src="https://cdn.media.amplience.net/i/clarks/26184278_GW_1?fmt=auto&w=800" alt=""></a>
+      <h3>Our softest footbed yet</h3>
+      <p>Solevana pairs PillowSoft™ cushioning with our lightest-ever foam. Comfort you’ll feel from the first step.</p>
+      <a class="nn-link" href="#">Shop Solevana</a>
+    </article>
+  </div>
+</div></section>
+
+<section class="strip"><div class="wrap">
+  <h2>Shop by category</h2>
+  <p class="sub">Comfort built in, whatever the occasion.</p>
+  <div class="tiles">
+    <a class="tile" href="#"><img src="https://cdn.media.amplience.net/i/clarks/AW26_ATH_Hero_Banner_W_1?fmt=auto&w=800" alt="Women's"><span class="lab">Women's</span></a>
+    <a class="tile" href="#"><img src="https://cdn.media.amplience.net/i/clarks/db-uk-solevana-hero-d-wk28b-ss26?fmt=auto&w=800" alt="Men's"><span class="lab">Men's</span></a>
+    <a class="tile" href="#"><img src="https://cdn.media.amplience.net/i/clarks/promo-sandal-50-off-desktop?fmt=auto&w=800" alt="Kids"><span class="lab">Kids</span></a>
+    <a class="tile" href="#"><img src="https://cdn.media.amplience.net/i/clarks/Social_3000x3000_Clarks_Originals_mens_wallabee_mapleSuede%200381_AW25?w=800&fmt=auto" alt="Originals"><span class="lab">Originals</span></a>
+  </div>
+</div></section>
+
+<section class="dark-strip"><div class="wrap ds-grid">
+  <div><h2>UK's favourite school shoe brand</h2><p>According to 2026 research by YouGov · Buy 2 pairs, get 3rd item half price</p></div>
+  <a class="btn ghost" style="border-color:#fff;color:#fff" href="#">Shop Back to School</a>
+</div></section>
+
+<div class="usp"><div class="wrap">
+  <span><svg viewBox="0 0 24 24"><path d="M3 7h13v10H3zM16 10h4l1 3v4h-5z"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg>Free standard delivery over £50*</span>
+  <span><svg viewBox="0 0 24 24"><path d="M4 9a8 8 0 0 1 15-2M20 15a8 8 0 0 1-15 2"/><path d="M19 3v4h-4M5 21v-4h4"/></svg>Easy returns &amp; exchanges</span>
+  <span><svg viewBox="0 0 24 24"><path d="M12 3 4 7v5c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7z"/></svg>Shoemakers since 1825</span>
+</div></div>
+
+<footer class="site"><div class="wrap">
+  <div class="ft">
+    <img src="https://clarks.a.bigcontent.io/v1/static/ClarksLogo_Update" alt="Clarks" style="height:24px">
+    <div class="cols">
+      <div><h4>Shop</h4><a href="#">Women's</a><a href="#">Men's</a><a href="#">Kids</a><a href="#">Originals</a><a href="#">Brands</a></div>
+      <div><h4>Customer services</h4><a href="#">Book a kids' in-store fitting</a><a href="#">Delivery &amp; collection</a><a href="#">Returns &amp; refunds</a><a href="#">Shoe size chart</a><a href="#">Store locator</a></div>
+      <div><h4>About</h4><a href="#">About us</a><a href="#">Sustainability</a><a href="#">Editorial</a><a href="#">Careers at Clarks</a></div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© 2026 C. &amp; J. Clark International Limited. All rights reserved. — Concept prototype</span>
+    <span>Terms &amp; Conditions · Privacy Policy · Cookie Policy</span>
+  </div>
+</div></footer>
+
+
+<!-- ============ STYLE FINDER — MODAL WIDGET ============ -->
+<div class="mback" id="mback" role="dialog" aria-modal="true" aria-label="Clarks Style Finder">
+  <div class="modal" id="modal">
+    <button class="m-x" onclick="Finder.close()" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div class="m-left" id="mleft"></div>
+    <div class="m-right">
+      <div class="m-top"><span class="mstep" id="mstep"></span></div>
+      <div class="m-chips" id="mchips"></div>
+      <div class="m-body" id="mbody"></div>
+      <div class="m-foot" id="mfoot"></div>
+    </div>
+  </div>
+</div>
+<script>
+const IMG = s => `https://cdn.media.amplience.net/i/clarks/${s}_GW_1?fmt=auto&w=900`;
+const P = [
+/* ---- WOMEN ---- */
+{id:'26177353',aud:'w',name:'Loreleigh Rae',colour:'Black Leather',price:50,wide:true,occ:['everyday','smart'],feel:['support','wide'],style:['classic','casual'],tech:'Wide fit available',
+ note:'A soft leather flat that behaves like a trainer underneath. The rounded toe box gives toes their full spread — the first thing we check on any fitting.'},
+{id:'26184336',aud:'w',name:'Zylah Top',colour:'Navy Suede',price:65,occ:['everyday'],feel:['cushion','light'],style:['casual'],tech:'Ultimate Comfort',
+ note:'Suede uppers soften with every wear and shape themselves to your foot — which is exactly why we never recommend hand-me-downs.'},
+{id:'26177360',aud:'w',name:'Nalle Lace',colour:'Stone Nubuck',price:80,wide:true,occ:['everyday','active'],feel:['support','wide'],style:['casual'],tech:'Wide fit available',
+ note:'A structured lace-up with proper midfoot hold. If your foot measures a fuller G or H fitting, this last carries it without pinching.'},
+{id:'26184278',aud:'w',name:'Solevana Jane',colour:'Black',price:55,occ:['everyday','active'],feel:['cushion','light'],style:['sporty','casual'],tech:'PillowSoft™ footbed',
+ note:'Our softest footbed on our lightest foam. If you\u2019re on your feet all day, this is the pair our fitters reach for first.'},
+{id:'26188585',aud:'w',name:'Trigenic2 Bar',colour:'White Leather',price:89,occ:['active','everyday'],feel:['light','support'],style:['sporty'],tech:'Trigenic flex sole',
+ note:'The sole is split into three zones that move the way a bare foot does — decoupled heel, flexible forefoot. Engineering, not decoration.'},
+{id:'26335294',aud:'w',name:'Lorenza Lace',colour:'Light Pink Suede',price:49,occ:['active','everyday'],feel:['light','cushion'],style:['sporty'],tech:'New in',
+ note:'A featherweight trainer on a forgiving last. A good option while feet are still settling into a new width after summer sandals.'},
+{id:'26183170',aud:'w',name:'Orinoco3 Derby',colour:'Black Leather',price:80,occ:['smart'],feel:['support','cushion'],style:['classic'],tech:'Contour Cushion',
+ note:'A smart derby with our Contour Cushion footbed hidden inside — it supports the arch through an eight-hour day, not just the walk from the car.'},
+{id:'26182996',aud:'w',name:'Shaya Jane',colour:'Black Leather',price:70,occ:['smart','everyday'],feel:['support','cushion'],style:['classic'],tech:'Contour Cushion',
+ note:'A Mary Jane with a strap that actually holds the midfoot. Straps aren\u2019t styling — they stop the foot sliding forward and cramping the toes.'},
+{id:'00254793',aud:'w',name:'Georgia Loafer',colour:'Black Leather',price:60,wide:true,occ:['smart','everyday'],feel:['wide','support'],style:['classic'],tech:'Wide fit available',
+ note:'A loafer cut on a generous last, made in wide fittings. Slip-ons only work when the fit is exact — this one we can fit precisely.'},
+{id:'26178709',aud:'w',name:'Havisham Oak',colour:'Black Leather',price:70,occ:['smart'],feel:['support'],style:['classic'],tech:'Contour Cushion',
+ note:'A brogue-detailed flat with real structure through the waist of the shoe. Polishes beautifully; wears for years.'},
+{id:'26183154',aud:'w',name:'Zarey Court',colour:'Sand Patent',price:60,occ:['occasion'],feel:['cushion','support'],style:['classic'],tech:'Contour Cushion',
+ note:'A low, stable heel with cushioning where the ball of the foot lands. You should finish a wedding on the dance floor, not on a bench.'},
+{id:'26183034',aud:'w',name:'Fernie Court',colour:'Sand Patent',price:65,occ:['occasion'],feel:['cushion'],style:['classic'],tech:'Contour Cushion',
+ note:'A sculpted patent court on a steady block heel — height where you want it, stability where you need it. Occasion-proof from ceremony to carriages.'},
+{id:'26186117',aud:'w',name:'Serina35 Strap',colour:'Black Patent',price:60,occ:['occasion'],feel:['support','cushion'],style:['classic'],tech:'Contour Cushion',
+ note:'A 35mm heel — the height our fitters call \u201call evening\u201d. The ankle strap shares the work so your toes don\u2019t grip.'},
+{id:'26177304',aud:'w',name:'Kitly Ave',colour:'Bronze Leather',price:75,wide:true,occ:['occasion','everyday'],feel:['wide','cushion'],style:['classic','casual'],tech:'Wide fit available',
+ note:'A bronze sandal that dresses up or down, in wide fittings. Occasion shoes are where fit is abandoned first — it needn\u2019t be.'},
+{id:'26178715',aud:'w',name:'Havisham Top Ankle Boot',colour:'Black Leather',price:80,occ:['smart','everyday'],feel:['support'],style:['classic'],tech:'Contour Cushion',
+ note:'An ankle boot with a firm heel counter — the cup at the back that keeps your heel seated. It\u2019s the part of a boot we check first.'},
+{id:'26320234',aud:'w',name:'Orlene Roam',colour:'Black Leather',price:89,occ:['active','everyday'],feel:['support','cushion'],style:['casual'],tech:'Contour Cushion',
+ note:'A walking-ready boot that doesn\u2019t look like one. Grippy sole, cushioned footbed, and a lace system that tunes the fit across the instep.'},
+{id:'26176650',aud:'w',name:'Tivoli Zip',colour:'Off White Leather',price:80,was:40,occ:['active','everyday'],feel:['cushion','light'],style:['sporty','casual'],tech:'Cushion Plus',
+ note:'A leather trainer with a side zip — easy on, without loosening the laces and losing the fit you set.'},
+{id:'26185882',aud:'w',name:'DashLite Wish',colour:'Gold Leather',price:65,was:45,occ:['active','occasion'],feel:['light','cushion'],style:['sporty'],tech:'DashLite sole',
+ note:'A sport sandal that weighs almost nothing. Holiday miles want contoured footbeds, not flat foam.'},
+/* ---- MEN ---- */
+{id:'26184702',aud:'m',name:'Craftwell Lace',colour:'Black Leather',price:70,occ:['everyday','smart'],feel:['cushion','support'],style:['casual','classic'],tech:'Ultimate Comfort',
+ note:'The everyday leather lace-up we fit most. Cushioned underfoot, smart enough for the office, forgiving enough for the weekend.'},
+{id:'26176976',aud:'m',name:'Sailview Step Loafer',colour:'Navy Nubuck',price:70,occ:['everyday'],feel:['light'],style:['casual'],tech:'Slip-on ease',
+ note:'A summer loafer that holds at the heel — the test of any slip-on. If it slips when you walk, it\u2019s the wrong size, not the wrong shoe.'},
+{id:'26186188',aud:'m',name:'Lockford Boat',colour:'Navy Suede',price:35,occ:['everyday'],feel:['light'],style:['casual'],tech:'Classic boat construction',
+ note:'A proper stitched boat shoe. Suede moulds to its first wearer within weeks — buy your own, break in your own.'},
+{id:'26137076',aud:'m',name:'Un Abode Go Loafer',colour:'Black Leather',price:95,occ:['smart','everyday'],feel:['cushion','support'],style:['classic'],tech:'Unstructured™',
+ note:'From our Unstructured range — the leathers are left soft and the footbed does the supporting. Feels broken-in from the first wear.'},
+{id:'26178563',aud:'m',name:'Craft James Tip Brogue',colour:'Mid Tan Leather',price:130,occ:['smart','occasion'],feel:['support'],style:['classic'],tech:'Goodyear-welted craft',
+ note:'A brogue built the slow way. Welted construction can be resoled for decades — the most sustainable shoe is the one you keep.'},
+{id:'26185510',aud:'m',name:'Banbury Tip',colour:'Black Leather',price:60,occ:['smart','occasion'],feel:['support','cushion'],style:['classic'],tech:'Ortholite® footbed',
+ note:'A clean toe-cap oxford for suits and ceremonies. We size these snug across the instep so the toe shape stays crisp.'},
+{id:'26320300',aud:'m',name:'Aldwin2 Derby',colour:'Tan Leather',price:85,occ:['smart','occasion'],feel:['support'],style:['classic'],tech:'Open-laced derby',
+ note:'Derbies open wider than oxfords — the fitting-room answer for a higher instep. That\u2019s why we ask how a shoe feels across the top.'},
+{id:'26136984',aud:'m',name:'Un Abode Ease',colour:'Black Leather',price:95,wide:true,occ:['smart','everyday'],feel:['wide','cushion'],style:['classic'],tech:'Unstructured™ · Wide fit',
+ note:'Soft-built and available in wide fittings. Around one in four men we measure takes a wider fitting than the shoe he walked in wearing.'},
+{id:'26328043',aud:'m',name:'Code C Tie',colour:'White Leather',price:85,occ:['active','everyday'],feel:['cushion','light'],style:['sporty'],tech:'Clarks Code',
+ note:'A leather court trainer with real cushioning under the heel strike. Clean enough for anywhere jeans go.'},
+{id:'26188654',aud:'m',name:'Solevana Sport',colour:'Light Blue',price:35,occ:['active'],feel:['light','cushion'],style:['sporty'],tech:'PillowSoft™ footbed',
+ note:'Our lightest foam under our softest footbed. For long days on hard floors, weight is comfort.'},
+{id:'26181324',aud:'m',name:'Courtlite 2 Run',colour:'Olive Nubuck',price:55,occ:['active','everyday'],feel:['light','cushion'],style:['sporty','casual'],tech:'Courtlite cushioning',
+ note:'A runner silhouette with a supportive heel cradle. The nubuck upper flexes where your foot flexes — nowhere else.'},
+{id:'26327242',aud:'m',name:'Torhill Hi',colour:'Dark Brown Leather',price:100,occ:['active','everyday'],feel:['support'],style:['casual'],tech:'Torhill grip sole',
+ note:'A hybrid boot with serious tread. The high cut steadies the ankle on rough ground — support you feel, not just see.'},
+{id:'26334409',aud:'m',name:'Winsham Lace Waterproof',colour:'Black Leather',price:90,occ:['active','smart'],feel:['support','cushion'],style:['casual','classic'],tech:'Waterproof membrane',
+ note:'Sealed against British weather without the wellington look. Dry feet stay warm; warm feet stay comfortable.'},
+{id:'26166779',aud:'m',name:'Desert Boot Evo',colour:'Black Suede',price:85,occ:['everyday','smart'],feel:['light','cushion'],style:['casual','classic'],tech:'Originals icon, evolved',
+ note:'Nathan Clark\u2019s 1950 icon on a modern cushioned sole. Some designs survive because they were right the first time.'},
+{id:'26329282',aud:'m',name:'Wallabee Lite',colour:'Grey Suede',price:75,occ:['everyday'],feel:['light','wide'],style:['casual'],tech:'Moccasin construction',
+ note:'The Wallabee\u2019s moccasin build wraps the foot rather than boxing it in — naturally roomy across the forefoot.'},
+/* ---- KIDS ---- */
+{id:'26189649',aud:'k',name:'Lumen Hero Kid',colour:'Black Combination',price:25,occ:['school'],feel:['support','cushion'],style:['sporty','casual'],tech:'Scuff-resistant toe',
+ note:'Our best-selling school shoe, built for playground physics: reinforced toe bumper, cushioned collar, and a sole that outlasts the term.'},
+{id:'26189706',aud:'k',name:'Lumen Hero Youth',colour:'Navy',price:25,occ:['school'],feel:['support','cushion'],style:['sporty'],tech:'Scuff-resistant toe',
+ note:'The older-kids\u2019 version, sized for feet that can jump two sizes in a year. We\u2019d rather re-measure each term than guess.'},
+{id:'26189518',aud:'k',name:'CICA Goal Kid',colour:'Black',price:35,occ:['school','play'],feel:['light','support'],style:['sporty'],tech:'CICA football trainer',
+ note:'School-rules black, football-boot heart. A supportive heel cage keeps growing ankles steady through every lunchtime match.'},
+{id:'26189515',aud:'k',name:'Derry Loafer Youth',colour:'Black Leather',price:40,occ:['school'],feel:['support'],style:['classic'],tech:'School leather loafer',
+ note:'A smart leather loafer for seniors — with a proper heel grip, because a slip-on that slips ruins a growing gait.'},
+{id:'26142290',aud:'k',name:'Roamer Craft Toddler',colour:'Tan Leather',price:28,occ:['first'],feel:['light','support'],style:['casual','classic'],tech:'First-shoes flex sole',
+ note:'A first walker with an ultra-flexible sole and soft ankle line. Feet under three can grow two sizes a year — check every eight weeks.'},
+{id:'26143463',aud:'k',name:'Roamer Star Toddler',colour:'Pink Patent',price:28,occ:['first'],feel:['light','support'],style:['classic'],tech:'First-shoes flex sole',
+ note:'Patent on top, barefoot-flexible underneath. At this age the shoe protects the foot; it must never steer it.'},
+{id:'26189732',aud:'k',name:'Roamer Sky Toddler',colour:'Lilac Combination',price:25,occ:['first','play'],feel:['light','cushion'],style:['casual'],tech:'First-shoes flex sole',
+ note:'Soft, secure and easy for small hands to fasten. Independence at the shoe rack starts earlier than you\u2019d think.'},
+{id:'26189306',aud:'k',name:'Cypress Pop Toddler',colour:'Khaki',price:30,occ:['play','first'],feel:['support','cushion'],style:['casual','sporty'],tech:'Toe-protecting bumper',
+ note:'Built for the muddy end of the park. The wraparound bumper takes the scrapes so growing toes don\u2019t have to.'},
+{id:'26180818',aud:'k',name:'Feather Ath Toddler',colour:'Dusty Pink',price:32,occ:['play'],feel:['light','cushion'],style:['sporty'],tech:'Featherlight sole',
+ note:'So light they forget they\u2019re wearing them — which, for a foot with 45 still-forming bones, is exactly the point.'},
+{id:'26189702',aud:'k',name:'Gleam Go Kid',colour:'Black',price:40,occ:['play','school'],feel:['cushion','support'],style:['sporty'],tech:'Kids\u2019 Lights',
+ note:'Light-up sole, serious structure. The fun gets them on; the fit is what we\u2019re actually selling.'},
+{id:'26189287',aud:'k',name:'Torridon Vibe Kid',colour:'Blue/Grey',price:30,occ:['play'],feel:['support','cushion'],style:['sporty'],tech:'Trail-grip sole',
+ note:'Weekend-adventure tread with a cushioned ride. Grip matters more for kids — they don\u2019t slow down for wet leaves.'},
+{id:'26186369',aud:'k',name:'Harbour Hero Toddler',colour:'Cotton Combination',price:30,occ:['play','first'],feel:['light'],style:['casual'],tech:'Machine washable',
+ note:'A canvas shoe that survives the washing machine. Practical for parents; roomy and breathable for small feet in summer.'},
+];
+
+/* ============ Ask Sandra — Style Finder widget (agentic modal) ============ */
+let profile={}, phase='open', qHistory=[], planTotal=0, planDone=0, multiSel=[], busy=false, convoNote='';
+
+const LBL={
+ aud:{w:"Women\u2019s",m:"Men\u2019s",k:"Kids\u2019"},
+ occ:{everyday:"Everyday",smart:"Work & smart",occasion:"Special occasion",active:"Out & active",school:"School days",play:"Play & weekends",first:"First steps"},
+ feel:{cushion:"Pillow-soft",support:"Supportive",light:"Light & flexible",wide:"Roomy / wide fit"},
+ style:{classic:"Classic",casual:"Casual",sporty:"Sporty"}
+};
+/* audience-aware tile imagery */
+const QIMG={
+ occ:{everyday:{w:'26177353',m:'26184702',k:'26189287'},smart:{w:'26183170',m:'26185510'},occasion:{w:'26183154',m:'26178563'},active:{w:'26320234',m:'26327242'},
+      first:{k:'26142290'},play:{k:'26189287'},school:{k:'26189649'}},
+ feel:{cushion:{w:'26184278',m:'26188654',k:'26189702'},support:{w:'26182996',m:'26185510',k:'26189518'},light:{w:'26335294',m:'26181324',k:'26180818'},wide:{w:'00254793',m:'26136984',k:'26186369'}},
+ style:{classic:{w:'26178709',m:'26178563',k:'26189515'},casual:{w:'26184336',m:'26166779',k:'26189306'},sporty:{w:'26188585',m:'26328043',k:'26189702'}}
+};
+const qi=(q,v)=>{const e=QIMG[q]&&QIMG[q][v];if(!e)return null;return e[profile.aud]||e.w||e.m||e.k;};
+
+/* ---------------- parser (unchanged logic) ---------------- */
+function parseText(t){
+  const s=" "+t.toLowerCase()+" ", out={};
+  const words={one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15};
+  const sn=s.replace(/\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen)\b/g,w=>words[w]);
+  if(/\b(daughter|niece|granddaughter|little girl|my girl)\b/.test(s)){out.aud='k';out.pron='she';}
+  if(/\b(son|nephew|grandson|little boy|my boy|my lad)\b/.test(s)){out.aud='k';out.pron='he';}
+  if(/\b(toddler|baby|first shoes|first steps|pre[- ]?school)\b/.test(s))out.aud='k';
+  if(/\b(kids?|child|children)\b/.test(s)&&!out.aud)out.aud='k';
+  if(/\b(husband|boyfriend|my dad|father|brother|grandad|for him)\b/.test(s))out.aud='m';
+  if(/\b(wife|girlfriend|my mum|mother|sister|nan\b|grandma|for her)\b/.test(s))out.aud='w';
+  let m=sn.match(/turning\s+(\d{1,2})/)||sn.match(/(\d{1,2})(?:st|nd|rd|th)?\s*(?:birthday|years?\s*old|year[- ]old|yr)/)||sn.match(/\b(?:he|she|they)['\u2019]?s\s+(?:just\s+|only\s+|nearly\s+|almost\s+)?(\d{1,2})\b/)||sn.match(/\baged?\s+(\d{1,2})\b/);
+  if(m){out.age=+m[1]; if(out.age<=16)out.aud='k';}
+  if(/school|term|uniform|september|back to class/.test(s))out.occ='school';
+  else if(/wedding|christening|party|prom|graduation|occasion|big do|ceremony/.test(s))out.occ='occasion';
+  else if(/\bwork\b|office|interview|smart shoes|suit|meetings|nine to five/.test(s))out.occ='smart';
+  else if(/walk|hik(e|ing)|holiday|travel|trip|outdoors|dog[- ]?walk|active|miles/.test(s))out.occ='active';
+  else if(/everyday|day to day|casual|all[- ]day|errands|school run(?!ning)|lives in trainers/.test(s))out.occ='everyday';
+  if((out.aud==='k'||profile.aud==='k')){
+    if(out.occ==='school'){}
+    else if(out.age!==undefined&&out.age<=3)out.occ='first';
+    else if(/park|play|weekend|running around|nursery/.test(s))out.occ='play';
+    else if(/first shoes|first steps|walking yet|just started walking|cruising/.test(s))out.occ='first';
+    else if(out.occ&&!['school','play','first'].includes(out.occ))out.occ=(out.occ==='active'||out.occ==='everyday')?'play':out.occ;
+  }
+  if(/wide|broad (foot|feet)|bunion|roomy|room in the toe|\bpinch/.test(s))out.feel='wide';
+  else if(/cushion|pillow|soft under|sore feet|comfy|comfort is|on (my|her|his|their) feet all day|standing all day|plantar/.test(s))out.feel='cushion';
+  else if(/support|arch|ankle|stability|orthotic|sturdy/.test(s))out.feel='support';
+  else if(/lightweight|\blight\b|flexible|barely there/.test(s))out.feel='light';
+  if(/trainer|sporty|sneaker/.test(s))out.styles=['sporty'];
+  else if(/elegant|classic|smart|leather|brogue|loafer|polished/.test(s))out.styles=['classic'];
+  else if(/casual|relaxed|suede|laid[- ]?back/.test(s))out.styles=['casual'];
+  const b=s.match(/\u00a3\s?(\d+)/);
+  if(b){out.budget=+b[1];out.budgetKind=/under|less than|max|no more than|keep (it )?under/.test(s)?'under':'around';}
+  let dl=null;
+  if(/\btomorrow\b/.test(s))dl='tomorrow';
+  else if(/weekend/.test(s))dl='the weekend';
+  else if(/september|start of term/.test(s))dl='the start of term';
+  else{const dm=s.match(/\b(?:by|before|for|this|next)\s+(saturday|sunday|monday|tuesday|wednesday|thursday|friday)\b/);if(dm)dl=dm[1][0].toUpperCase()+dm[1].slice(1);}
+  if(dl)out.deadline=dl;
+  if(/narrow heel|heel slips|slips at the heel/.test(s))out.heelSlip=true;
+  return out;
+}
+function merge(p){for(const k in p){if(p[k]!==undefined)profile[k]=p[k];}}
+function missing(){const q=[];if(!profile.aud)q.push('aud');if(!profile.occ)q.push('occ');if(!profile.feel)q.push('feel');if(!profile.styles)q.push('style');return q;}
+
+function ackFor(p){
+  const bits=[];
+  if(p.budget)bits.push(`We\u2019ll keep to ${p.budgetKind==='under'?'under':'around'} \u00a3${p.budget}.`);
+  if(p.feel==='wide')bits.push('Wide fit noted \u2014 Clarks shoes come in up to five width fittings.');
+  return bits.slice(0,1).join(' ');
+}
+
+/* ---------------- fact chips ---------------- */
+const FACTS=[
+ {k:'aud',l:'Fitting',v:p=>LBL.aud[p.aud]},
+ {k:'age',l:'Age',v:p=>p.age},
+ {k:'occ',l:'For',v:p=>LBL.occ[p.occ]},
+ {k:'feel',l:'Feel',v:p=>LBL.feel[p.feel]},
+ {k:'styles',l:'Style',v:p=>p.styles.map(x=>LBL.style[x]).join(' + ')},
+ {k:'budget',l:'Budget',v:p=>(p.budgetKind==='under'?'Under \u00a3':'~\u00a3')+p.budget},
+ {k:'deadline',l:'By',v:p=>p.deadline},
+ {k:'heelSlip',l:'Note',v:()=>'Narrow heels'},
+];
+function renderChips(){
+  document.getElementById('mchips').innerHTML=FACTS.filter(f=>profile[f.k]!==undefined&&profile[f.k]!==false)
+   .map(f=>`<span class="fchip"><b>${f.l}</b>${f.v(profile)}<button onclick="Finder.removeFact('${f.k}')" title="Remove">\u00d7</button></span>`).join('');
+}
+function setStep(txt){document.getElementById('mstep').textContent=txt;}
+function leftPanel(imgs,cap){
+  document.getElementById('mleft').innerHTML=
+   `<div class="st1"><img src="${IMG(imgs[0])}" alt=""></div>`+
+   (imgs[1]?`<div class="st2"><img src="${IMG(imgs[1])}" alt=""></div>`:'')+
+   `<span class="cap">${cap}</span>`;
+}
+const body=()=>document.getElementById('mbody');
+const foot=()=>document.getElementById('mfoot');
+
+/* ---------------- Finder ---------------- */
+const Finder={
+ open(){ profile={}; phase='open'; qHistory=[]; convoNote=''; busy=false;
+   const b=document.getElementById('mback'); b.classList.add('open');
+   requestAnimationFrame(()=>b.classList.add('vis')); document.body.style.overflow='hidden';
+   document.getElementById('modal').classList.remove('wide');
+   this.renderOpening(); },
+ close(){ const b=document.getElementById('mback'); b.classList.remove('vis'); document.body.style.overflow='';
+   setTimeout(()=>b.classList.remove('open'),250); },
+
+ renderOpening(){
+   setStep('The Clarks Style Finder'); renderChips();
+   leftPanel(['26166779','26188585'],'Fitted, not just found');
+   body().innerHTML=`
+     <h2>Let\u2019s find your Clarks style</h2>
+     <p class="msub">Tell us who you\u2019re shopping for, in your own words \u2014 the more you tell us, the less we ask. Or leave it blank and we\u2019ll simply ask.</p>
+     <div class="m-ask"><textarea id="openInput" rows="2">My daughter starts school in September \u2014 she\u2019s five, quite wide feet, lives in trainers. Around \u00a330.</textarea>
+     <button onclick="Finder.submitOpen()">Find my style</button></div>
+     <div class="m-chipsrow">
+       <button class="chip" onclick="Finder.chip(1)">Smart for the office</button>
+       <button class="chip" onclick="Finder.chip(2)">A wedding on the way</button>
+       <button class="chip" onclick="Finder.chip(3)">Just ask me questions</button>
+     </div>`;
+   foot().innerHTML=`<span class="m-note">Built on the knowledge of our longest-serving in-store fitters</span><span class="m-note">Free fitting in every store</span>`;
+ },
+ chip(i){const t=['','I need smart black shoes for work \u2014 on my feet all day and my usual pairs pinch by lunchtime.','Wedding in three weeks \u2014 elegant, but I want to be standing at the end of the night. Around \u00a370.',''][i];
+   document.getElementById('openInput').value=t; if(t)document.getElementById('openInput').focus(); else this.submitOpen(); },
+ submitOpen(){
+   const t=(document.getElementById('openInput').value||'').trim();
+   if(t){const p=parseText(t);merge(p);convoNote=ackFor(p);}
+   planTotal=missing().length; planDone=0; phase='ask';
+   this.nextStep(); },
+
+ nextStep(){
+   renderChips();
+   const miss=missing();
+   if(!miss.length)return this.analyse();
+   planDone=planTotal-miss.length;
+   const solved=planTotal<4&&planDone===0;
+   setStep(`Question ${planDone+1} of ${planTotal}${planTotal<4?' \u2014 we\u2019ve noted the rest':''}`);
+   const k=miss[0]; qHistory.push(JSON.stringify(profile));
+   if(k==='aud')this.qWho(); else if(k==='occ')(profile.aud==='k'?this.qStage():this.qWhere()); else if(k==='feel')this.qFeel(); else this.qStyle();
+ },
+ sline(){ if(!convoNote)return ''; const t=convoNote; convoNote=''; return `<div class="sline"><p>${t}</p></div>`; },
+ tiles(q,opts,multi){
+   multiSel=[];
+   body().innerHTML=this.sline()+`<h2>${q.h}</h2><p class="msub">${q.sub}</p>
+     <div class="tilegrid ${opts.length===3?'t3':opts.length===4?'t4':''}">
+     ${opts.map(o=>`<button class="tile-opt" data-v="${o.v}" onclick="Finder.tap('${q.key}','${o.v}',${multi?'true':'false'},this)">
+        ${o.img?`<img src="${IMG(o.img)}" alt="">`:''}
+        <span class="tl">${o.t}</span>${o.s?`<span class="ts">${o.s}</span>`:''}
+      </button>`).join('')}</div>`;
+   foot().innerHTML=`${qHistory.length>1?'<button class="prev" onclick="Finder.prev()">Previous</button>':'<span></span>'}
+     ${multi?`<button class="next" id="nextBtn" disabled onclick="Finder.commitMulti('${q.key}')">Next</button>`:`<span class="m-note">${q.foot||''}</span>`}`;
+   body().scrollTop=0;
+ },
+ tap(key,val,multi,el){
+   if(busy)return;
+   if(!multi){ el.classList.add('sel'); busy=true;
+     setTimeout(()=>{busy=false; profile[key==='style'?'styles':key]= key==='style'?[val]:val;
+       const like={};like[key==='style'?'styles':key]=key==='style'?[val]:val; convoNote=ackFor({[key]:val});
+       this.nextStep();},260);
+     return; }
+   el.classList.toggle('sel');
+   const v=el.dataset.v;
+   multiSel=multiSel.includes(v)?multiSel.filter(x=>x!==v):[...multiSel,v].slice(-2);
+   document.querySelectorAll('.tile-opt').forEach(t=>t.classList.toggle('sel',multiSel.includes(t.dataset.v)));
+   document.getElementById('nextBtn').disabled=!multiSel.length;
+ },
+ commitMulti(key){ profile.styles=multiSel.slice(); this.nextStep(); },
+ prev(){ if(qHistory.length<2)return; qHistory.pop(); profile=JSON.parse(qHistory.pop()); this.nextStep(); },
+ removeFact(k){ delete profile[k==='styles'?'styles':k]; if(k==='aud')delete profile.occ;
+   renderChips();
+   if(phase==='results'){ const miss=missing().filter(x=>x!=='style'||true);
+     if(missing().length){ planTotal=missing().length; planDone=0; phase='ask';
+       document.getElementById('modal').classList.remove('wide'); this.nextStep(); }
+     else this.analyse(); } },
+
+ qWho(){ leftPanel(['26188585','26178563'],'Who we\u2019re fitting');
+   this.tiles({key:'aud',h:'Who are we fitting today?',sub:'Every fitting starts with the person, never the shoe.',foot:'Tap to continue'},[
+    {v:'w',t:'Women\u2019s',s:'Five width fittings',img:'26188585'},
+    {v:'m',t:'Men\u2019s',s:'1 in 4 needs a wider fit',img:'26178563'},
+    {v:'k',t:'Kids\u2019',s:'45 still-forming bones',img:'26189649'}]); },
+ qStage(){ leftPanel(['26142290','26189649'],'Growing feet');
+   this.tiles({key:'occ',h:'Which stage are their feet at?',sub:'Under three, feet can grow two sizes a year \u2014 stage matters more than style.',foot:'Tap to continue'},[
+    {v:'first',t:'First steps',s:'Ultra-flexible soles',img:qi('occ','first')},
+    {v:'play',t:'Play & weekends',s:'Parks, puddles, physics',img:qi('occ','play')},
+    {v:'school',t:'School days',s:'Scuff-proof, term-proof',img:qi('occ','school')}]); },
+ qWhere(){ leftPanel([qi('occ','smart'),qi('occ','active')],'Where they\u2019ll go');
+   this.tiles({key:'occ',h:'Where will this pair spend most of its life?',sub:'The right shoe for the office is the wrong shoe for the school run.',foot:'Tap to continue'},[
+    {v:'everyday',t:'Everyday',img:qi('occ','everyday')},
+    {v:'smart',t:'Work & smart',img:qi('occ','smart')},
+    {v:'occasion',t:'Special occasion',img:qi('occ','occasion')},
+    {v:'active',t:'Out & active',img:qi('occ','active')}]); },
+ qFeel(){ leftPanel([qi('feel','cushion'),qi('feel','support')],'How it should feel');
+   this.tiles({key:'feel',h:'How should they feel?',sub:'The question our in-store fitters always ask.',foot:'Tap to continue'},[
+    {v:'cushion',t:'Pillow-soft',s:'PillowSoft\u2122 builds',img:qi('feel','cushion')},
+    {v:'support',t:'Supportive',s:'Contour Cushion range',img:qi('feel','support')},
+    {v:'light',t:'Light & flexible',s:'Barely-there builds',img:qi('feel','light')},
+    {v:'wide',t:'Roomy & wide',s:'True wide fittings',img:qi('feel','wide')}]); },
+ qStyle(){ leftPanel([qi('style','classic'),qi('style','sporty')],'Their character');
+   this.tiles({key:'style',h:'What\u2019s their style?',sub:'Select up to two \u2014 fit is science, style is the reward.'},[
+    {v:'classic',t:'Classic',img:qi('style','classic')},
+    {v:'casual',t:'Casual',img:qi('style','casual')},
+    {v:'sporty',t:'Sporty',img:qi('style','sporty')}],true); },
+
+ analyse(){ phase='analyse'; renderChips(); setStep('One moment');
+   body().innerHTML=`<div class="think" style="padding:70px 10px">
+     <svg class="g" viewBox="0 0 200 30"><g stroke="#cfc9bd" stroke-width="1">${Array.from({length:21},(_,i)=>`<line x1="${i*10}" y1="${i%5===0?12:18}" x2="${i*10}" y2="26"/>`).join('')}<line x1="0" y1="26" x2="200" y2="26" stroke="#8a8378"/></g><rect class="sweep" x="20" y="4" width="3" height="22" fill="#1a1a1a"/></svg>
+     <h3>Finding your matches\u2026</h3><p>Matching your answers against 200 years of fitting knowledge.</p></div>`;
+   foot().innerHTML='';
+   setTimeout(()=>this.results(),1400); },
+
+ score(p,useBudget){ const a=profile; let s=0;
+   if(p.aud!==a.aud)return -1;
+   if(p.occ.includes(a.occ))s+=p.occ[0]===a.occ?34:26; else return .5;
+   if(p.feel.includes(a.feel))s+=p.feel[0]===a.feel?24:16;
+   if(a.styles&&a.styles.some(st=>p.style.includes(st)))s+=a.styles.includes(p.style[0])?14:9;
+   if(a.feel==='wide'&&p.wide)s+=10;
+   if(a.heelSlip&&p.feel.includes('support'))s+=6;
+   if(useBudget&&a.budget){const pr=p.was||p.price;
+     if(pr<=a.budget)s+=6; else s-=a.budgetKind==='under'?40:(pr-a.budget>15?24:10);}
+   return s; },
+ results(){ phase='results';
+   document.getElementById('modal').classList.add('wide');
+   const a=profile;
+   const rank=b=>P.map(p=>({p,s:this.score(p,b)})).filter(x=>x.s>1).sort((x,y)=>y.s-x.s);
+   let ranked=rank(true); let trimmed=false;
+   if(a.budget&&a.budgetKind==='under'){const inB=ranked.filter(x=>(x.p.was||x.p.price)<=a.budget);
+     if(inB.length){trimmed=ranked.slice(0,3).some(x=>(x.p.was||x.p.price)>a.budget);ranked=inB;}}
+   ranked=ranked.slice(0,3);
+   const noB=rank(false);
+   const overHero=a.budget&&noB.length&&ranked.length&&noB[0].p.id!==ranked[0].p.id?noB[0].p:null;
+   const feelL={cushion:'pillow-soft cushioning',support:'proper support',light:'a light, flexible build',wide:'genuine room across the foot'}[a.feel];
+   let word=`So: ${LBL.occ[a.occ].toLowerCase()}, with ${feelL}`+(a.budget?`, keeping ${a.budgetKind==='under'?'under':'around'} \u00a3${a.budget}`:'')+`. `;
+   word+=a.aud==='k'?`Children\u2019s bones don\u2019t finish forming until around eighteen \u2014 the right shoe does its work quietly. `:`These are the strongest matches in the current range. `;
+   if(a.feel==='wide')word+=a.aud==='k'?`Growing toes should spread, never fold \u2014 each of these is cut with a generous toe box. `:`Every pick comes in true wide fittings or is cut on a generous last. `;
+   if(a.heelSlip)word+=`For narrow heels, we\u2019ve favoured pairs that hold firmly at the back. `;
+   if(overHero)word+=`Worth knowing: the <b>${overHero.name}</b> scored highest on fit, but at \u00a3${overHero.price} it\u2019s over your \u00a3${a.budget} \u2014 we\u2019ve kept to budget below. `;
+   if(trimmed&&ranked.length<3)word+=`Only ${ranked.length===2?'two pairs':'one pair'} genuinely fit${ranked.length===2?'':'s'} the brief under \u00a3${a.budget} \u2014 we\u2019d rather show fewer, right. `;
+   if(a.deadline)word+=`Needed by ${a.deadline}? Free next-day click &amp; collect.`;
+   setStep(`Your matches`); renderChips();
+   const ackLine=convoNote?`<div class="sline" style="max-width:760px;margin-bottom:14px"><p>${convoNote}</p></div>`:''; convoNote='';
+   body().innerHTML=`<div class="mres">${ackLine}
+     <h2 style="text-align:left">Your Clarks matches</h2>
+     <div class="fitterword"><div><p>${word}<span class="sig">The fitter\u2019s verdict \u00b7 drawn from Clarks in-store fitting expertise</span></p></div></div>
+     ${ranked.map((x,i)=>{const p=x.p;return `
+      <article class="mpick">
+        <span class="mflag ${i===0?'':'brass'}">${i===0?'Best match':'Also matched'}</span>
+        <img src="${IMG(p.id)}" alt="${p.name}">
+        <div><div class="nm">${p.name}</div><div class="cl">${p.colour} \u00b7 ${p.tech}</div><div class="why">${p.note}</div></div>
+        <div class="side">${p.wide?'<span class="wfb">Wide fit</span>':''}
+          <span class="pr">${p.was?`<s>\u00a3${p.price.toFixed(2)}</s>\u00a3${p.was.toFixed(2)}`:`\u00a3${p.price.toFixed(2)}`}</span>
+          <a class="btn" href="#">Shop</a></div>
+      </article>`}).join('')}
+     <div class="m-talk"><textarea id="talkInput" rows="1" placeholder="Refine your matches \u2014 \u2018under \u00a350\u2019, \u2018something smarter\u2019, \u2018wide fit\u2019\u2026"></textarea><button onclick="Finder.typed()">Send</button></div>
+   </div>`;
+   foot().innerHTML=`<button class="prev" onclick="Finder.open()">Start again</button>
+     <span class="m-note">Free length, width &amp; depth measuring in every store \u2014 since 1825</span>
+     <a class="next" href="#" style="text-decoration:none">Book a free fitting</a>`;
+   body().scrollTop=0;
+   const ti=document.getElementById('talkInput');
+   ti.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();Finder.typed();}});
+ },
+ typed(){ const el=document.getElementById('talkInput'); const t=el.value.trim(); if(!t||busy)return;
+   const s=t.toLowerCase(); el.value='';
+   if(/thank|perfect|that\u2019s the one|that's the one|love it|lovely|great/.test(s)){
+     convoNote=''; body().insertAdjacentHTML('afterbegin',`<div class="sline" style="max-width:760px"><p>Glad we could help. Every Clarks store measures length, width and depth free \u2014 no appointment needed.</p></div>`);
+     body().scrollTop=0; return; }
+   if(/you decide|up to you|your pick|choose for me/.test(s)){
+     body().insertAdjacentHTML('afterbegin',`<div class="sline" style="max-width:760px"><p>We\u2019d stay with the best match above \u2014 it fits your brief most closely on every measure.</p></div>`);
+     body().scrollTop=0; return; }
+   const p=parseText(t);
+   if(/cheaper|less|too (much|expensive|dear)/.test(s)&&!p.budget){profile.budget=Math.max(20,(profile.budget||70)-20);profile.budgetKind='under';}
+   if(/smarter|dressier|more formal/.test(s)){profile.styles=['classic'];if(profile.aud!=='k'&&profile.occ==='everyday')profile.occ='smart';}
+   if(/sportier/.test(s))profile.styles=['sporty'];
+   if(/more casual|relaxed/.test(s))profile.styles=['casual'];
+   if(/wider|more room/.test(s))profile.feel='wide';
+   merge(p); convoNote=ackFor(p)||'Noted \u2014 matches updated.';
+   this.analyse();
+ }
+};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')Finder.close()});
+document.getElementById('mback').addEventListener('click',e=>{if(e.target.id==='mback')Finder.close()});
+</script></body></html>
