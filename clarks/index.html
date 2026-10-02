@@ -327,6 +327,23 @@ footer.site{background:var(--panel);padding:52px 0 30px;font-size:12.5px;color:v
 .m-talk{display:flex;border:1px solid var(--line);background:var(--bone)}
 .m-talk textarea{flex:1;border:none;outline:none;resize:none;background:transparent;font-family:var(--sans);font-size:13px;padding:12px 14px}
 .m-talk button{background:var(--ink);color:#fff;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:0 18px}
+
+/* size & colour questions */
+.sizegrid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:460px;margin:0 auto}
+.sizegrid .sz{min-width:46px;height:44px;border:1.5px solid var(--line);background:#fff;font-size:13.5px;font-weight:600;cursor:pointer;transition:all .12s;padding:0 8px}
+.sizegrid .sz:hover{border-color:#9d9789}
+.sizegrid .sz.sel{border-color:var(--ink);background:var(--ink);color:#fff}
+.szgroup{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);font-weight:700;width:100%;margin:10px 0 2px}
+.widthrow{display:flex;gap:8px;justify-content:center;margin:18px auto 0}
+.widthrow .wopt{border:1.5px solid var(--line);background:#fff;font-size:12px;font-weight:600;padding:10px 16px;cursor:pointer}
+.widthrow .wopt:hover{border-color:#9d9789}
+.widthrow .wopt.sel{border-color:var(--ink);background:var(--ink);color:#fff}
+.widthlbl{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);font-weight:700;text-align:center;margin-top:16px}
+.notsure{display:inline-block;margin-top:16px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:underline;text-underline-offset:3px;color:var(--grey)}
+.notsure:hover{color:var(--ink)}
+.cdot{display:block;width:44px;height:44px;border-radius:50%;margin:14px auto 2px;border:1px solid rgba(0,0,0,.12)}
+.stockline{font-size:10.5px;color:#3f7d48;font-weight:600}
+.stockline.low{color:#a05a1c}
 @media(max-width:900px){.modal{grid-template-columns:1fr}.m-left{display:none}}
 </style>
 </head>
@@ -547,8 +564,16 @@ const LBL={
  aud:{w:"Women\u2019s",m:"Men\u2019s",k:"Kids\u2019"},
  occ:{everyday:"Everyday",smart:"Work & smart",occasion:"Special occasion",active:"Out & active",school:"School days",play:"Play & weekends",first:"First steps"},
  feel:{cushion:"Pillow-soft",support:"Supportive",light:"Light & flexible",wide:"Roomy / wide fit"},
- style:{classic:"Classic",casual:"Casual",sporty:"Sporty"}
+ style:{classic:"Classic",casual:"Casual",sporty:"Sporty"},
+ colour:{black:"Black",brown:"Tan & brown",white:"White & cream",navy:"Navy & blue",bold:"Bold & metallic",any:"No preference"}
 };
+const CDOTS={black:'#1a1a1a',brown:'#8a5a2e',white:'#efe9df',navy:'#22304d',bold:'linear-gradient(135deg,#c9a24b,#c96a8e)',any:'conic-gradient(#1a1a1a 0 25%,#8a5a2e 0 50%,#efe9df 0 75%,#22304d 0)'};
+function colourOf(p){const c=p.colour.toLowerCase();
+  if(/black/.test(c))return 'black';
+  if(/navy|blue/.test(c))return 'navy';
+  if(/white|off white|cream|cotton/.test(c))return 'white';
+  if(/tan|brown|beeswax|stone|khaki|olive|sand|grey|maple/.test(c))return 'brown';
+  return 'bold';}
 /* audience-aware tile imagery */
 const QIMG={
  occ:{everyday:{w:'26177353',m:'26184702',k:'26189287'},smart:{w:'26183170',m:'26185510'},occasion:{w:'26183154',m:'26178563'},active:{w:'26320234',m:'26327242'},
@@ -599,10 +624,32 @@ function parseText(t){
   else{const dm=s.match(/\b(?:by|before|for|this|next)\s+(saturday|sunday|monday|tuesday|wednesday|thursday|friday)\b/);if(dm)dl=dm[1][0].toUpperCase()+dm[1].slice(1);}
   if(dl)out.deadline=dl;
   if(/narrow heel|heel slips|slips at the heel/.test(s))out.heelSlip=true;
+  /* size & width */
+  let sz=sn.match(/\b(?:size|uk)\s*(\d{1,2}(?:\.5)?)\b/)||sn.match(/\b(?:junior|infant)\s+(?:size\s+)?(\d{1,2}(?:\.5)?)\b/);
+  if(sz){out.size=sz[1]; out.sizeGroup=/junior/.test(sn)?'junior':/infant/.test(sn)?'infant':null;}
+  const wm=s.match(/\b([efgh])\s*(?:fitting|width)\b/);
+  if(wm)out.width=wm[1].toUpperCase();
+  else if(/wide fitting|wide fit\b/.test(s))out.width='G';
+  /* colour */
+  if(/\bblack\b/.test(s))out.colour='black';
+  else if(/\b(tan|brown|beeswax)\b/.test(s))out.colour='brown';
+  else if(/\b(white|cream)\b/.test(s))out.colour='white';
+  else if(/\b(navy|blue)\b/.test(s))out.colour='navy';
+  else if(/\b(gold|metallic|bronze|pink|lilac|red|bold|colourful|colorful)\b/.test(s))out.colour='bold';
+  else if(/any colour|no preference|open on colou?r/.test(s))out.colour='any';
   return out;
 }
 function merge(p){for(const k in p){if(p[k]!==undefined)profile[k]=p[k];}}
-function missing(){const q=[];if(!profile.aud)q.push('aud');if(!profile.occ)q.push('occ');if(!profile.feel)q.push('feel');if(!profile.styles)q.push('style');return q;}
+function missing(){
+  if(profile.aud==='k'&&profile.occ==='school'&&!profile.colour){profile.colour='black';profile.autoColour=true;}
+  const q=[];
+  if(!profile.aud)q.push('aud');
+  if(!profile.occ)q.push('occ');
+  if(!profile.size)q.push('size');
+  if(!profile.feel)q.push('feel');
+  if(!profile.colour)q.push('colour');
+  if(!profile.styles)q.push('style');
+  return q;}
 
 function ackFor(p){
   const bits=[];
@@ -616,7 +663,9 @@ const FACTS=[
  {k:'aud',l:'Fitting',v:p=>LBL.aud[p.aud]},
  {k:'age',l:'Age',v:p=>p.age},
  {k:'occ',l:'For',v:p=>LBL.occ[p.occ]},
+ {k:'size',l:'Size',v:p=>p.size==='unsure'?'To be measured':`UK ${p.size}${p.sizeGroup?' ('+p.sizeGroup+')':''}${p.width?' \u00b7 '+p.width+' width':''}`},
  {k:'feel',l:'Feel',v:p=>LBL.feel[p.feel]},
+ {k:'colour',l:'Colour',v:p=>LBL.colour[p.colour]+(p.autoColour?' \u00b7 school':'')},
  {k:'styles',l:'Style',v:p=>p.styles.map(x=>LBL.style[x]).join(' + ')},
  {k:'budget',l:'Budget',v:p=>(p.budgetKind==='under'?'Under \u00a3':'~\u00a3')+p.budget},
  {k:'deadline',l:'By',v:p=>p.deadline},
@@ -652,7 +701,7 @@ const Finder={
    body().innerHTML=`
      <h2>Let\u2019s find your Clarks style</h2>
      <p class="msub">Tell us who you\u2019re shopping for, in your own words \u2014 the more you tell us, the less we ask. Or leave it blank and we\u2019ll simply ask.</p>
-     <div class="m-ask"><textarea id="openInput" rows="2">My daughter starts school in September \u2014 she\u2019s five, quite wide feet, lives in trainers. Around \u00a330.</textarea>
+     <div class="m-ask"><textarea id="openInput" rows="3">My daughter starts school in September \u2014 she\u2019s five, infant size 12, quite wide feet, lives in trainers. Around \u00a330.</textarea>
      <button onclick="Finder.submitOpen()">Find my style</button></div>
      <div class="m-chipsrow">
        <button class="chip" onclick="Finder.chip(1)">Smart for the office</button>
@@ -661,7 +710,7 @@ const Finder={
      </div>`;
    foot().innerHTML=`<span class="m-note">Built on the knowledge of our longest-serving in-store fitters</span><span class="m-note">Free fitting in every store</span>`;
  },
- chip(i){const t=['','I need smart black shoes for work \u2014 on my feet all day and my usual pairs pinch by lunchtime.','Wedding in three weeks \u2014 elegant, but I want to be standing at the end of the night. Around \u00a370.',''][i];
+ chip(i){const t=['','I need smart black shoes for work, size 8 \u2014 on my feet all day and my usual pairs pinch by lunchtime.','Wedding in three weeks \u2014 elegant, but I want to be standing at the end of the night. Around \u00a370.',''][i];
    document.getElementById('openInput').value=t; if(t)document.getElementById('openInput').focus(); else this.submitOpen(); },
  submitOpen(){
    const t=(document.getElementById('openInput').value||'').trim();
@@ -675,17 +724,17 @@ const Finder={
    if(!miss.length)return this.analyse();
    planDone=planTotal-miss.length;
    const solved=planTotal<4&&planDone===0;
-   setStep(`Question ${planDone+1} of ${planTotal}${planTotal<4?' \u2014 we\u2019ve noted the rest':''}`);
+   setStep(`Question ${planDone+1} of ${planTotal}${planTotal<6?' \u2014 we\u2019ve noted the rest':''}`);
    const k=miss[0]; qHistory.push(JSON.stringify(profile));
-   if(k==='aud')this.qWho(); else if(k==='occ')(profile.aud==='k'?this.qStage():this.qWhere()); else if(k==='feel')this.qFeel(); else this.qStyle();
+   if(k==='aud')this.qWho(); else if(k==='occ')(profile.aud==='k'?this.qStage():this.qWhere()); else if(k==='size')this.qSize(); else if(k==='feel')this.qFeel(); else if(k==='colour')this.qColour(); else this.qStyle();
  },
  sline(){ if(!convoNote)return ''; const t=convoNote; convoNote=''; return `<div class="sline"><p>${t}</p></div>`; },
  tiles(q,opts,multi){
    multiSel=[];
    body().innerHTML=this.sline()+`<h2>${q.h}</h2><p class="msub">${q.sub}</p>
-     <div class="tilegrid ${opts.length===3?'t3':opts.length===4?'t4':''}">
+     <div class="tilegrid ${opts.length>=6?'t3':opts.length===3?'t3':opts.length===4?'t4':''}">
      ${opts.map(o=>`<button class="tile-opt" data-v="${o.v}" onclick="Finder.tap('${q.key}','${o.v}',${multi?'true':'false'},this)">
-        ${o.img?`<img src="${IMG(o.img)}" alt="">`:''}
+        ${o.img?`<img src="${IMG(o.img)}" alt="">`:o.dot?`<span class="cdot" style="background:${o.dot}"></span>`:''}
         <span class="tl">${o.t}</span>${o.s?`<span class="ts">${o.s}</span>`:''}
       </button>`).join('')}</div>`;
    foot().innerHTML=`${qHistory.length>1?'<button class="prev" onclick="Finder.prev()">Previous</button>':'<span></span>'}
@@ -695,7 +744,7 @@ const Finder={
  tap(key,val,multi,el){
    if(busy)return;
    if(!multi){ el.classList.add('sel'); busy=true;
-     setTimeout(()=>{busy=false; profile[key==='style'?'styles':key]= key==='style'?[val]:val;
+     setTimeout(()=>{busy=false; profile[key==='style'?'styles':key]= key==='style'?[val]:val; if(key==='colour')delete profile.autoColour;
        const like={};like[key==='style'?'styles':key]=key==='style'?[val]:val; convoNote=ackFor({[key]:val});
        this.nextStep();},260);
      return; }
@@ -714,6 +763,35 @@ const Finder={
        document.getElementById('modal').classList.remove('wide'); this.nextStep(); }
      else this.analyse(); } },
 
+ qSize(){
+   leftPanel([qi('feel','support')||'26178563',qi('style','casual')||'26184336'],'Length, width and depth');
+   const k=profile.aud==='k';
+   const groups=k?[['Infant',['3','4','5','6','7','8','9','10','11','12','13','13.5']],['Junior',['1','1.5','2','2.5','3','4','5','6']]]
+                :[[null,profile.aud==='m'?['6','6.5','7','7.5','8','8.5','9','9.5','10','10.5','11','12']:['3','3.5','4','4.5','5','5.5','6','6.5','7','7.5','8','9']]];
+   const widths=k?['F','G','H']:['Standard','Wide'];
+   body().innerHTML=this.sline()+`<h2>${k?'What size are they now?':'What size are you?'}</h2>
+     <p class="msub">${k?'Feet can grow two sizes a year \u2014 if in doubt, a free in-store measure is always best.':'Sizes drift over time \u2014 most people are a width away from their best fit.'}</p>
+     <div class="sizegrid">${groups.map(([g,arr])=>`${g?`<span class="szgroup">${g}</span>`:''}${arr.map(v=>`<button class="sz" data-sz="${v}" data-g="${g?g.toLowerCase():''}" onclick="Finder.pickSize(this)">${v}</button>`).join('')}`).join('')}</div>
+     <p class="widthlbl">Width fitting</p>
+     <div class="widthrow">${widths.map((w,i)=>`<button class="wopt${(profile.width&&((k&&w===profile.width)||(!k&&((profile.width==='G'&&w==='Wide')||(profile.width==='F'&&w==='Standard')))))||(!profile.width&&i===0&&false)?' sel':''}" data-w="${w}" onclick="Finder.pickWidth(this)">${w}${k?' fitting':''}</button>`).join('')}</div>
+     <button class="notsure" onclick="Finder.sizeUnsure()">Not sure? We\u2019ll show you how to measure</button>`;
+   if(profile.feel==='wide'&&!profile.width){const el=[...document.querySelectorAll('.wopt')].find(b=>/G|Wide/.test(b.dataset.w));if(el)el.classList.add('sel');}
+   foot().innerHTML=`${qHistory.length>1?'<button class="prev" onclick="Finder.prev()">Previous</button>':'<span></span>'}<button class="next" id="szNext" disabled onclick="Finder.commitSize()">Next</button>`;
+   body().scrollTop=0;
+ },
+ pickSize(el){document.querySelectorAll('.sz').forEach(b=>b.classList.remove('sel'));el.classList.add('sel');document.getElementById('szNext').disabled=false;},
+ pickWidth(el){document.querySelectorAll('.wopt').forEach(b=>b.classList.remove('sel'));el.classList.add('sel');},
+ commitSize(){const sel=document.querySelector('.sz.sel');if(!sel)return;
+   profile.size=sel.dataset.sz; if(sel.dataset.g)profile.sizeGroup=sel.dataset.g;
+   const w=document.querySelector('.wopt.sel');
+   if(w)profile.width= profile.aud==='k'? w.dataset.w : (w.dataset.w==='Wide'?'G':'F');
+   this.nextStep(); },
+ sizeUnsure(){profile.size='unsure';this.nextStep();},
+ qColour(){
+   leftPanel([qi('style','classic')||'26178709',qi('style','sporty')||'26188585'],'Their colour');
+   this.tiles({key:'colour',h:'Any colour in mind?',sub:'Fit decides the shortlist \u2014 colour decides which one gets worn.',foot:'Tap to continue'},
+    [{v:'black',t:'Black'},{v:'brown',t:'Tan & brown'},{v:'white',t:'White & cream'},{v:'navy',t:'Navy & blue'},{v:'bold',t:'Bold & metallic'},{v:'any',t:'No preference'}].map(o=>({...o,dot:CDOTS[o.v]})));
+ },
  qWho(){ leftPanel(['26188585','26178563'],'Who we\u2019re fitting');
    this.tiles({key:'aud',h:'Who are we fitting today?',sub:'Every fitting starts with the person, never the shoe.',foot:'Tap to continue'},[
     {v:'w',t:'Women\u2019s',s:'Five width fittings',img:'26188585'},
@@ -756,6 +834,7 @@ const Finder={
    if(a.styles&&a.styles.some(st=>p.style.includes(st)))s+=a.styles.includes(p.style[0])?14:9;
    if(a.feel==='wide'&&p.wide)s+=10;
    if(a.heelSlip&&p.feel.includes('support'))s+=6;
+   if(a.colour&&a.colour!=='any'){ colourOf(p)===a.colour ? s+=16 : s-=8; }
    if(useBudget&&a.budget){const pr=p.was||p.price;
      if(pr<=a.budget)s+=6; else s-=a.budgetKind==='under'?40:(pr-a.budget>15?24:10);}
    return s; },
@@ -770,7 +849,10 @@ const Finder={
    const noB=rank(false);
    const overHero=a.budget&&noB.length&&ranked.length&&noB[0].p.id!==ranked[0].p.id?noB[0].p:null;
    const feelL={cushion:'pillow-soft cushioning',support:'proper support',light:'a light, flexible build',wide:'genuine room across the foot'}[a.feel];
-   let word=`So: ${LBL.occ[a.occ].toLowerCase()}, with ${feelL}`+(a.budget?`, keeping ${a.budgetKind==='under'?'under':'around'} \u00a3${a.budget}`:'')+`. `;
+   const sizeL=a.size&&a.size!=='unsure'?` in UK ${a.size}${a.width?` (${a.width==='F'&&a.aud!=='k'?'standard':a.width==='G'&&a.aud!=='k'?'wide':a.width} width)`:''}`:'';
+   let word=`So: ${LBL.occ[a.occ].toLowerCase()}, with ${feelL}${sizeL}`+(a.budget?`, keeping ${a.budgetKind==='under'?'under':'around'} \u00a3${a.budget}`:'')+`. `;
+   if(a.size==='unsure')word+=`First things first: get measured \u2014 every Clarks store checks length, width and depth free, no appointment needed${a.aud==='k'?', and growing feet can jump two sizes a year':''}. The matches below will be waiting. `;
+   if(a.colour&&a.colour!=='any'&&ranked.length&&!ranked.some(x=>colourOf(x.p)===a.colour))word+=`An honest note on colour: nothing in ${LBL.colour[a.colour].toLowerCase()} matches the rest of your brief well enough \u2014 we\u2019ve kept the fit right and shown the closest colours instead. `;
    word+=a.aud==='k'?`Children\u2019s bones don\u2019t finish forming until around eighteen \u2014 the right shoe does its work quietly. `:`These are the strongest matches in the current range. `;
    if(a.feel==='wide')word+=a.aud==='k'?`Growing toes should spread, never fold \u2014 each of these is cut with a generous toe box. `:`Every pick comes in true wide fittings or is cut on a generous last. `;
    if(a.heelSlip)word+=`For narrow heels, we\u2019ve favoured pairs that hold firmly at the back. `;
@@ -789,13 +871,15 @@ const Finder={
         <div><div class="nm">${p.name}</div><div class="cl">${p.colour} \u00b7 ${p.tech}</div><div class="why">${p.note}</div></div>
         <div class="side">${p.wide?'<span class="wfb">Wide fit</span>':''}
           <span class="pr">${p.was?`<s>\u00a3${p.price.toFixed(2)}</s>\u00a3${p.was.toFixed(2)}`:`\u00a3${p.price.toFixed(2)}`}</span>
-          <a class="btn" href="#">Shop</a></div>
+          ${a.size&&a.size!=='unsure'?(()=>{const seed=[...p.id].reduce((t,c)=>t+c.charCodeAt(0),0)+Math.round(parseFloat(a.size)*7);
+            return seed%6===0?`<span class="stockline low">Last few \u00b7 UK ${a.size}</span>`:`<span class="stockline">In stock \u00b7 UK ${a.size}</span>`})():''}
+          <a class="btn" href="#">${a.size==='unsure'?'View':'Shop'}</a></div>
       </article>`}).join('')}
      <div class="m-talk"><textarea id="talkInput" rows="1" placeholder="Refine your matches \u2014 \u2018under \u00a350\u2019, \u2018something smarter\u2019, \u2018wide fit\u2019\u2026"></textarea><button onclick="Finder.typed()">Send</button></div>
    </div>`;
    foot().innerHTML=`<button class="prev" onclick="Finder.open()">Start again</button>
      <span class="m-note">Free length, width &amp; depth measuring in every store \u2014 since 1825</span>
-     <a class="next" href="#" style="text-decoration:none">Book a free fitting</a>`;
+     <a class="next" href="#" style="text-decoration:none">${profile.size==='unsure'?'Book a free measure':'Book a free fitting'}</a>`;
    body().scrollTop=0;
    const ti=document.getElementById('talkInput');
    ti.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();Finder.typed();}});
@@ -820,4 +904,6 @@ const Finder={
 };
 document.addEventListener('keydown',e=>{if(e.key==='Escape')Finder.close()});
 document.getElementById('mback').addEventListener('click',e=>{if(e.target.id==='mback')Finder.close()});
+/* Demo: launch the Style Finder on load, over the homepage */
+window.addEventListener('load',()=>{setTimeout(()=>Finder.open(),650)});
 </script></body></html>
